@@ -94,12 +94,6 @@ public class AlignTile : MonoBehaviour {
             last_value = offset * i;
             i += sign_value;
         }
-        /*if (last_value == 0)
-        {
-            return_tile_position = 0;
-        }
-        else
-        {*/
             float first_compare = Mathf.Abs(position) - Mathf.Abs(last_value);
             float second_compare = Mathf.Abs(found_value) - Mathf.Abs(position);
             if (first_compare < second_compare)
@@ -112,7 +106,6 @@ public class AlignTile : MonoBehaviour {
                 //else return the found coordinate
                 return_tile_position = i;
             }
-        //}
         
         return return_tile_position;
     }
