@@ -19,13 +19,18 @@ public class PlayerMovement : MonoBehaviour {
     public string compassDirection = "N";
     public GameObject selectedTile;
     public List<GameObject> neighborTiles;
+    Rigidbody rigidbody;
 
 
     GameState GS;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
-	}
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.freezeRotation = true;
+        rigidbody.drag = 5.0f;
+        rigidbody.maxAngularVelocity = 100.0f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -56,6 +61,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             transform.Translate(-movement * movementSpeed * Time.deltaTime, Space.World);
+            //rigidbody.AddForce(movement * movementSpeed * Time.deltaTime, ForceMode.Impulse);
         }
     }
 
@@ -135,6 +141,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+        //rigidbody.AddForce(movement * movementSpeed * Time.deltaTime, ForceMode.Impulse);
     }
 
     string UpdateTilePosition()
@@ -283,5 +290,17 @@ public class PlayerMovement : MonoBehaviour {
             compassDirection = "NW";
         }
         return compassDirection;
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.rigidbody)
+        {
+            if (!other.gameObject.GetComponent<ConstantForce>())
+            { other.gameObject.AddComponent<ConstantForce>(); }
+            else
+            {
+                other.gameObject.GetComponent<ConstantForce>().force = GetComponent<Rigidbody>().velocity;
+            }
+        }
     }
 }
