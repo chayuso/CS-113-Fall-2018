@@ -10442,10 +10442,12 @@ MonoBehaviour:
   tileX: 0
   tileY: 0
   tileZ: 0
-  inputHorizontal: CONTROLLER_RIGHT_STICK_HORIZONTAL
-  inputVertical: CONTROLLER_RIGHT_STICK_VERTICAL
+  inputHorizontal: LeftHorizontal
+  inputVertical: LeftVertical
   Direction: N
-  frontTile: {fileID: 0}
+  compassDirection: N
+  selectedTile: {fileID: 0}
+  neighborTiles: []
 --- !u!54 &844949265
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12931,7 +12933,9 @@ MonoBehaviour:
   inputHorizontal: Horizontal
   inputVertical: Vertical
   Direction: N
-  frontTile: {fileID: 0}
+  compassDirection: N
+  selectedTile: {fileID: 0}
+  neighborTiles: []
 --- !u!4 &986414362 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4201501479450378, guid: d9d2cfaad561dfe4aa51cf3e524fcfc2,

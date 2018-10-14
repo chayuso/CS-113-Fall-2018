@@ -16,7 +16,8 @@ public class PlayerMovement : MonoBehaviour {
     public string inputHorizontal = "Horizontal";
     public string inputVertical = "Vertical";
     public string Direction = "N";
-    public GameObject frontTile;
+    public string compassDirection = "N";
+    public GameObject selectedTile;
     public List<GameObject> neighborTiles;
 
 
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
         Movement();
         InvalidTileCheck();
         Direction = QuarterDirection();
+        compassDirection = CompassDirection();
         CheckFrontTile();
     }
     void InvalidTileCheck()
@@ -40,23 +42,20 @@ public class PlayerMovement : MonoBehaviour {
         float xtemp = DirectionNumbers(CompassDirection())[0] / 2f;
         float ytemp = DirectionNumbers(CompassDirection())[1] / 2f;
 
-        if (GS.BlockedTiles.Contains(DynamicUpdateTilePosition(xtemp,ytemp)))
+        if (GS.BlockedTiles.Contains(DynamicUpdateTilePosition(xtemp, ytemp)))
         {
             float moveVertical = 0f;
             float moveHorizontal = 0f;
-            if ((CompassDirection().Contains("N") && neighborTiles[0])||(CompassDirection().Contains("S") && neighborTiles[2]))
+            if ((Input.GetAxisRaw(inputVertical) >= 0f && neighborTiles[0]) || (Input.GetAxisRaw(inputVertical) <= 0f && neighborTiles[2]))
             {
                 moveVertical = Input.GetAxisRaw(inputVertical);
             }
-            if ((CompassDirection().Contains("E") && neighborTiles[1]) || (CompassDirection().Contains("W") && neighborTiles[3]))
+            if ((Input.GetAxisRaw(inputHorizontal) >= 0f && neighborTiles[1]) || (Input.GetAxisRaw(inputHorizontal) <= 0f && neighborTiles[3]))
             {
                 moveHorizontal = Input.GetAxisRaw(inputHorizontal);
             }
-                Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-                if (movement != new Vector3(0, 0, 0))
-                { transform.rotation = Quaternion.LookRotation(movement); }
-
-                transform.Translate(-movement * movementSpeed * Time.deltaTime, Space.World);
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+            transform.Translate(-movement * movementSpeed * Time.deltaTime, Space.World);
         }
     }
 
@@ -65,33 +64,33 @@ public class PlayerMovement : MonoBehaviour {
         string frontS = getTile(Direction);
 
         GameObject tempFrontTile = GameObject.Find(frontS);
-        if (frontTile)
+        if (selectedTile)
         {
-            if (frontTile != tempFrontTile)
+            if (selectedTile != tempFrontTile)
             {
-                frontTile.GetComponent<TileHighlight>().Dehighlight();
+                selectedTile.GetComponent<TileHighlight>().Dehighlight();
             }
         }
         neighborTiles = getNearbyTileGameObjects();
-        frontTile = tempFrontTile;
-        if (frontTile)
+        selectedTile = tempFrontTile;
+        if (selectedTile)
         {
-            if (frontTile.tag != "HalfTile")
+            if (selectedTile.tag != "HalfTile")
             {
-                frontTile = null;
+                selectedTile = null;
                 foreach (GameObject g in neighborTiles)
                 {
                     if (g)
                         if (g.tag == "HalfTile")
                     {
-                        frontTile = g;
-                        frontTile.GetComponent<TileHighlight>().Highlight();
+                        selectedTile = g;
+                        selectedTile.GetComponent<TileHighlight>().Highlight();
                         return true;
                     }
                 }
                 return false;
             }
-            frontTile.GetComponent<TileHighlight>().Highlight();
+            selectedTile.GetComponent<TileHighlight>().Highlight();
             return true;
         }
         foreach (GameObject g in neighborTiles)
@@ -99,8 +98,8 @@ public class PlayerMovement : MonoBehaviour {
             if(g)
             if (g.tag == "HalfTile")
             {
-                frontTile = g;
-                frontTile.GetComponent<TileHighlight>().Highlight();
+                selectedTile = g;
+                selectedTile.GetComponent<TileHighlight>().Highlight();
                 return true;
             }
         }
