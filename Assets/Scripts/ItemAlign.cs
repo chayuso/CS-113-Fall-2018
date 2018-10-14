@@ -18,6 +18,8 @@ public class ItemAlign : MonoBehaviour {
     private float Zposition;
     GameState GS;
     string TileName = "";
+    public bool disableTileUpdate = false;
+    public bool CanPickup = true;
     void Start()
     {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -34,20 +36,33 @@ public class ItemAlign : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        TileName = UpdateTilePosition();
-        if (!transform.parent)
+        if (!disableTileUpdate)
         {
-            TileName = UpdateTilePosition();
-            FindParentTile();
+            UpdateTileName();
+            if (!transform.parent)
+            {
+                GetComponent<Rigidbody>().useGravity = true;
+                FindParentTile();
+            }
+            else
+            {
+                Align();
+                GetComponent<Rigidbody>().useGravity = false;
+                GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+            }
+            CanPickup = true;
         }
         else
         {
-            Align();
-            GetComponent<Rigidbody>().useGravity = false;
-            GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+            CanPickup = false;
         }
+        
     }
-    void FindParentTile()
+    public void UpdateTileName()
+    {
+        TileName = UpdateTilePosition();
+    }
+    public void FindParentTile()
     {
         if (GS.BlockedTiles.Contains(DynamicUpdateTilePosition(0f, 0f, -.5f)))
         {

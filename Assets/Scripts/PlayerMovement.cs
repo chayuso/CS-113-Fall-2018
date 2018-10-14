@@ -19,17 +19,17 @@ public class PlayerMovement : MonoBehaviour {
     public string compassDirection = "N";
     public GameObject selectedTile;
     public List<GameObject> neighborTiles;
-    Rigidbody rigidbody;
+    Rigidbody playerRigidbody;
 
 
     GameState GS;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
-        rigidbody = GetComponent<Rigidbody>();
-        rigidbody.freezeRotation = true;
-        rigidbody.drag = 5.0f;
-        rigidbody.maxAngularVelocity = 100.0f;
+        playerRigidbody = GetComponent<Rigidbody>();
+        playerRigidbody.freezeRotation = true;
+        playerRigidbody.drag = 5.0f;
+        playerRigidbody.maxAngularVelocity = 100.0f;
     }
 	
 	// Update is called once per frame
