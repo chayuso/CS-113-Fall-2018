@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour {
     public string inputVertical = "Vertical";
     public string Direction = "N";
     public GameObject frontTile;
+    public List<GameObject> neighborTiles;
+
+
     GameState GS;
     // Use this for initialization
     void Start () {
@@ -33,30 +36,33 @@ public class PlayerMovement : MonoBehaviour {
     void InvalidTileCheck()
     {
         //Checks and reverts movement if walking in a occupied tile
-        if (GS.BlockedTiles.Contains(UpdateTilePosition()))
-        {
-            while (GS.BlockedTiles.Contains(UpdateTilePosition()))
-            {
-                float moveHorizontal = Input.GetAxisRaw(inputHorizontal);
-                float moveVertical = Input.GetAxisRaw(inputVertical);
+        UpdateTilePosition();
+        float xtemp = DirectionNumbers(CompassDirection())[0] / 2f;
+        float ytemp = DirectionNumbers(CompassDirection())[1] / 2f;
 
+        if (GS.BlockedTiles.Contains(DynamicUpdateTilePosition(xtemp,ytemp)))
+        {
+            float moveVertical = 0f;
+            float moveHorizontal = 0f;
+            if ((CompassDirection().Contains("N") && neighborTiles[0])||(CompassDirection().Contains("S") && neighborTiles[2]))
+            {
+                moveVertical = Input.GetAxisRaw(inputVertical);
+            }
+            if ((CompassDirection().Contains("E") && neighborTiles[1]) || (CompassDirection().Contains("W") && neighborTiles[3]))
+            {
+                moveHorizontal = Input.GetAxisRaw(inputHorizontal);
+            }
                 Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
                 if (movement != new Vector3(0, 0, 0))
                 { transform.rotation = Quaternion.LookRotation(movement); }
 
                 transform.Translate(-movement * movementSpeed * Time.deltaTime, Space.World);
-            }
         }
     }
 
     bool CheckFrontTile()
     {
-        string frontS = "";
-        Vector3 tileFront = new Vector3(
-            findPosition(transform.position.x + DirectionNumbers(Direction)[0], offsetX, "x"),
-            findPosition(transform.position.z + DirectionNumbers(Direction)[1], offsetY, "y"),
-            findPosition(transform.position.y, offsetZ, "z"));
-        frontS = tileFront.x.ToString() + "x" + tileFront.y.ToString() + "x" + tileFront.z.ToString();
+        string frontS = getTile(Direction);
 
         GameObject tempFrontTile = GameObject.Find(frontS);
         if (frontTile)
@@ -66,20 +72,59 @@ public class PlayerMovement : MonoBehaviour {
                 frontTile.GetComponent<TileHighlight>().Dehighlight();
             }
         }
+        neighborTiles = getNearbyTileGameObjects();
         frontTile = tempFrontTile;
         if (frontTile)
         {
             if (frontTile.tag != "HalfTile")
             {
                 frontTile = null;
+                foreach (GameObject g in neighborTiles)
+                {
+                    if (g)
+                        if (g.tag == "HalfTile")
+                    {
+                        frontTile = g;
+                        frontTile.GetComponent<TileHighlight>().Highlight();
+                        return true;
+                    }
+                }
                 return false;
             }
             frontTile.GetComponent<TileHighlight>().Highlight();
             return true;
         }
+        foreach (GameObject g in neighborTiles)
+        {
+            if(g)
+            if (g.tag == "HalfTile")
+            {
+                frontTile = g;
+                frontTile.GetComponent<TileHighlight>().Highlight();
+                return true;
+            }
+        }
         return false;
     }
-
+    List<GameObject> getNearbyTileGameObjects()
+    {
+        List<GameObject> gList = new List<GameObject>();
+        gList.Add(GameObject.Find(getTile("N")));
+        gList.Add(GameObject.Find(getTile("E")));
+        gList.Add(GameObject.Find(getTile("S")));
+        gList.Add(GameObject.Find(getTile("W")));
+        return gList;
+    }
+    string getTile(string Dir)
+    {
+        string dTile = "";
+        Vector3 tileFront = new Vector3(
+            findPosition(transform.position.x + DirectionNumbers(Dir)[0], offsetX, "x"),
+            findPosition(transform.position.z + DirectionNumbers(Dir)[1], offsetY, "y"),
+            findPosition(transform.position.y, offsetZ, "z"));
+        dTile = tileFront.x.ToString() + "x" + tileFront.y.ToString() + "x" + tileFront.z.ToString();
+        return dTile;
+    }
     void Movement()
     {
         float moveHorizontal = Input.GetAxisRaw(inputHorizontal);
@@ -100,7 +145,12 @@ public class PlayerMovement : MonoBehaviour {
         tileZ = findPosition(transform.position.y - addZ, offsetZ, "z");
         return tileX.ToString() + "x" + tileY.ToString() + "x" + tileZ.ToString();
     }
-
+    string DynamicUpdateTilePosition(float xAdd = 0, float yAdd = 0)
+    {
+        return findPosition(transform.position.x + xAdd, offsetX, "x").ToString() 
+            + "x" + findPosition(transform.position.z + yAdd, offsetY, "y").ToString() 
+            + "x" + findPosition(transform.position.y, offsetZ, "z").ToString();
+    }
     int findPosition(float position, float offset, string string_v)
     {
         if (offset == 0)
@@ -150,25 +200,21 @@ public class PlayerMovement : MonoBehaviour {
     float[] DirectionNumbers(string d)
     {
         float[] t = { 0, 0 };
-        if (d == "E")
+        if (d.Contains("E"))
         {
-            t[0] = 1;//x
-            t[1] = 0;//y
+            t[0] += 1;//x
         }
-        else if (d == "W")
+        else if (d.Contains("W"))
         {
-            t[0] = -1;//x
-            t[1] = 0;//y
+            t[0] += -1;//x
         }
-        else if (d == "N")
+        if (d.Contains("N"))
         {
-            t[0] = 0;//x
-            t[1] = 1;//y
+            t[1] += 1;//y
         }
-        else if (d == "S")
+        else if (d.Contains("S"))
         {
-            t[0] = 0;//x
-            t[1] = -1;//y
+            t[1] += -1;//y
         }
         return t;
     }
