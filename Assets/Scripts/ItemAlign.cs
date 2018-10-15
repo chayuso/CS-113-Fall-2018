@@ -71,6 +71,10 @@ public class ItemAlign : MonoBehaviour {
         {
             GameObject FoundTile = GameObject.Find(TileName);
             bool tileHasItem = false;
+            if (!FoundTile)
+            {
+                return;
+            }
             foreach (Transform childT in FoundTile.transform)
             {
                 if (childT.tag == "Item" && childT.gameObject!=gameObject)

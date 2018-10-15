@@ -7,9 +7,10 @@ public class ItemHandler : MonoBehaviour {
     public GameObject Item;
     public GameObject GroundCheck;
     PlayerMovement PM;
+    public string GrabButton = "Fire1";
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         PM = GetComponent<PlayerMovement>();
 		
 	}
@@ -19,6 +20,7 @@ public class ItemHandler : MonoBehaviour {
         ToggleGrab();
         if (Item)
         {
+            Item.transform.position = ItemPosition.transform.position;
             Item.GetComponent<Rigidbody>().freezeRotation = true;
             Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             Item.GetComponent<SphereCollider>().enabled = false;
@@ -26,7 +28,7 @@ public class ItemHandler : MonoBehaviour {
     }
     void ToggleGrab()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown(GrabButton))
         {
             if (Item)
             {
@@ -36,6 +38,17 @@ public class ItemHandler : MonoBehaviour {
                 if (PM.selectedTile)
                 {
                     Item.transform.position = PM.selectedTile.transform.position;
+                    foreach (Transform childItem in PM.selectedTile.transform)
+                    {
+                        if (childItem.tag == "Item")
+                        {
+                            Item.GetComponent<SphereCollider>().enabled = true;
+                            Item.transform.position =  new Vector3(PM.selectedTile.transform.position.x,
+                                                                    PM.selectedTile.transform.position.y+1f,
+                                                                    PM.selectedTile.transform.position.z);
+                            break;
+                        }
+                    }
                     if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
                     {
                         GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
