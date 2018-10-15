@@ -22,6 +22,7 @@ public class ItemAlign : MonoBehaviour {
     public bool CanPickup = true;
     Material defaultMat;
     public Material SelectMat;
+    Vector3 initScale;
     void Start()
     {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -33,7 +34,7 @@ public class ItemAlign : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
-      
+        initScale = transform.lossyScale;
     }
 
     // Update is called once per frame
@@ -59,7 +60,7 @@ public class ItemAlign : MonoBehaviour {
         {
             CanPickup = false;
         }
-        
+        transform.localScale = initScale;
     }
     public void UpdateTileName()
     {

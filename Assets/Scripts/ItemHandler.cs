@@ -24,6 +24,10 @@ public class ItemHandler : MonoBehaviour {
             Item.GetComponent<Rigidbody>().freezeRotation = true;
             Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             Item.GetComponent<SphereCollider>().enabled = false;
+            if (Item.transform.parent != ItemPosition.transform)
+            {
+                Item.transform.parent = ItemPosition.transform;
+            }
         }
     }
     void ToggleGrab()
@@ -108,6 +112,16 @@ public class ItemHandler : MonoBehaviour {
                     return childItem.gameObject;
                 }
             }
+            if (PM.selectedTile.GetComponent<ItemChest>())
+            {
+                Item = SpawnItem(PM.selectedTile.GetComponent<ItemChest>().Item);
+                Item.GetComponent<ItemAlign>().disableTileUpdate = true;
+                Item.GetComponent<Rigidbody>().freezeRotation = true;
+                Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+                Item.transform.parent = ItemPosition.transform;
+                Item.transform.position = ItemPosition.transform.position;
+                return Item;
+            }
         }
         else if (GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
         {
@@ -121,5 +135,14 @@ public class ItemHandler : MonoBehaviour {
             return childItem.gameObject;
         }
         return null;
+    }
+    GameObject SpawnItem(GameObject Prefab)
+    {
+        var SpawnedItem = (GameObject)Instantiate(
+            Prefab,
+            Prefab.transform.position,
+            Prefab.transform.rotation);
+        SpawnedItem.transform.localScale = Prefab.transform.localScale;
+        return SpawnedItem;
     }
 }
