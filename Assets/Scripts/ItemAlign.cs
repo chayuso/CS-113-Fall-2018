@@ -20,12 +20,15 @@ public class ItemAlign : MonoBehaviour {
     string TileName = "";
     public bool disableTileUpdate = false;
     public bool CanPickup = true;
+    Material defaultMat;
+    public Material SelectMat;
     void Start()
     {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
         TileName = UpdateTilePosition();
         FindParentTile();
         GetComponent<Rigidbody>().useGravity = true;
+        defaultMat = GetComponent<Renderer>().material;
     }
     // Use this for initialization
     void Awake()
@@ -241,5 +244,13 @@ public class ItemAlign : MonoBehaviour {
             GetComponent<Rigidbody>().useGravity = false;
             GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
+    }
+    public void Highlight()
+    {
+        GetComponent<Renderer>().material = SelectMat;
+    }
+    public void Dehighlight()
+    {
+        GetComponent<Renderer>().material = defaultMat;
     }
 }

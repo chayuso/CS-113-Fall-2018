@@ -6548,6 +6548,7 @@ MonoBehaviour:
   addZ: 1
   disableTileUpdate: 0
   CanPickup: 1
+  SelectMat: {fileID: 2100000, guid: 1055f1d663e88774fb3f2c271f53bf34, type: 2}
 --- !u!1001 &517809752
 Prefab:
   m_ObjectHideFlags: 0
@@ -24752,6 +24753,7 @@ MonoBehaviour:
   addZ: 1
   disableTileUpdate: 0
   CanPickup: 1
+  SelectMat: {fileID: 2100000, guid: 1055f1d663e88774fb3f2c271f53bf34, type: 2}
 --- !u!135 &1965903853
 SphereCollider:
   m_ObjectHideFlags: 0

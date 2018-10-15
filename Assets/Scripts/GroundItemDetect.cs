@@ -24,6 +24,7 @@ public class GroundItemDetect : MonoBehaviour {
             if (!DetectedItem)
             {
                 DetectedItem = other.gameObject;
+                DetectedItem.GetComponent<ItemAlign>().Highlight();
             }
             else if(!OtherItems.Contains(other.gameObject))
             {
@@ -35,17 +36,18 @@ public class GroundItemDetect : MonoBehaviour {
     {
         if (other.gameObject == DetectedItem)
         {
-            print(DetectedItem);
+            DetectedItem.GetComponent<ItemAlign>().Dehighlight();
             DetectedItem = null;
             if (OtherItems.Count != 0)
             {
                 DetectedItem = OtherItems[0];
+                DetectedItem.GetComponent<ItemAlign>().Highlight();
                 OtherItems.Remove(DetectedItem);
             }
         }
         else if (OtherItems.Contains(other.gameObject))
         {
-            OtherItems.Remove(DetectedItem);
+            OtherItems.Remove(other.gameObject);
         }
     }
 }

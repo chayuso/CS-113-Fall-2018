@@ -157,7 +157,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4712502233497386}
-  - component: {fileID: 114901377344341252}
   m_Layer: 0
   m_Name: Anchor
   m_TagString: CameraAnchor
@@ -801,31 +800,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114901377344341252
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1449912153739662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c291e1be044753b4f934e210546488d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  disableAutoFollow: 0
-  disableSelectFollow: 0
-  playerCamera: {fileID: 1449912153739662}
-  playerCharacter: {fileID: 0}
-  journeyLength: 0
-  TPosition: {x: 0, y: 0, z: 0}
-  speedTransition: 250
-  zoom: 25
-  Yoffset: 0
-  Boundary: 50
-  speedZoom: 25
-  dragSpeed: 2
-  gridBoundary: 15
-  stopFollowing: 0
 --- !u!114 &114950888776112386
 MonoBehaviour:
   m_ObjectHideFlags: 1

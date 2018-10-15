@@ -38,6 +38,21 @@ public class ItemHandler : MonoBehaviour {
                     Item.transform.position = PM.selectedTile.transform.position;
                 }
                 Item.GetComponent<SphereCollider>().enabled = true;
+                if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
+                {
+                    GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
+                    GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = null;
+                    if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Count != 0)
+                    {
+                        GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = GroundCheck.GetComponent<GroundItemDetect>().OtherItems[0];
+                        GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Highlight();
+                        GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(GroundCheck.GetComponent<GroundItemDetect>().DetectedItem);
+                    }
+                }
+                else if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Contains(Item))
+                {
+                    GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
+                }
                 Item = null;
             }
             else
