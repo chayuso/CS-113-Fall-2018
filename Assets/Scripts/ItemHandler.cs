@@ -36,6 +36,23 @@ public class ItemHandler : MonoBehaviour {
                 if (PM.selectedTile)
                 {
                     Item.transform.position = PM.selectedTile.transform.position;
+                    if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
+                    {
+                        GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
+                        GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = null;
+                        if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Count != 0)
+                        {
+                            GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = GroundCheck.GetComponent<GroundItemDetect>().OtherItems[0];
+                            GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Highlight();
+                            GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(GroundCheck.GetComponent<GroundItemDetect>().DetectedItem);
+                        }
+                    }
+                    else if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Contains(Item))
+                    {
+                        GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
+                    }
+                    Item = null;
+                    return;
                 }
                 Item.GetComponent<SphereCollider>().enabled = true;
                 if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
@@ -70,6 +87,7 @@ public class ItemHandler : MonoBehaviour {
                 if (childItem.tag == "Item")
                 {
                     childItem.parent = ItemPosition.transform;
+                    childItem.transform.position = ItemPosition.transform.position;
                     Item = childItem.gameObject;
                     Item.GetComponent<ItemAlign>().disableTileUpdate = true;
                     Item.GetComponent<Rigidbody>().freezeRotation = true;
@@ -82,6 +100,7 @@ public class ItemHandler : MonoBehaviour {
         {
             Transform childItem = GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.transform;
             childItem.parent = ItemPosition.transform;
+            childItem.transform.position = ItemPosition.transform.position;
             Item = childItem.gameObject;
             Item.GetComponent<ItemAlign>().disableTileUpdate = true;
             Item.GetComponent<Rigidbody>().freezeRotation = true;
