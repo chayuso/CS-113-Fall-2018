@@ -36,42 +36,35 @@ public class ItemHandler : MonoBehaviour {
         {
             if (Item)
             {
-                Item.transform.parent = null;
-                Item.GetComponent<Rigidbody>().freezeRotation = false;
-                Item.GetComponent<ItemAlign>().disableTileUpdate = false;
-                if (PM.selectedTile)
+                DropItem();
+            }
+            else
+            {
+                Item = FindItem();
+            }
+        }
+    }
+    public void DropItem()
+    {
+        if (Item)
+        {
+            Item.transform.parent = null;
+            Item.GetComponent<Rigidbody>().freezeRotation = false;
+            Item.GetComponent<ItemAlign>().disableTileUpdate = false;
+            if (PM.selectedTile)
+            {
+                Item.transform.position = PM.selectedTile.transform.position;
+                foreach (Transform childItem in PM.selectedTile.transform)
                 {
-                    Item.transform.position = PM.selectedTile.transform.position;
-                    foreach (Transform childItem in PM.selectedTile.transform)
+                    if (childItem.tag == "Item")
                     {
-                        if (childItem.tag == "Item")
-                        {
-                            Item.GetComponent<SphereCollider>().enabled = true;
-                            Item.transform.position =  new Vector3(PM.selectedTile.transform.position.x,
-                                                                    PM.selectedTile.transform.position.y+1f,
-                                                                    PM.selectedTile.transform.position.z);
-                            break;
-                        }
+                        Item.GetComponent<SphereCollider>().enabled = true;
+                        Item.transform.position = new Vector3(PM.selectedTile.transform.position.x,
+                                                                PM.selectedTile.transform.position.y + 1f,
+                                                                PM.selectedTile.transform.position.z);
+                        break;
                     }
-                    if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
-                    {
-                        GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
-                        GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = null;
-                        if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Count != 0)
-                        {
-                            GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = GroundCheck.GetComponent<GroundItemDetect>().OtherItems[0];
-                            GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Highlight();
-                            GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(GroundCheck.GetComponent<GroundItemDetect>().DetectedItem);
-                        }
-                    }
-                    else if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Contains(Item))
-                    {
-                        GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
-                    }
-                    Item = null;
-                    return;
                 }
-                Item.GetComponent<SphereCollider>().enabled = true;
                 if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
                 {
                     GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
@@ -88,11 +81,25 @@ public class ItemHandler : MonoBehaviour {
                     GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
                 }
                 Item = null;
+                return;
             }
-            else
+            Item.GetComponent<SphereCollider>().enabled = true;
+            if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
             {
-                Item = FindItem();
+                GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
+                GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = null;
+                if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Count != 0)
+                {
+                    GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = GroundCheck.GetComponent<GroundItemDetect>().OtherItems[0];
+                    GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Highlight();
+                    GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(GroundCheck.GetComponent<GroundItemDetect>().DetectedItem);
+                }
             }
+            else if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Contains(Item))
+            {
+                GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
+            }
+            Item = null;
         }
     }
     GameObject FindItem()

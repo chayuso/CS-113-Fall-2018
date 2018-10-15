@@ -20,7 +20,8 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject selectedTile;
     public List<GameObject> neighborTiles;
     Rigidbody playerRigidbody;
-
+    public float forceValue = 1111f;
+    public Vector3 RespawnPoint;
 
     GameState GS;
     // Use this for initialization
@@ -30,6 +31,7 @@ public class PlayerMovement : MonoBehaviour {
         playerRigidbody.freezeRotation = true;
         playerRigidbody.drag = 5.0f;
         playerRigidbody.maxAngularVelocity = 100.0f;
+        RespawnPoint = transform.position;
     }
 	
 	// Update is called once per frame
@@ -39,11 +41,18 @@ public class PlayerMovement : MonoBehaviour {
         Direction = QuarterDirection();
         compassDirection = CompassDirection();
         CheckFrontTile();
+        
     }
     void InvalidTileCheck()
     {
         //Checks and reverts movement if walking in a occupied tile
-        UpdateTilePosition();
+        string CurrentTile = UpdateTilePosition();
+        CurrentTile = CurrentTile.Split('x')[0]+"x"+ CurrentTile.Split('x')[1] + "x"+ (int.Parse(CurrentTile.Split('x')[2])-1).ToString();
+
+        if (!GS.BlockedTiles.Contains(CurrentTile))
+        {
+            GetComponent<Rigidbody>().AddForce(-Vector3.up * forceValue);
+        }
         float xtemp = DirectionNumbers(CompassDirection())[0] / 2f;
         float ytemp = DirectionNumbers(CompassDirection())[1] / 2f;
 
