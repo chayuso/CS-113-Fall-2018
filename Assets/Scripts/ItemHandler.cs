@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemHandler : MonoBehaviour {
     public GameObject ItemPosition;
     public GameObject Item;
+    public GameObject GroundCheck;
     PlayerMovement PM;
 
 	// Use this for initialization
@@ -20,6 +21,7 @@ public class ItemHandler : MonoBehaviour {
         {
             Item.GetComponent<Rigidbody>().freezeRotation = true;
             Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            Item.GetComponent<SphereCollider>().enabled = false;
         }
     }
     void ToggleGrab()
@@ -35,6 +37,7 @@ public class ItemHandler : MonoBehaviour {
                 {
                     Item.transform.position = PM.selectedTile.transform.position;
                 }
+                Item.GetComponent<SphereCollider>().enabled = true;
                 Item = null;
             }
             else
@@ -55,10 +58,20 @@ public class ItemHandler : MonoBehaviour {
                     Item = childItem.gameObject;
                     Item.GetComponent<ItemAlign>().disableTileUpdate = true;
                     Item.GetComponent<Rigidbody>().freezeRotation = true;
-                    Item.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+                    Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                     return childItem.gameObject;
                 }
             }
+        }
+        else if (GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
+        {
+            Transform childItem = GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.transform;
+            childItem.parent = ItemPosition.transform;
+            Item = childItem.gameObject;
+            Item.GetComponent<ItemAlign>().disableTileUpdate = true;
+            Item.GetComponent<Rigidbody>().freezeRotation = true;
+            Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            return childItem.gameObject;
         }
         return null;
     }

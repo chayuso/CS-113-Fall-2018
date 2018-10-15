@@ -67,31 +67,54 @@ public class ItemAlign : MonoBehaviour {
         if (GS.BlockedTiles.Contains(DynamicUpdateTilePosition(0f, 0f, -.5f)))
         {
             GameObject FoundTile = GameObject.Find(TileName);
-            transform.parent = FoundTile.transform;
-            if (transform.parent.tag == "HalfTile")
+            bool tileHasItem = false;
+            foreach (Transform childT in FoundTile.transform)
             {
-                Align();
-                GetComponent<Rigidbody>().useGravity = false;
-                GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-                return;
-            }
-            else
-            {
-                GameObject TopTile = RecursiveFindTopTile(transform.parent.gameObject);
-                if (TopTile!=transform.parent)
+                if (childT.tag == "Item" && childT.gameObject!=gameObject)
                 {
-                    transform.parent = TopTile.transform;
-                    if (transform.parent.tag == "HalfTile")
-                    {
-                        AlignTo(int.Parse(transform.parent.name.Split('x')[0]), 
-                            int.Parse(transform.parent.name.Split('x')[1]), 
-                            int.Parse(transform.parent.name.Split('x')[2]));
-                        GetComponent<Rigidbody>().useGravity = false;
-                        GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-                        return;
-                    }
+                    tileHasItem = true;
+                    break;
                 }
             }
+            if (!tileHasItem)
+            {
+                if (FoundTile.transform.tag == "HalfTile")
+                {
+                    transform.parent = FoundTile.transform;
+                    Align();
+                    GetComponent<Rigidbody>().useGravity = false;
+                    GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+                    return;
+                }
+                else
+                {
+                    GameObject TopTile = RecursiveFindTopTile(FoundTile.gameObject);
+
+                        if (TopTile.transform.tag == "HalfTile")
+                        {
+                            foreach (Transform childT in TopTile.transform)
+                            {
+                                if (childT.tag == "Item" && childT.gameObject != gameObject)
+                                {
+                                    tileHasItem = true;
+                                    break;
+                                }
+                            }
+                            if (!tileHasItem)
+                            {
+                                transform.parent = TopTile.transform;
+                                AlignTo(int.Parse(transform.parent.name.Split('x')[0]), 
+                                        int.Parse(transform.parent.name.Split('x')[1]), 
+                                        int.Parse(transform.parent.name.Split('x')[2]));
+                                GetComponent<Rigidbody>().useGravity = false;
+                                GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+                                return;
+                            }          
+                        }         
+                    
+                }
+            }
+            
         }
     }
     GameObject RecursiveFindTopTile(GameObject CurrentTile)
