@@ -115,6 +115,7 @@ public class ItemAlign : MonoBehaviour {
                                         int.Parse(transform.parent.name.Split('x')[1]), 
                                         int.Parse(transform.parent.name.Split('x')[2]));
                                 GetComponent<Rigidbody>().useGravity = false;
+                                GetComponent<SphereCollider>().enabled = false;
                                 GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
                                 return;
                             }          
