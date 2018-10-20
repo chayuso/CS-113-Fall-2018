@@ -10,7 +10,9 @@ public class Seed : MonoBehaviour {
     Mesh OriginalMesh;
     Material OriginalMaterial;
     Vector3 scaleSeed;
+    string originalItemName;
     float OriginalSphereRadius;
+    bool originalisIngredient;
 
     Renderer thisRend;
     // Use this for initialization
@@ -20,8 +22,9 @@ public class Seed : MonoBehaviour {
         OriginalMaterial = thisRend.sharedMaterial;
         scaleSeed = transform.lossyScale;
         OriginalSphereRadius = GetComponent<SphereCollider>().radius;
+        transform.name = originalItemName = GetComponent<ItemType>().itemName;
         thisRend.enabled = true;
-
+        originalisIngredient = GetComponent<ItemType>().isIngredient;
     }
 	
 	// Update is called once per frame
@@ -52,6 +55,9 @@ public class Seed : MonoBehaviour {
         GetComponent<SphereCollider>().radius = GrownPrefab.GetComponent<SphereCollider>().radius;
         transform.tag = "Item";
         currentGrowTime = timeToGrow;
+        transform.name = GetComponent<ItemType>().itemName = GrownPrefab.GetComponent<ItemType>().itemName;
+        GetComponent<ItemType>().isIngredient = GrownPrefab.GetComponent<ItemType>().isIngredient;
+
     }
     void Shrink()
     {
@@ -61,6 +67,8 @@ public class Seed : MonoBehaviour {
         GetComponent<ItemAlign>().initScale = scaleSeed;
         GetComponent<SphereCollider>().radius = OriginalSphereRadius;
         transform.tag = "Seed";
+        transform.name = GetComponent<ItemType>().itemName = originalItemName;
+        GetComponent<ItemType>().isIngredient = originalisIngredient;
         ResetGrowClock();
     }
 }

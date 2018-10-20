@@ -52,9 +52,39 @@ public class ItemHandler : MonoBehaviour {
             {
                 foreach (Transform childItem in PM.selectedTile.transform)
                 {
-                    if (childItem.tag == "Item"|| childItem.tag == "Seed"|| childItem.tag == "CookingPot")
+                    if (childItem.tag == "Item" || childItem.tag == "Seed")
                     {
                         return;
+                    }
+                    else if (childItem.tag == "CookingPot")
+                    {
+                        if (childItem.GetComponent<BrewingPot>().currentItemCount < childItem.GetComponent<BrewingPot>().maxItems)
+                        {
+                            if (Item.tag == "Item")
+                            {
+                                if (Item.GetComponent<ItemType>().isIngredient)
+                                {
+                                    childItem.GetComponent<BrewingPot>().currentItemCount++;
+                                    childItem.GetComponent<BrewingPot>().inPot.Add(Item.GetComponent<ItemType>().itemName);
+                                    Destroy(Item);
+                                    Item = null;
+                                    return;
+                                }
+                                else
+                                {
+                                    return;
+                                }
+                                //heeeeeeere fix
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
                 }
                 Item.transform.parent = null;

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemChest : MonoBehaviour {
-    public GameObject Item;
-    
+public class ItemType : MonoBehaviour {
+    public string itemName = "";
+    public bool isIngredient = false;
 	// Use this for initialization
 	void Start () {
 		
