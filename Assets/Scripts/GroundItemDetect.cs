@@ -19,7 +19,7 @@ public class GroundItemDetect : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Item"|| other.gameObject.tag == "Seed")
+        if (other.gameObject.tag == "Item"|| other.gameObject.tag == "Seed" || other.gameObject.tag == "CookingPot")
         {
             if (!DetectedItem)
             {

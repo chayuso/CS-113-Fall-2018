@@ -15,10 +15,13 @@ public class DeadZone : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.GetComponent<Respawn>())
         {
-            other.GetComponent<ItemHandler>().DropItem();
-            other.transform.position = other.GetComponent<PlayerMovement>().RespawnPoint;
+            if (other.gameObject.tag=="Player")
+            {
+                other.GetComponent<ItemHandler>().DropItem();
+            }
+            other.transform.position = other.GetComponent<Respawn>().RespawnPoint;
         }
         else if(other.gameObject.tag == "Item"|| other.gameObject.tag == "Seed")
         {

@@ -9,6 +9,8 @@ TagManager:
   - FullTile
   - Item
   - Seed
+  - CookingPot
+  - Table
   layers:
   - Default
   - TransparentFX

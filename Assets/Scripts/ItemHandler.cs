@@ -49,14 +49,21 @@ public class ItemHandler : MonoBehaviour {
         if (Item)
         {
             Item.transform.parent = null;
-            Item.GetComponent<Rigidbody>().freezeRotation = false;
+            if (Item.tag=="CookingPot")
+            {
+                Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            }
+            else
+            {
+                Item.GetComponent<Rigidbody>().freezeRotation = false;
+            }
             Item.GetComponent<ItemAlign>().disableTileUpdate = false;
             if (PM.selectedTile)
             {
                 Item.transform.position = PM.selectedTile.transform.position;
                 foreach (Transform childItem in PM.selectedTile.transform)
                 {
-                    if (childItem.tag == "Item"|| childItem.tag == "Seed")
+                    if (childItem.tag == "Item"|| childItem.tag == "Seed"|| childItem.tag == "CookingPot")
                     {
                         Item.GetComponent<SphereCollider>().enabled = true;
                         Item.transform.position = new Vector3(PM.selectedTile.transform.position.x,
@@ -108,13 +115,20 @@ public class ItemHandler : MonoBehaviour {
         {
             foreach (Transform childItem in PM.selectedTile.transform)
             {
-                if (childItem.tag == "Item"|| childItem.tag == "Seed")
+                if (childItem.tag == "Item"|| childItem.tag == "Seed"|| childItem.tag == "CookingPot")
                 {
                     childItem.parent = ItemPosition.transform;
                     childItem.transform.position = ItemPosition.transform.position;
                     Item = childItem.gameObject;
                     Item.GetComponent<ItemAlign>().disableTileUpdate = true;
-                    Item.GetComponent<Rigidbody>().freezeRotation = true;
+                    if (Item.tag == "CookingPot")
+                    {
+                        Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                    }
+                    else
+                    {
+                        Item.GetComponent<Rigidbody>().freezeRotation = true;
+                    }
                     Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                     return childItem.gameObject;
                 }
@@ -123,7 +137,14 @@ public class ItemHandler : MonoBehaviour {
             {
                 Item = SpawnItem(PM.selectedTile.GetComponent<ItemChest>().Item);
                 Item.GetComponent<ItemAlign>().disableTileUpdate = true;
-                Item.GetComponent<Rigidbody>().freezeRotation = true;
+                if (Item.tag == "CookingPot")
+                {
+                    Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                }
+                else
+                {
+                    Item.GetComponent<Rigidbody>().freezeRotation = true;
+                }
                 Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                 Item.transform.parent = ItemPosition.transform;
                 Item.transform.position = ItemPosition.transform.position;
@@ -137,7 +158,14 @@ public class ItemHandler : MonoBehaviour {
             childItem.transform.position = ItemPosition.transform.position;
             Item = childItem.gameObject;
             Item.GetComponent<ItemAlign>().disableTileUpdate = true;
-            Item.GetComponent<Rigidbody>().freezeRotation = true;
+            if (Item.tag == "CookingPot")
+            {
+                Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            }
+            else
+            {
+                Item.GetComponent<Rigidbody>().freezeRotation = true;
+            }
             Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             return childItem.gameObject;
         }

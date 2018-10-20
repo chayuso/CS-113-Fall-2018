@@ -60,6 +60,10 @@ public class ItemAlign : MonoBehaviour {
         {
             CanPickup = false;
         }
+        if (transform.parent && transform.parent.tag == "HalfTile")
+        {
+            GetComponent<SphereCollider>().enabled = false;
+        }
         transform.localScale = initScale;
     }
     public void UpdateTileName()
@@ -78,7 +82,7 @@ public class ItemAlign : MonoBehaviour {
             }
             foreach (Transform childT in FoundTile.transform)
             {
-                if ((childT.tag == "Item"|| childT.tag == "Seed") && childT.gameObject!=gameObject)
+                if ((childT.tag == "Item"|| childT.tag == "Seed" || childT.tag == "CookingPot") && childT.gameObject!=gameObject)
                 {
                     tileHasItem = true;
                     break;
@@ -102,7 +106,7 @@ public class ItemAlign : MonoBehaviour {
                         {
                             foreach (Transform childT in TopTile.transform)
                             {
-                                if ((childT.tag == "Item" || childT.tag == "Seed") && childT.gameObject != gameObject)
+                                if ((childT.tag == "Item" || childT.tag == "Seed" || childT.tag == "CookingPot") && childT.gameObject != gameObject)
                                 {
                                     tileHasItem = true;
                                     break;
@@ -115,7 +119,7 @@ public class ItemAlign : MonoBehaviour {
                                         int.Parse(transform.parent.name.Split('x')[1]),
                                         int.Parse(transform.parent.name.Split('x')[2]));
                                 GetComponent<Rigidbody>().useGravity = false;
-                                GetComponent<SphereCollider>().enabled = false;
+                                GetComponent<SphereCollider>().enabled = false;                                
                                 GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
                                 return;
                             }        

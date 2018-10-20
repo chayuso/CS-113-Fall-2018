@@ -21,7 +21,6 @@ public class PlayerMovement : MonoBehaviour {
     public List<GameObject> neighborTiles;
     Rigidbody playerRigidbody;
     public float forceValue = 1111f;
-    public Vector3 RespawnPoint;
 
     GameState GS;
     // Use this for initialization
@@ -31,7 +30,6 @@ public class PlayerMovement : MonoBehaviour {
         playerRigidbody.freezeRotation = true;
         playerRigidbody.drag = 5.0f;
         playerRigidbody.maxAngularVelocity = 100.0f;
-        RespawnPoint = transform.position;
     }
 	
 	// Update is called once per frame

@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TileHighlight : MonoBehaviour {
+    public GameObject TileObject;
     public Material regularMat;
     public Material HighlightMat;
 	// Use this for initialization
 	void Start () {
-		
+        if (!TileObject)
+        {
+            TileObject = gameObject;
+        }
 	}
 	
 	// Update is called once per frame
@@ -16,10 +20,10 @@ public class TileHighlight : MonoBehaviour {
 	}
     public void Highlight()
     {
-        GetComponent<Renderer>().material =HighlightMat;
+        TileObject.GetComponent<Renderer>().material =HighlightMat;
     }
     public void Dehighlight()
     {
-        GetComponent<Renderer>().material = regularMat;
+        TileObject.GetComponent<Renderer>().material = regularMat;
     }
 }
