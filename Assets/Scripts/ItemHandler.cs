@@ -48,30 +48,26 @@ public class ItemHandler : MonoBehaviour {
     {
         if (Item)
         {
-            Item.transform.parent = null;
-            if (Item.tag=="CookingPot")
-            {
-                Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-            }
-            else
-            {
-                Item.GetComponent<Rigidbody>().freezeRotation = false;
-            }
-            Item.GetComponent<ItemAlign>().disableTileUpdate = false;
             if (PM.selectedTile)
             {
-                Item.transform.position = PM.selectedTile.transform.position;
                 foreach (Transform childItem in PM.selectedTile.transform)
                 {
                     if (childItem.tag == "Item"|| childItem.tag == "Seed"|| childItem.tag == "CookingPot")
                     {
-                        Item.GetComponent<SphereCollider>().enabled = true;
-                        Item.transform.position = new Vector3(PM.selectedTile.transform.position.x,
-                                                                PM.selectedTile.transform.position.y + 1f,
-                                                                PM.selectedTile.transform.position.z);
-                        break;
+                        return;
                     }
                 }
+                Item.transform.parent = null;
+                if (Item.tag == "CookingPot")
+                {
+                    Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                }
+                else
+                {
+                    Item.GetComponent<Rigidbody>().freezeRotation = false;
+                }
+                Item.transform.position = PM.selectedTile.transform.position;
+                Item.GetComponent<ItemAlign>().disableTileUpdate = false;
                 if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
                 {
                     //GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
@@ -90,6 +86,16 @@ public class ItemHandler : MonoBehaviour {
                 Item = null;
                 return;
             }
+            Item.transform.parent = null;
+            if (Item.tag == "CookingPot")
+            {
+                Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            }
+            else
+            {
+                Item.GetComponent<Rigidbody>().freezeRotation = false;
+            }
+            Item.GetComponent<ItemAlign>().disableTileUpdate = false;
             Item.GetComponent<SphereCollider>().enabled = true;
             if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
             {
@@ -123,7 +129,7 @@ public class ItemHandler : MonoBehaviour {
                     Item.GetComponent<ItemAlign>().disableTileUpdate = true;
                     if (Item.tag == "CookingPot")
                     {
-                        Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                        Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                     }
                     else
                     {
@@ -139,7 +145,7 @@ public class ItemHandler : MonoBehaviour {
                 Item.GetComponent<ItemAlign>().disableTileUpdate = true;
                 if (Item.tag == "CookingPot")
                 {
-                    Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                    Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                 }
                 else
                 {
@@ -160,7 +166,7 @@ public class ItemHandler : MonoBehaviour {
             Item.GetComponent<ItemAlign>().disableTileUpdate = true;
             if (Item.tag == "CookingPot")
             {
-                Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+                Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             }
             else
             {
