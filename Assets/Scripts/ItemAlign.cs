@@ -22,7 +22,7 @@ public class ItemAlign : MonoBehaviour {
     public bool CanPickup = true;
     Material defaultMat;
     public Material SelectMat;
-    Vector3 initScale;
+    public Vector3 initScale;
     void Start()
     {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -78,7 +78,7 @@ public class ItemAlign : MonoBehaviour {
             }
             foreach (Transform childT in FoundTile.transform)
             {
-                if (childT.tag == "Item" && childT.gameObject!=gameObject)
+                if ((childT.tag == "Item"|| childT.tag == "Seed") && childT.gameObject!=gameObject)
                 {
                     tileHasItem = true;
                     break;
@@ -102,7 +102,7 @@ public class ItemAlign : MonoBehaviour {
                         {
                             foreach (Transform childT in TopTile.transform)
                             {
-                                if (childT.tag == "Item" && childT.gameObject != gameObject)
+                                if ((childT.tag == "Item" || childT.tag == "Seed") && childT.gameObject != gameObject)
                                 {
                                     tileHasItem = true;
                                     break;
@@ -111,14 +111,14 @@ public class ItemAlign : MonoBehaviour {
                             if (!tileHasItem)
                             {
                                 transform.parent = TopTile.transform;
-                                AlignTo(int.Parse(transform.parent.name.Split('x')[0]), 
-                                        int.Parse(transform.parent.name.Split('x')[1]), 
+                                AlignTo(int.Parse(transform.parent.name.Split('x')[0]),
+                                        int.Parse(transform.parent.name.Split('x')[1]),
                                         int.Parse(transform.parent.name.Split('x')[2]));
                                 GetComponent<Rigidbody>().useGravity = false;
                                 GetComponent<SphereCollider>().enabled = false;
                                 GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
                                 return;
-                            }          
+                            }        
                         }         
                     
                 }

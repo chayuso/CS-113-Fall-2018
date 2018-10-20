@@ -56,7 +56,7 @@ public class ItemHandler : MonoBehaviour {
                 Item.transform.position = PM.selectedTile.transform.position;
                 foreach (Transform childItem in PM.selectedTile.transform)
                 {
-                    if (childItem.tag == "Item")
+                    if (childItem.tag == "Item"|| childItem.tag == "Seed")
                     {
                         Item.GetComponent<SphereCollider>().enabled = true;
                         Item.transform.position = new Vector3(PM.selectedTile.transform.position.x,
@@ -108,7 +108,7 @@ public class ItemHandler : MonoBehaviour {
         {
             foreach (Transform childItem in PM.selectedTile.transform)
             {
-                if (childItem.tag == "Item")
+                if (childItem.tag == "Item"|| childItem.tag == "Seed")
                 {
                     childItem.parent = ItemPosition.transform;
                     childItem.transform.position = ItemPosition.transform.position;

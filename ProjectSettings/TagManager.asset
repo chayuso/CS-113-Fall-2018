@@ -8,6 +8,7 @@ TagManager:
   - HalfTile
   - FullTile
   - Item
+  - Seed
   layers:
   - Default
   - TransparentFX
