@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: chairA
+  m_Name: chairA - Copy
   m_Shader: {fileID: 4800000, guid: 26ac6b86cbebf834fb2ac55c14c9bb16, type: 3}
   m_ShaderKeywords: _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
@@ -94,7 +94,7 @@ Material:
     - __dummy__: 0
     - __outline_gui_dummy__: 0
     m_Colors:
-    - _Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HColor: {r: 0.785, g: 0.785, b: 0.785, a: 1}
     - _OutlineColor: {r: 0.60784316, g: 0.29803923, b: 0.25490198, a: 1}

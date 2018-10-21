@@ -20,7 +20,7 @@ public class ItemAlign : MonoBehaviour {
     string TileName = "";
     public bool disableTileUpdate = false;
     public bool CanPickup = true;
-    Material defaultMat;
+   // Material defaultMat;
     public Material SelectMat;
     public Vector3 initScale;
     void Start()
@@ -29,7 +29,7 @@ public class ItemAlign : MonoBehaviour {
         TileName = UpdateTilePosition();
         FindParentTile();
         GetComponent<Rigidbody>().useGravity = true;
-        defaultMat = GetComponent<Renderer>().material;
+        //defaultMat = GetComponent<Renderer>().material;
     }
     // Use this for initialization
     void Awake()
@@ -255,12 +255,12 @@ public class ItemAlign : MonoBehaviour {
             GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         }
     }
-    public void Highlight()
+    /*public void Highlight()
     {
         GetComponent<Renderer>().material = SelectMat;
     }
     public void Dehighlight()
     {
         GetComponent<Renderer>().material = defaultMat;
-    }
+    }*/
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour {
     public List<string> BlockedTiles;
+    public GameObject RedPotion;
 	// Use this for initialization
 	void Start () {
         foreach (AlignTile tile in FindObjectsOfType<AlignTile>())
@@ -16,4 +17,13 @@ public class GameState : MonoBehaviour {
 	void Update () {
 		
 	}
+    public GameObject SpawnItem(GameObject Prefab)
+    {
+        var SpawnedItem = (GameObject)Instantiate(
+            Prefab,
+            Prefab.transform.position,
+            Prefab.transform.rotation);
+        SpawnedItem.transform.localScale = Prefab.transform.localScale;
+        return SpawnedItem;
+    }
 }

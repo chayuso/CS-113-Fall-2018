@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemHandler : MonoBehaviour {
+    public GameState GS;
     public GameObject ItemPosition;
     public GameObject Item;
     public GameObject GroundCheck;
@@ -11,6 +12,7 @@ public class ItemHandler : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        GS = GameObject.Find("GameState").GetComponent<GameState>();
         PM = GetComponent<PlayerMovement>();
 		
 	}
@@ -29,6 +31,36 @@ public class ItemHandler : MonoBehaviour {
                 Item.transform.parent = ItemPosition.transform;
             }
         }
+    }
+    bool PotionCreation(GameObject brewPot)
+    {
+        BrewingPot BP = brewPot.GetComponent<BrewingPot>();
+        if (BP.inPot.Count != 2 || BP.currentBrewTime < BP.timeToBrew)
+        {
+            return false;
+        }
+        List<string> RedPotion = new List<string>();
+        RedPotion.Add("RedPlant");
+        RedPotion.Add("RedPlant");
+        List<List<string>> RecipeList = new List<List<string>>();
+        RecipeList.Add(RedPotion);
+        foreach (List<string> Recipe in RecipeList)
+        {
+            if (Recipe[0].Length+Recipe[1].Length==BP.inPot[0].Length+BP.inPot[1].Length)
+            {
+                if (Recipe == RedPotion)
+                {
+                    print("RedPotionCreated");//SpawnPotion Here
+                    GameObject Potion = GS.SpawnItem(GS.RedPotion);
+                    Potion.transform.position = transform.position;
+                    BP.currentItemCount = 0;
+                    BP.inPot.Clear();
+                    BP.ResetGrowClock();
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     void ToggleGrab()
     {
@@ -68,23 +100,14 @@ public class ItemHandler : MonoBehaviour {
                                     childItem.GetComponent<BrewingPot>().inPot.Add(Item.GetComponent<ItemType>().itemName);
                                     Destroy(Item);
                                     Item = null;
-                                    return;
                                 }
-                                else
-                                {
-                                    return;
-                                }
-                                //heeeeeeere fix
-                            }
-                            else
-                            {
-                                return;
                             }
                         }
-                        else
-                        {
-                            return;
-                        }
+                        return;
+                    }
+                    else if (childItem.tag == "PotionStation" && Item.tag == "CookingPot")
+                    {
+                        PotionCreation(Item);
                     }
                 }
                 Item.transform.parent = null;
