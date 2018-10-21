@@ -13,7 +13,7 @@ public class Seed : MonoBehaviour {
     string originalItemName;
     float OriginalSphereRadius;
     bool originalisIngredient;
-
+    GameObject bar;
     Renderer thisRend;
     // Use this for initialization
     void Start () {
@@ -36,6 +36,11 @@ public class Seed : MonoBehaviour {
         if (currentGrowTime>= timeToGrow)
         {
             Grow();
+        }
+        if (transform.parent && transform.parent.GetComponent<Soil>())
+        {
+            bar = transform.parent.Find("ProgressBar").Find("bar").gameObject;
+            bar.transform.localScale = new Vector3(0.06f*(currentGrowTime/timeToGrow), bar.transform.localScale.y, bar.transform.localScale.z);
         }
 	}
     void TickGrowClock()
