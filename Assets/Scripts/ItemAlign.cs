@@ -23,6 +23,7 @@ public class ItemAlign : MonoBehaviour {
    // Material defaultMat;
     public Material SelectMat;
     public Vector3 initScale;
+    public Vector3 initRotation;
     void Start()
     {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -35,6 +36,7 @@ public class ItemAlign : MonoBehaviour {
     void Awake()
     {
         initScale = transform.lossyScale;
+        initRotation = transform.eulerAngles;
     }
 
     // Update is called once per frame
@@ -63,6 +65,8 @@ public class ItemAlign : MonoBehaviour {
         if (transform.parent && transform.parent.tag == "HalfTile")
         {
             GetComponent<SphereCollider>().enabled = false;
+            Align();
+            transform.eulerAngles = initRotation;
         }
         transform.localScale = initScale;
     }

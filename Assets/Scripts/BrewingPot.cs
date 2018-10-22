@@ -8,6 +8,8 @@ public class BrewingPot : MonoBehaviour {
     public List<string> inPot;
     public float timeToBrew = 10f;
     public float currentBrewTime = 0f;
+    public float timeToBurn = 5f;
+    public float currentBurnTime = 0;
     GameObject bar;
     // Use this for initialization
     void Start () {
@@ -25,11 +27,20 @@ public class BrewingPot : MonoBehaviour {
     }
     void TickGrowClock()
     {
-        currentBrewTime += Time.deltaTime;
+        if (currentBrewTime < timeToBrew)
+        {
+            currentBrewTime += Time.deltaTime;
+        }
+        else
+        {
+            currentBurnTime += Time.deltaTime;
+        }
+        
     }
     public void ResetGrowClock()
     {
         currentBrewTime = 0;
+        currentBurnTime = 0;
     }
 
 }

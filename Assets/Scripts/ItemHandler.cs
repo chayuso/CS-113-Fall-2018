@@ -9,14 +9,36 @@ public class ItemHandler : MonoBehaviour {
     public GameObject GroundCheck;
     PlayerMovement PM;
     public string GrabButton = "Fire1";
-
+    float EnableTime = 1f;
+    float CurrentTime = 0f;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
         PM = GetComponent<PlayerMovement>();
 		
 	}
-	
+    IEnumerator ThrowingSequenceTimer(GameObject Potion)
+    {
+        Potion.GetComponent<Rigidbody>().freezeRotation = false;
+        Potion.GetComponent<ItemAlign>().disableTileUpdate = false;
+        if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
+        {
+            //GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
+            GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = null;
+            if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Count != 0)
+            {
+                GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = GroundCheck.GetComponent<GroundItemDetect>().OtherItems[0];
+                //GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Highlight();
+                GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(GroundCheck.GetComponent<GroundItemDetect>().DetectedItem);
+            }
+        }
+        else if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Contains(Item))
+        {
+            GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
+        }
+        yield return new WaitForSeconds(0.5f);
+        Potion.GetComponent<SphereCollider>().enabled = true;
+    }
 	// Update is called once per frame
 	void Update () {
         ToggleGrab();
@@ -80,7 +102,7 @@ public class ItemHandler : MonoBehaviour {
     {
         if (Item)
         {
-            if (PM.selectedTile)
+            if (PM.selectedTile && !Item.GetComponent<ParabolaController>())
             {
                 foreach (Transform childItem in PM.selectedTile.transform)
                 {
@@ -146,6 +168,13 @@ public class ItemHandler : MonoBehaviour {
             }
             else
             {
+                if (Item.GetComponent<ParabolaController>())
+                {
+                    Item.GetComponent<ParabolaController>().Throw();
+                    StartCoroutine(ThrowingSequenceTimer(Item));
+                    Item = null;
+                    return;
+                }
                 Item.GetComponent<Rigidbody>().freezeRotation = false;
             }
             Item.GetComponent<ItemAlign>().disableTileUpdate = false;
@@ -179,13 +208,18 @@ public class ItemHandler : MonoBehaviour {
                     childItem.parent = ItemPosition.transform;
                     childItem.transform.position = ItemPosition.transform.position;
                     Item = childItem.gameObject;
-                    Item.GetComponent<ItemAlign>().disableTileUpdate = true;
+                    Item.GetComponent<ItemAlign>().disableTileUpdate = true;                   
                     if (Item.tag == "CookingPot")
                     {
                         Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                     }
                     else
                     {
+                        if (Item.GetComponent<ParabolaController>())
+                        {
+                            Item.GetComponent<ParabolaController>().ParabolaRoot = transform.Find("ThrowArch").gameObject;
+                            Item.GetComponent<ParabolaController>().initParabola();
+                        }
                         Item.GetComponent<Rigidbody>().freezeRotation = true;
                     }
                     Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
@@ -223,6 +257,11 @@ public class ItemHandler : MonoBehaviour {
             }
             else
             {
+                if (Item.GetComponent<ParabolaController>())
+                {
+                    Item.GetComponent<ParabolaController>().ParabolaRoot = transform.Find("ThrowArch").gameObject;
+                    Item.GetComponent<ParabolaController>().initParabola();
+                }
                 Item.GetComponent<Rigidbody>().freezeRotation = true;
             }
             Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
