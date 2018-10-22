@@ -16,17 +16,51 @@ public class AlignTile : MonoBehaviour {
     private float Xposition;
     private float Yposition;
     private float Zposition;
-
+    public GameObject[] UpperNeighborTiles = new GameObject[9];
+    public GameObject[] LeveledNeighborTiles = new GameObject[9];
+    public GameObject[] LowerNeighborTiles = new GameObject[9];
+    /*  Array Structure
+     *  
+     * [NW, N,  NE,
+     *  W,  O,  E,
+     *  SW, S,  SE
+     * ]
+     */
     // Use this for initialization
     void Awake()
     {
         Align();
     }
-
+    private void Start()
+    {
+        UpperNeighborTiles = GetNeighborTiles(1);
+        LeveledNeighborTiles = GetNeighborTiles(0);
+        LowerNeighborTiles = GetNeighborTiles(-1);
+    }
+    GameObject[] GetNeighborTiles(float levelOffset)
+    {
+        GameObject[] Tiles = new GameObject[9];
+        Tiles[0] = GameObject.Find(DynamicTilePosition(-1, 1,levelOffset));//---->NW
+        Tiles[1] = GameObject.Find(DynamicTilePosition(0, 1, levelOffset));//---->N
+        Tiles[2] = GameObject.Find(DynamicTilePosition(1, 1, levelOffset));//---->NE
+        Tiles[3] = GameObject.Find(DynamicTilePosition(-1, 0, levelOffset));//--->W
+        Tiles[4] = GameObject.Find(DynamicTilePosition(0, 0, levelOffset));//---->O
+        Tiles[5] = GameObject.Find(DynamicTilePosition(1, 0, levelOffset));//---->E
+        Tiles[6] = GameObject.Find(DynamicTilePosition(-1, -1, levelOffset));//-->SW
+        Tiles[7] = GameObject.Find(DynamicTilePosition(0, -1, levelOffset));//--->S
+        Tiles[8] = GameObject.Find(DynamicTilePosition(1, -1, levelOffset));//--->SE
+        return Tiles;
+    }
     // Update is called once per frame
     void Update()
     {
 
+    }
+    string DynamicTilePosition(float xAdd = 0, float yAdd = 0, float zAdd = 0)
+    {
+        return findPosition(transform.position.x + xAdd, offsetX, "x").ToString()
+            + "x" + findPosition(transform.position.z + yAdd, offsetY, "y").ToString()
+            + "x" + findPosition(transform.position.y + zAdd, offsetZ, "z").ToString();
     }
     public void Align()
     {
@@ -108,5 +142,12 @@ public class AlignTile : MonoBehaviour {
             }
         
         return return_tile_position;
+    }
+    public void DestroyNeighbors()
+    {
+        foreach (GameObject g in LeveledNeighborTiles)
+        {
+            Destroy(g);
+        }
     }
 }

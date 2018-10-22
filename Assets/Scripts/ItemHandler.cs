@@ -37,6 +37,7 @@ public class ItemHandler : MonoBehaviour {
             GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
         }
         yield return new WaitForSeconds(0.5f);
+        Potion.GetComponent<ItemAlign>().isThrown = true;
         Potion.GetComponent<SphereCollider>().enabled = true;
     }
 	// Update is called once per frame

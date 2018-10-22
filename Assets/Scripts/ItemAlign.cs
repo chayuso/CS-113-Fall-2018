@@ -17,13 +17,17 @@ public class ItemAlign : MonoBehaviour {
     private float Yposition;
     private float Zposition;
     GameState GS;
-    string TileName = "";
+    public string TileName = "";
     public bool disableTileUpdate = false;
     public bool CanPickup = true;
    // Material defaultMat;
     public Material SelectMat;
     public Vector3 initScale;
     public Vector3 initRotation;
+    public GameObject OnTile;
+    float floorTileVar =-1.5f;
+    public string dynamName;
+    public bool isThrown = false;
     void Start()
     {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -42,6 +46,21 @@ public class ItemAlign : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (isThrown && OnTile)
+        {
+            OnTile.GetComponent<AlignTile>().DestroyNeighbors();
+            Destroy(gameObject);
+        }
+        dynamName = DynamicUpdateTilePosition(0,0, floorTileVar);
+        if (GS.BlockedTiles.Contains(DynamicUpdateTilePosition(0, 0, floorTileVar)) )
+        {
+            OnTile = GameObject.Find(DynamicUpdateTilePosition(0, 0, floorTileVar));
+        }
+        else
+        {
+            OnTile = null;
+        }
+        
         if (!disableTileUpdate)
         {
             UpdateTileName();
