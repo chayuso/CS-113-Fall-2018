@@ -11,8 +11,13 @@ public class FreezePositionEditor : Editor
         DrawDefaultInspector();
 
         FreezePosition myScript = (FreezePosition)target;
-        myScript.Align();
-
+        if (GUILayout.Button("Align"))
+        {
+            foreach (FreezePosition at in FindObjectsOfType<FreezePosition>())
+            {
+                at.Align();
+            }
+        }
     }
 }
 #endif

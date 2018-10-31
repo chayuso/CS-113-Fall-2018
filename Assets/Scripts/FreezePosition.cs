@@ -19,7 +19,7 @@ public class FreezePosition : MonoBehaviour {
     // Use this for initialization
     void Start () {
         InitPosition = transform.position;
-        GetComponent<MeshRenderer>().enabled = false;
+        Destroy(GetComponent<MeshRenderer>());
 	}
 	
 	// Update is called once per frame
