@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Key
+  isIngredient: 0
 --- !u!114 &114862497308497734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,10 +136,15 @@ MonoBehaviour:
   addX: 0
   addY: 0
   addZ: 1
+  TileName: 
   disableTileUpdate: 0
   CanPickup: 1
   SelectMat: {fileID: 2100000, guid: 1055f1d663e88774fb3f2c271f53bf34, type: 2}
   initScale: {x: 0, y: 0, z: 0}
+  initRotation: {x: 0, y: 0, z: 0}
+  OnTile: {fileID: 0}
+  dynamName: 
+  isThrown: 0
 --- !u!135 &135532018765330508
 SphereCollider:
   m_ObjectHideFlags: 1

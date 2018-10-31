@@ -52,3 +52,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockedTiles: []
+  RedPotion: {fileID: 1394426700061376, guid: eeead643a0131f1459c41ea32c12e98c, type: 2}
