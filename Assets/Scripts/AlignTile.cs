@@ -192,7 +192,7 @@ public class AlignTile : MonoBehaviour {
                 {
                     childc.gameObject.GetComponent<BoxCollider>().enabled = isEnabled;
                 }
-                if (childc.gameObject.GetComponent<SpriteRenderer>() && childc.parent.parent.tag != "Player")
+                if (childc.gameObject.GetComponent<SpriteRenderer>() && childc.parent.tag != "Player")
                 {
                     childc.gameObject.GetComponent<SpriteRenderer>().enabled = isEnabled;
                 }
@@ -205,7 +205,7 @@ public class AlignTile : MonoBehaviour {
             {
                 child.gameObject.GetComponent<BoxCollider>().enabled = isEnabled;
             }
-            if (child.gameObject.GetComponent<SpriteRenderer>() && child.parent.parent.tag != "Player")
+            if (child.gameObject.GetComponent<SpriteRenderer>() && child.tag != "Player")
             {
                 child.gameObject.GetComponent<SpriteRenderer>().enabled = isEnabled;
             }
