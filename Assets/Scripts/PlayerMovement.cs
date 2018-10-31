@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
-    float movementSpeed = 10; //speed player moves
+    public float movementSpeed = 10; //speed player moves
     public int tileX;
     public int tileY;
     public int tileZ;
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
     public List<GameObject> neighborTiles;
     Rigidbody playerRigidbody;
     public float forceValue = 1111f;
-
+    public int playerNumber = 1;
     GameState GS;
     // Use this for initialization
     void Start () {

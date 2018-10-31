@@ -74,6 +74,7 @@ public class ItemHandler : MonoBehaviour {
                 if (Recipe == RedPotion)
                 {
                     print("RedPotionCreated");//SpawnPotion Here
+                    GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
                     GameObject Potion = GS.SpawnItem(GS.RedPotion);
                     Potion.transform.position = transform.position;
                     BP.currentItemCount = 0;

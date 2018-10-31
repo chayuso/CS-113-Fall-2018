@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AlignTile : MonoBehaviour {
+    float respawnTime = 5f;
     public bool NonTile = false;
     public int tileX;
     public int tileY;
@@ -147,7 +148,66 @@ public class AlignTile : MonoBehaviour {
     {
         foreach (GameObject g in LeveledNeighborTiles)
         {
-            Destroy(g);
+            if (g)
+            {
+                print(g.name);
+                StartCoroutine(RespawnDelay(g));
+            }
         }
+    }
+    void RecursiveFindMesh(GameObject g, bool isEnabled)
+    {
+        if (g.gameObject.GetComponent<MeshRenderer>())
+        {
+            g.gameObject.GetComponent<MeshRenderer>().enabled = isEnabled;
+        }
+        if (g.gameObject.GetComponent<BoxCollider>())
+        {
+            g.gameObject.GetComponent<BoxCollider>().enabled = isEnabled;
+        }
+        foreach (Transform child in g.transform)
+        {
+            foreach (Transform childc in child.transform)
+            {
+                foreach (Transform childcc in childc.transform)
+                {
+                    if (childcc.gameObject.GetComponent<MeshRenderer>())
+                    {
+                        childcc.gameObject.GetComponent<MeshRenderer>().enabled = isEnabled;
+                    }
+                    if (childcc.gameObject.GetComponent<BoxCollider>())
+                    {
+                        childcc.gameObject.GetComponent<BoxCollider>().enabled = isEnabled;
+                    }
+                }
+                if (childc.gameObject.GetComponent<MeshRenderer>())
+                {
+                    childc.gameObject.GetComponent<MeshRenderer>().enabled = isEnabled;
+                }
+                if (childc.gameObject.GetComponent<BoxCollider>())
+                {
+                    childc.gameObject.GetComponent<BoxCollider>().enabled = isEnabled;
+                }
+            }
+            if (child.gameObject.GetComponent<MeshRenderer>())
+            {
+                child.gameObject.GetComponent<MeshRenderer>().enabled = isEnabled;
+            }
+            if (child.gameObject.GetComponent<BoxCollider>())
+            {
+                child.gameObject.GetComponent<BoxCollider>().enabled = isEnabled;
+            }
+        }
+    }
+    IEnumerator RespawnDelay(GameObject g)
+    {
+        GameObject.Find("GameState").GetComponent<GameState>().BlockedTiles.Remove(g.name);
+        string oldName = g.transform.name;
+        g.transform.name += "(Respawning)";
+        RecursiveFindMesh(g, false);
+        yield return new WaitForSeconds(respawnTime);
+        g.transform.name = oldName;
+        RecursiveFindMesh(g, true);
+        GameObject.Find("GameState").GetComponent<GameState>().BlockedTiles.Add(g.name);
     }
 }
