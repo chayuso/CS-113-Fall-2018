@@ -9,16 +9,26 @@ public class FloatingBlock : MonoBehaviour {
     public Transform Point2;
     Vector3 transitionPoint;
     AlignTile AT;
+    string lastName = "";
+    GameState GS;
     // Use this for initialization
     void Start () {
+        GS = GameObject.Find("GameState").GetComponent<GameState>();
         AT = gameObject.GetComponent<AlignTile>();
         transitionPoint = Point1.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        lastName = transform.name;
         TransitionAnimation();
         transform.name = AT.DynamicTilePosition(0, 0, 0);
+        if (transform.name != lastName)
+        {
+            GS.BlockedTiles.Remove(lastName);
+            lastName = transform.name;
+            GS.BlockedTiles.Add(lastName);
+        }
     }
     Vector3 GetPoint(Transform t1, Transform t2, float offset = 0)
     {
