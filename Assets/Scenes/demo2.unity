@@ -54157,11 +54157,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4259428366951590, guid: 9ac3ff267d75e50489e4551f98a8c7ac, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.439
+      value: 2.22
       objectReference: {fileID: 0}
     - target: {fileID: 4259428366951590, guid: 9ac3ff267d75e50489e4551f98a8c7ac, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 12.21
+      value: 11.99
       objectReference: {fileID: 0}
     - target: {fileID: 4259428366951590, guid: 9ac3ff267d75e50489e4551f98a8c7ac, type: 2}
       propertyPath: m_LocalRotation.x
