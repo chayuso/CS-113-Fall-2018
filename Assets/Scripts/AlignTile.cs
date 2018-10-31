@@ -171,29 +171,29 @@ public class AlignTile : MonoBehaviour {
             {
                 foreach (Transform childcc in childc.transform)
                 {
-                    if (childcc.gameObject.GetComponent<MeshRenderer>())
+                    if (childcc.gameObject.GetComponent<MeshRenderer>() && childcc.parent.parent.tag !="Player")
                     {
                         childcc.gameObject.GetComponent<MeshRenderer>().enabled = isEnabled;
                     }
-                    if (childcc.gameObject.GetComponent<BoxCollider>())
+                    if (childcc.gameObject.GetComponent<BoxCollider>() && childcc.parent.parent.tag != "Player")
                     {
                         childcc.gameObject.GetComponent<BoxCollider>().enabled = isEnabled;
                     }
                 }
-                if (childc.gameObject.GetComponent<MeshRenderer>())
+                if (childc.gameObject.GetComponent<MeshRenderer>() && childc.parent.tag != "Player")
                 {
                     childc.gameObject.GetComponent<MeshRenderer>().enabled = isEnabled;
                 }
-                if (childc.gameObject.GetComponent<BoxCollider>())
+                if (childc.gameObject.GetComponent<BoxCollider>() && childc.parent.tag != "Player")
                 {
                     childc.gameObject.GetComponent<BoxCollider>().enabled = isEnabled;
                 }
             }
-            if (child.gameObject.GetComponent<MeshRenderer>())
+            if (child.gameObject.GetComponent<MeshRenderer>() && child.tag != "Player")
             {
                 child.gameObject.GetComponent<MeshRenderer>().enabled = isEnabled;
             }
-            if (child.gameObject.GetComponent<BoxCollider>())
+            if (child.gameObject.GetComponent<BoxCollider>() && child.tag != "Player")
             {
                 child.gameObject.GetComponent<BoxCollider>().enabled = isEnabled;
             }

@@ -51,6 +51,10 @@ public class PlayerMovement : MonoBehaviour {
         {
             GetComponent<Rigidbody>().AddForce(-Vector3.up * forceValue);
         }
+        else
+        {
+            transform.parent = GameObject.Find(CurrentTile).transform;
+        }
         float xtemp = DirectionNumbers(CompassDirection())[0] / 2f;
         float ytemp = DirectionNumbers(CompassDirection())[1] / 2f;
 
