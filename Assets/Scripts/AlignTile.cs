@@ -55,9 +55,9 @@ public class AlignTile : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        
     }
-    string DynamicTilePosition(float xAdd = 0, float yAdd = 0, float zAdd = 0)
+    public string DynamicTilePosition(float xAdd = 0, float yAdd = 0, float zAdd = 0)
     {
         return findPosition(transform.position.x + xAdd, offsetX, "x").ToString()
             + "x" + findPosition(transform.position.z + yAdd, offsetY, "y").ToString()

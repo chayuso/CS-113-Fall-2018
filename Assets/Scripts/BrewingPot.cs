@@ -11,9 +11,11 @@ public class BrewingPot : MonoBehaviour {
     public float timeToBurn = 5f;
     public float currentBurnTime = 0;
     GameObject bar;
+    GameObject completeBar;
     // Use this for initialization
     void Start () {
         bar = transform.Find("ProgressBar").Find("bar").gameObject;
+        completeBar = transform.Find("ProgressBar").Find("completeBorder").gameObject;
     }
 	
 	// Update is called once per frame
@@ -23,7 +25,11 @@ public class BrewingPot : MonoBehaviour {
             TickGrowClock();
         }
         bar.transform.localScale = new Vector3(0.06f * (currentBrewTime / timeToBrew), bar.transform.localScale.y, bar.transform.localScale.z);
-
+        if (currentBrewTime >= timeToBrew)
+        {
+            completeBar.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else { completeBar.GetComponent<SpriteRenderer>().enabled = false; }
     }
     void TickGrowClock()
     {
