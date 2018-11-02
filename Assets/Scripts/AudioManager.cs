@@ -4,25 +4,50 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour {
     
     public static AudioManager manager;
-    public List<Song> sounds = new List<Song>();
-    private Dictionary<string, AudioSource> soundsDict = new Dictionary<string, AudioSource>();
 
+    public float lowPitchRange = 0.95f;
+    public float highPitchRange = 1.05f;
+    public List<Song> sounds = new List<Song>();
+    private Dictionary<string, List<AudioSource>> soundsDict = new Dictionary<string, List<AudioSource>>();
+    
     void Start ()
     {
         manager = this;
 
         for (int i = 0; i < sounds.Count; ++i)
-            soundsDict[sounds[i].name] = sounds[i].source;
+            soundsDict[sounds[i].name] = sounds[i].sources;
 	}
 	
-	public void PlaySound(string name)
+	public void Play(string name)
     {
-        soundsDict[name].Play();
+        int randomIndex = Random.Range(0, soundsDict[name].Count);
+        soundsDict[name][randomIndex].Play();
     }
 
-    public void ChangeSoundPosition(string name, Vector3 newPosition)
+    public void Play(string name, Vector3 newPosition)
     {
-        soundsDict[name].gameObject.transform.position = newPosition;
+        int randomIndex = Random.Range(0, soundsDict[name].Count);
+        soundsDict[name][randomIndex].transform.position = newPosition;
+        soundsDict[name][randomIndex].Play();
+    }
+
+    public void PlaySFX(string name)
+    {
+        int randomIndex = Random.Range(0, soundsDict[name].Count);
+        float randomPitch = Random.Range(lowPitchRange, highPitchRange);
+
+        soundsDict[name][randomIndex].pitch = randomPitch;
+        soundsDict[name][randomIndex].Play();
+    }
+
+    public void PlaySFX(string name, Vector3 newPosition)
+    {
+        int randomIndex = Random.Range(0, soundsDict[name].Count);
+        float randomPitch = Random.Range(lowPitchRange, highPitchRange);
+
+        soundsDict[name][randomIndex].pitch = randomPitch;
+        soundsDict[name][randomIndex].transform.position = newPosition;
+        soundsDict[name][randomIndex].Play();
     }
 }
 
@@ -30,7 +55,7 @@ public class AudioManager : MonoBehaviour {
 public struct Song
 {
     public string name;
-    public AudioSource source;
+    public List<AudioSource> sources;
 }
 
 
