@@ -33,7 +33,7 @@ public class Seed : MonoBehaviour {
         {
             TickGrowClock();
         }
-        if (currentGrowTime>= timeToGrow)
+        if (currentGrowTime>= timeToGrow && !isGrown)
         {
             Grow();
         }
@@ -54,15 +54,19 @@ public class Seed : MonoBehaviour {
     void Grow()
     {
         isGrown = true;
-        GetComponent<MeshFilter>().mesh =GrownPrefab.GetComponent<MeshFilter>().sharedMesh;
-        thisRend.material = GetComponent<Renderer>().sharedMaterial;
-        GetComponent<ItemAlign>().initScale = GrownPrefab.transform.lossyScale;
-        GetComponent<SphereCollider>().radius = GrownPrefab.GetComponent<SphereCollider>().radius;
+        thisRend.enabled = false;
+        //GetComponent<MeshFilter>().mesh =GrownPrefab.GetComponent<MeshFilter>().sharedMesh;
+        //thisRend.material = GetComponent<Renderer>().sharedMaterial;
+        //GetComponent<ItemAlign>().initScale = GrownPrefab.transform.lossyScale;
+        //GetComponent<SphereCollider>().radius = GrownPrefab.GetComponent<SphereCollider>().radius;
+        GameObject Temp = SpawnItem(GrownPrefab);
         transform.tag = "Item";
         currentGrowTime = timeToGrow;
+        Temp.transform.localPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Temp.transform.parent = null;
         transform.name = GetComponent<ItemType>().itemName = GrownPrefab.GetComponent<ItemType>().itemName;
         GetComponent<ItemType>().isIngredient = GrownPrefab.GetComponent<ItemType>().isIngredient;
-
+        Destroy(gameObject);
     }
     void Shrink()
     {
@@ -75,5 +79,14 @@ public class Seed : MonoBehaviour {
         transform.name = GetComponent<ItemType>().itemName = originalItemName;
         GetComponent<ItemType>().isIngredient = originalisIngredient;
         ResetGrowClock();
+    }
+    public GameObject SpawnItem(GameObject Prefab)
+    {
+        var SpawnedItem = (GameObject)Instantiate(
+            Prefab,
+            Prefab.transform.position,
+            Prefab.transform.rotation);
+        SpawnedItem.transform.localScale = Prefab.transform.localScale;
+        return SpawnedItem;
     }
 }
