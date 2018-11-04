@@ -327,6 +327,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1876018115457998
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4765452255368398}
+  m_Layer: 0
+  m_Name: DropZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1945391289780720
 GameObject:
   m_ObjectHideFlags: 1
@@ -369,6 +384,21 @@ GameObject:
   - component: {fileID: 4947641504454356}
   m_Layer: 0
   m_Name: Item
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1969784637295600
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4466447608819568}
+  m_Layer: 0
+  m_Name: DropZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -545,7 +575,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713313967394120}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4386991539130126}
@@ -555,6 +585,7 @@ Transform:
   - {fileID: 4919368915616272}
   - {fileID: 4281105613360956}
   - {fileID: 4360439131290358}
+  - {fileID: 4765452255368398}
   m_Father: {fileID: 4896136264597140}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -586,6 +617,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4861393249735152}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4466447608819568
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1969784637295600}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4861393249735152}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4484340135228110
 Transform:
@@ -626,6 +670,19 @@ Transform:
   m_Father: {fileID: 4431130769766504}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4765452255368398
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1876018115457998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4415972631555294}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4828017196810152
 Transform:
   m_ObjectHideFlags: 1
@@ -646,7 +703,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1578665741870152}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -2}
+  m_LocalPosition: {x: -1, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4023163259458404}
@@ -656,6 +713,7 @@ Transform:
   - {fileID: 4221206703098976}
   - {fileID: 4117786449941484}
   - {fileID: 4431130769766504}
+  - {fileID: 4466447608819568}
   m_Father: {fileID: 4896136264597140}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -666,7 +724,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1105339402533926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.06, y: 3.36, z: -2.41}
+  m_LocalPosition: {x: 1.56, y: 2.29, z: -0.9299996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4861393249735152}
@@ -1240,6 +1298,7 @@ MonoBehaviour:
   Item: {fileID: 0}
   GroundCheck: {fileID: 1178621560752066}
   GrabButton: Grab2
+  DropPosition: {fileID: 4765452255368398}
 --- !u!114 &114599399532597624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1251,7 +1310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7679420cdb24b45a1f7f89e33dfc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 5
   tileX: 0
   tileY: 0
   tileZ: 0
@@ -1314,6 +1373,7 @@ MonoBehaviour:
   Item: {fileID: 0}
   GroundCheck: {fileID: 1636488524807668}
   GrabButton: Grab1
+  DropPosition: {fileID: 4466447608819568}
 --- !u!114 &114920208272185916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1325,7 +1385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7679420cdb24b45a1f7f89e33dfc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 57
   tileX: 0
   tileY: 0
   tileZ: 0

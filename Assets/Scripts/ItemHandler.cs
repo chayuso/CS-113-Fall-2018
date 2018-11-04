@@ -11,11 +11,15 @@ public class ItemHandler : MonoBehaviour {
     public string GrabButton = "Fire1";
     float EnableTime = 1f;
     float CurrentTime = 0f;
+    public Transform DropPosition;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
         PM = GetComponent<PlayerMovement>();
-		
+        if (!DropPosition)
+        {
+            DropPosition = transform;
+        }
 	}
     IEnumerator ThrowingSequenceTimer(GameObject Potion)
     {
@@ -100,6 +104,44 @@ public class ItemHandler : MonoBehaviour {
             }
         }
     }
+    void FreeDrop()
+    {
+        Item.transform.parent = null;
+        if (Item.tag == "CookingPot")
+        {
+            Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        }
+        else
+        {
+            if (Item.GetComponent<ParabolaController>())
+            {
+                Item.GetComponent<ParabolaController>().Throw();
+                StartCoroutine(ThrowingSequenceTimer(Item));
+                Item = null;
+                return;
+            }
+            Item.GetComponent<Rigidbody>().freezeRotation = false;
+        }
+        Item.GetComponent<ItemAlign>().disableTileUpdate = false;
+        Item.GetComponent<SphereCollider>().enabled = true;
+        Item.transform.position = DropPosition.position;
+        if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
+        {
+            //GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
+            GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = null;
+            if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Count != 0)
+            {
+                GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = GroundCheck.GetComponent<GroundItemDetect>().OtherItems[0];
+                //GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Highlight();
+                GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(GroundCheck.GetComponent<GroundItemDetect>().DetectedItem);
+            }
+        }
+        else if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Contains(Item))
+        {
+            GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
+        }
+        Item = null;
+    }
     public void DropItem()
     {
         if (Item)
@@ -110,6 +152,7 @@ public class ItemHandler : MonoBehaviour {
                 {
                     if (childItem.tag == "Item" || childItem.tag == "Seed")
                     {
+                        FreeDrop();
                         return;
                     }
                     else if (childItem.tag == "CookingPot")
@@ -127,6 +170,10 @@ public class ItemHandler : MonoBehaviour {
                                 }
                             }
                         }
+                        else
+                        {
+                            FreeDrop();
+                        }
                         return;
                     }
                     else if (childItem.tag == "PotionStation" && Item.tag == "CookingPot")
@@ -134,33 +181,7 @@ public class ItemHandler : MonoBehaviour {
                         PotionCreation(Item);
                     }
                 }
-                Item.transform.parent = null;
-                if (Item.tag == "CookingPot")
-                {
-                    Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-                }
-                else
-                {
-                    Item.GetComponent<Rigidbody>().freezeRotation = false;
-                }
-                Item.transform.position = PM.selectedTile.transform.position;
-                Item.GetComponent<ItemAlign>().disableTileUpdate = false;
-                if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
-                {
-                    //GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
-                    GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = null;
-                    if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Count != 0)
-                    {
-                        GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = GroundCheck.GetComponent<GroundItemDetect>().OtherItems[0];
-                        //GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Highlight();
-                        GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(GroundCheck.GetComponent<GroundItemDetect>().DetectedItem);
-                    }
-                }
-                else if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Contains(Item))
-                {
-                    GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
-                }
-                Item = null;
+                FreeDrop();
                 return;
             }
             Item.transform.parent = null;
