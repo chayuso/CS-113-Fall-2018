@@ -9,6 +9,10 @@ public class MenuManager : MonoBehaviour {
     public float durationTime = 1f;
     public List<CanvasGroup> uiElements;
 
+    [SerializeField]
+    private List<GameObject> levelSelectButtons;
+    private int currentLevel = 0;
+
 	IEnumerator Start ()
     {
         FadeIn(uiElements[0]);
@@ -16,6 +20,8 @@ public class MenuManager : MonoBehaviour {
         FadeOut(uiElements[0]);
         yield return new WaitForSeconds(durationTime/2);
         FadeIn(uiElements[1]);
+        uiElements[1].interactable = true;
+        uiElements[1].blocksRaycasts = true;
     }
 
     public void FadeIn(CanvasGroup uiElement)
@@ -49,13 +55,26 @@ public class MenuManager : MonoBehaviour {
         }
     }
 
-	private void loadScene(string newScene)
+	public void loadScene(string newScene)
 	{
 		SceneManager.LoadScene(newScene);
 	}
 
-	private void quitGame()
+	public void quitGame()
 	{
 		Application.Quit();
 	}
+
+    public void scrollLevels(int direction)
+    {
+        levelSelectButtons[currentLevel].SetActive(false);
+        currentLevel += direction;
+
+        if (currentLevel < 0)
+            currentLevel = levelSelectButtons.Count - 1;
+        if (currentLevel == levelSelectButtons.Count)
+            currentLevel = 0;
+
+        levelSelectButtons[currentLevel].SetActive(true);
+    }
 }
