@@ -95,7 +95,7 @@ public class ItemAlign : MonoBehaviour {
     }
     public void FindParentTile()
     {
-        if (GS.BlockedTiles.Contains(DynamicUpdateTilePosition(0f, 0f, -.5f)))
+        if (GS.BlockedTiles.Contains(DynamicUpdateTilePosition(0f, 0f, -1f)))
         {
             GameObject FoundTile = GameObject.Find(TileName);
             bool tileHasItem = false;
@@ -108,7 +108,7 @@ public class ItemAlign : MonoBehaviour {
                 if ((childT.tag == "Item"|| childT.tag == "Seed" || childT.tag == "CookingPot") && childT.gameObject!=gameObject)
                 {
                     tileHasItem = true;
-                    break;
+                    return;
                 }
             }
             if (!tileHasItem)
@@ -124,33 +124,30 @@ public class ItemAlign : MonoBehaviour {
                 else
                 {
                     GameObject TopTile = RecursiveFindTopTile(FoundTile.gameObject);
-
-                        if (TopTile.transform.tag == "HalfTile")
+                    if (TopTile.transform.tag == "HalfTile")
+                    {
+                        foreach (Transform childT in TopTile.transform)
                         {
-                            foreach (Transform childT in TopTile.transform)
+                            if ((childT.tag == "Item" || childT.tag == "Seed" || childT.tag == "CookingPot") && childT.gameObject != gameObject)
                             {
-                                if ((childT.tag == "Item" || childT.tag == "Seed" || childT.tag == "CookingPot") && childT.gameObject != gameObject)
-                                {
-                                    tileHasItem = true;
-                                    break;
-                                }
+                                tileHasItem = true;
+                                return;
                             }
-                            if (!tileHasItem)
-                            {
-                                transform.parent = TopTile.transform;
-                                AlignTo(int.Parse(transform.parent.name.Split('x')[0]),
+                        }
+                        if (!tileHasItem)
+                        {
+                            transform.parent = TopTile.transform;
+                            AlignTo(int.Parse(transform.parent.name.Split('x')[0]),
                                         int.Parse(transform.parent.name.Split('x')[1]),
                                         int.Parse(transform.parent.name.Split('x')[2]));
-                                GetComponent<Rigidbody>().useGravity = false;
-                                GetComponent<SphereCollider>().enabled = false;                                
-                                GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-                                return;
-                            }        
-                        }         
-                    
+                            GetComponent<Rigidbody>().useGravity = false;
+                            GetComponent<SphereCollider>().enabled = false;                                
+                            GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+                            return;
+                        }
+                    }
                 }
             }
-            
         }
     }
     GameObject RecursiveFindTopTile(GameObject CurrentTile)
@@ -270,12 +267,25 @@ public class ItemAlign : MonoBehaviour {
     }
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "HalfTile"&& !transform.parent)
+        if (other.gameObject.tag == "HalfTile" && !transform.parent )
         {
-            transform.position = other.transform.position;
-            Align();
-            GetComponent<Rigidbody>().useGravity = false;
-            GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+            bool tileHasItem = false;
+            foreach (Transform childT in other.transform)
+            {
+                if ((childT.tag == "Item" || childT.tag == "Seed" || childT.tag == "CookingPot") && childT.gameObject != gameObject)
+                {
+                    tileHasItem = true;
+                    return;
+                }
+            }
+            if (!tileHasItem)
+            {
+                transform.position = other.transform.position;
+                Align();
+                GetComponent<Rigidbody>().useGravity = false;
+                GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+            }
+            
         }
     }
     /*public void Highlight()
