@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameState : MonoBehaviour {
     public List<string> BlockedTiles;
     public GameObject RedPotion;
+    public GameObject CyanPotion;
+    public GameObject PurplePotion;
     public List<int> playerScores;
 	// Use this for initialization
 	void Start () {

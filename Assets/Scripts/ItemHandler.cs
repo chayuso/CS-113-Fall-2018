@@ -9,9 +9,8 @@ public class ItemHandler : MonoBehaviour {
     public GameObject GroundCheck;
     PlayerMovement PM;
     public string GrabButton = "Fire1";
-    float EnableTime = 1f;
-    float CurrentTime = 0f;
     public Transform DropPosition;
+    public List<List<string>> RecipeList;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -20,6 +19,7 @@ public class ItemHandler : MonoBehaviour {
         {
             DropPosition = transform;
         }
+        RecipeList = MakeRecipieList();
 	}
     IEnumerator ThrowingSequenceTimer(GameObject Potion)
     {
@@ -59,6 +59,25 @@ public class ItemHandler : MonoBehaviour {
             }
         }
     }
+    List<List<string>> MakeRecipieList()
+    {
+        List<List<string>> RL = new List<List<string>>();
+
+        List<string> RedPotion = new List<string>();
+        RedPotion.Add("RedPlant");
+        RedPotion.Add("RedPlant");
+        List<string> CyanPotion = new List<string>();
+        CyanPotion.Add("CyanPlant");
+        CyanPotion.Add("CyanPlant");
+        List<string> PurplePotion = new List<string>();
+        PurplePotion.Add("RedPlant");
+        PurplePotion.Add("CyanPlant");
+
+        RL.Add(RedPotion);
+        RL.Add(CyanPotion);
+        RL.Add(PurplePotion);
+        return RL;
+    }
     bool PotionCreation(GameObject brewPot)
     {
         BrewingPot BP = brewPot.GetComponent<BrewingPot>();
@@ -66,20 +85,36 @@ public class ItemHandler : MonoBehaviour {
         {
             return false;
         }
-        List<string> RedPotion = new List<string>();
-        RedPotion.Add("RedPlant");
-        RedPotion.Add("RedPlant");
-        List<List<string>> RecipeList = new List<List<string>>();
-        RecipeList.Add(RedPotion);
+
         foreach (List<string> Recipe in RecipeList)
         {
+            print(Recipe);
             if (Recipe[0].Length+Recipe[1].Length==BP.inPot[0].Length+BP.inPot[1].Length)
             {
-                if (Recipe == RedPotion)
+                if (Recipe == RecipeList[0])
                 {
-                    print("RedPotionCreated");//SpawnPotion Here
                     GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
                     GameObject Potion = GS.SpawnItem(GS.RedPotion);
+                    Potion.transform.position = transform.position;
+                    BP.currentItemCount = 0;
+                    BP.inPot.Clear();
+                    BP.ResetGrowClock();
+                    return true;
+                }
+                else if (Recipe == RecipeList[1])
+                {
+                    GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
+                    GameObject Potion = GS.SpawnItem(GS.CyanPotion);
+                    Potion.transform.position = transform.position;
+                    BP.currentItemCount = 0;
+                    BP.inPot.Clear();
+                    BP.ResetGrowClock();
+                    return true;
+                }
+                else if (Recipe == RecipeList[2])
+                {
+                    GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
+                    GameObject Potion = GS.SpawnItem(GS.PurplePotion);
                     Potion.transform.position = transform.position;
                     BP.currentItemCount = 0;
                     BP.inPot.Clear();

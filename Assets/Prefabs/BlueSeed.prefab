@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cedbf127103b9846b85ffca2736401d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: BlueSeed
+  itemName: CyanSeed
   isIngredient: 0
 --- !u!114 &114819745772029532
 MonoBehaviour:

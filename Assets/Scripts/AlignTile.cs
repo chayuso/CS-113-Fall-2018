@@ -150,7 +150,6 @@ public class AlignTile : MonoBehaviour {
         {
             if (g)
             {
-                print(g.name);
                 StartCoroutine(RespawnDelay(g));
             }
         }

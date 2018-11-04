@@ -21,7 +21,18 @@ public class BrewingPot : MonoBehaviour {
         Circle1 = transform.Find("Circle1").gameObject;
         Circle2 = transform.Find("Circle2").gameObject;
     }
-	
+    Color TranslateColor(string stringColor)
+    {
+        if (stringColor.ToLower() == "redplant")
+        {
+            return Color.red;
+        }
+        else if (stringColor.ToLower() == "cyanplant")
+        {
+            return Color.cyan;
+        }
+        return Color.white;
+    }
 	// Update is called once per frame
 	void Update () {
         if (transform.parent && transform.parent.GetComponent<TileHighlight>() && transform.parent.GetComponent<TileHighlight>().TileObject.gameObject.tag == "Table" && inPot.Count!=0)
@@ -36,19 +47,21 @@ public class BrewingPot : MonoBehaviour {
         else { completeBar.GetComponent<SpriteRenderer>().enabled = false; }
         if (inPot.Count>=1)
         {
-            Circle1.transform.Find("red").GetComponent<SpriteRenderer>().enabled = true;
+            Circle1.transform.Find("Color").GetComponent<SpriteRenderer>().enabled = true;
+            Circle1.transform.Find("Color").GetComponent<SpriteRenderer>().color = TranslateColor(inPot[0]);
         }
         else
         {
-            Circle1.transform.Find("red").GetComponent<SpriteRenderer>().enabled = false;
+            Circle1.transform.Find("Color").GetComponent<SpriteRenderer>().enabled = false;
         }
         if (inPot.Count >= 2)
         {
-            Circle2.transform.Find("red").GetComponent<SpriteRenderer>().enabled = true;
+            Circle2.transform.Find("Color").GetComponent<SpriteRenderer>().enabled = true;
+            Circle2.transform.Find("Color").GetComponent<SpriteRenderer>().color = TranslateColor(inPot[1]);
         }
         else
         {
-            Circle2.transform.Find("red").GetComponent<SpriteRenderer>().enabled = false;
+            Circle2.transform.Find("Color").GetComponent<SpriteRenderer>().enabled = false;
         }
     }
     void TickGrowClock()
