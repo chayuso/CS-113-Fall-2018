@@ -181,7 +181,33 @@ public class ItemHandler : MonoBehaviour {
                         PotionCreation(Item);
                     }
                 }
-                FreeDrop();
+                Item.transform.parent = null;
+                if (Item.tag == "CookingPot")
+                {
+                    Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+                }
+                else
+                {
+                    Item.GetComponent<Rigidbody>().freezeRotation = false;
+                }
+                Item.transform.position = PM.selectedTile.transform.position;
+                Item.GetComponent<ItemAlign>().disableTileUpdate = false;
+                if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
+                {
+                    //GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
+                    GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = null;
+                    if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Count != 0)
+                    {
+                        GroundCheck.GetComponent<GroundItemDetect>().DetectedItem = GroundCheck.GetComponent<GroundItemDetect>().OtherItems[0];
+                        //GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Highlight();
+                        GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(GroundCheck.GetComponent<GroundItemDetect>().DetectedItem);
+                    }
+                }
+                else if (GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Contains(Item))
+                {
+                    GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
+                }
+                Item = null;
                 return;
             }
             Item.transform.parent = null;
