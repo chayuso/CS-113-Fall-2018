@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour {
     Rigidbody playerRigidbody;
     public float forceValue = 1111f;
     public int playerNumber = 1;
+    public float dashForce = 5f;
     GameState GS;
     // Use this for initialization
     void Start () {
@@ -156,6 +157,11 @@ public class PlayerMovement : MonoBehaviour {
 
 
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
+        if (Input.GetButtonDown("XBOX_X"))
+        {
+            //transform.Translate(dashForce * movement * movementSpeed * Time.deltaTime, Space.World);
+            transform.GetComponent<Rigidbody>().AddForce(movement * dashForce,ForceMode.Acceleration);
+        }
         //rigidbody.AddForce(movement * movementSpeed * Time.deltaTime, ForceMode.Impulse);
     }
 

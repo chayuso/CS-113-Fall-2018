@@ -1322,6 +1322,7 @@ MonoBehaviour:
   neighborTiles: []
   forceValue: 1111
   playerNumber: 1
+  dashForce: 500
 --- !u!114 &114722514112412678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1385,7 +1386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7679420cdb24b45a1f7f89e33dfc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 57
+  movementSpeed: 5
   tileX: 0
   tileY: 0
   tileZ: 0
@@ -1397,6 +1398,7 @@ MonoBehaviour:
   neighborTiles: []
   forceValue: 1111
   playerNumber: 2
+  dashForce: 500
 --- !u!136 &136449956420337026
 CapsuleCollider:
   m_ObjectHideFlags: 1
