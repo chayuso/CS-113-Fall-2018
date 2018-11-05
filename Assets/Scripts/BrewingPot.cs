@@ -23,13 +23,20 @@ public class BrewingPot : MonoBehaviour {
     }
     Color TranslateColor(string stringColor)
     {
+        Color selectColor;
         if (stringColor.ToLower() == "redplant")
         {
             return Color.red;
         }
-        else if (stringColor.ToLower() == "cyanplant")
+        else if (stringColor.ToLower() == "blueplant")
         {
-            return Color.cyan;
+            selectColor = new Color(0, 0.5490196f, 1);
+            return selectColor;
+        }
+        else if (stringColor.ToLower() == "greenplant")
+        {
+            selectColor = new Color(0.2352941f, 1, 0);
+            return selectColor;
         }
         return Color.white;
     }

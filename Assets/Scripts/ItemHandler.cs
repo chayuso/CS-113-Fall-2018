@@ -66,16 +66,32 @@ public class ItemHandler : MonoBehaviour {
         List<string> RedPotion = new List<string>();
         RedPotion.Add("RedPlant");
         RedPotion.Add("RedPlant");
-        List<string> CyanPotion = new List<string>();
-        CyanPotion.Add("CyanPlant");
-        CyanPotion.Add("CyanPlant");
+        List<string> BluePotion = new List<string>();
+        BluePotion.Add("BluePlant");
+        BluePotion.Add("BluePlant");
+        List<string> GreenPotion = new List<string>();
+        GreenPotion.Add("GreenPlant");
+        GreenPotion.Add("GreenPlant");
         List<string> PurplePotion = new List<string>();
         PurplePotion.Add("RedPlant");
-        PurplePotion.Add("CyanPlant");
-
+        PurplePotion.Add("BluePlant");
+        List<string> CyanPotion = new List<string>();
+        CyanPotion.Add("BluePlant");
+        CyanPotion.Add("GreenPlant");
+        List<string> YellowPotion = new List<string>();
+        YellowPotion.Add("RedPlant");
+        YellowPotion.Add("GreenPlant");
+        List<string> WhitePotion = new List<string>();
+        WhitePotion.Add("RedPlant");
+        WhitePotion.Add("GreenPlant");
+        WhitePotion.Add("BluePlant");
         RL.Add(RedPotion);
-        RL.Add(CyanPotion);
+        RL.Add(BluePotion);
+        RL.Add(GreenPotion);
         RL.Add(PurplePotion);
+        RL.Add(CyanPotion);
+        RL.Add(YellowPotion);
+        RL.Add(WhitePotion);
         return RL;
     }
     bool PotionCreation(GameObject brewPot)
@@ -88,10 +104,19 @@ public class ItemHandler : MonoBehaviour {
 
         foreach (List<string> Recipe in RecipeList)
         {
-            print(Recipe);
-            if (Recipe[0].Length+Recipe[1].Length==BP.inPot[0].Length+BP.inPot[1].Length)
+            if ((Recipe[0] == BP.inPot[0] && Recipe[1] == BP.inPot[1])|| (Recipe[1] == BP.inPot[0] && Recipe[0] == BP.inPot[1])|| BP.inPot.Count == 3)
             {
-                if (Recipe == RecipeList[0])
+                if (BP.inPot.Count == 3)
+                {
+                    GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
+                    GameObject Potion = GS.SpawnItem(GS.WhitePotion);
+                    Potion.transform.position = transform.position;
+                    BP.currentItemCount = 0;
+                    BP.inPot.Clear();
+                    BP.ResetGrowClock();
+                    return true;
+                }
+                else if (Recipe == RecipeList[0])
                 {
                     GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
                     GameObject Potion = GS.SpawnItem(GS.RedPotion);
@@ -104,7 +129,7 @@ public class ItemHandler : MonoBehaviour {
                 else if (Recipe == RecipeList[1])
                 {
                     GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
-                    GameObject Potion = GS.SpawnItem(GS.CyanPotion);
+                    GameObject Potion = GS.SpawnItem(GS.BluePotion);
                     Potion.transform.position = transform.position;
                     BP.currentItemCount = 0;
                     BP.inPot.Clear();
@@ -114,7 +139,47 @@ public class ItemHandler : MonoBehaviour {
                 else if (Recipe == RecipeList[2])
                 {
                     GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
+                    GameObject Potion = GS.SpawnItem(GS.GreenPotion);
+                    Potion.transform.position = transform.position;
+                    BP.currentItemCount = 0;
+                    BP.inPot.Clear();
+                    BP.ResetGrowClock();
+                    return true;
+                }
+                else if (Recipe == RecipeList[3])
+                {
+                    GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
                     GameObject Potion = GS.SpawnItem(GS.PurplePotion);
+                    Potion.transform.position = transform.position;
+                    BP.currentItemCount = 0;
+                    BP.inPot.Clear();
+                    BP.ResetGrowClock();
+                    return true;
+                }
+                else if (Recipe == RecipeList[4])
+                {
+                    GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
+                    GameObject Potion = GS.SpawnItem(GS.CyanPotion);
+                    Potion.transform.position = transform.position;
+                    BP.currentItemCount = 0;
+                    BP.inPot.Clear();
+                    BP.ResetGrowClock();
+                    return true;
+                }
+                else if (Recipe == RecipeList[5])
+                {
+                    GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
+                    GameObject Potion = GS.SpawnItem(GS.YellowPotion);
+                    Potion.transform.position = transform.position;
+                    BP.currentItemCount = 0;
+                    BP.inPot.Clear();
+                    BP.ResetGrowClock();
+                    return true;
+                }
+                else
+                {
+                    GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, 100);
+                    GameObject Potion = GS.SpawnItem(GS.WhitePotion);
                     Potion.transform.position = transform.position;
                     BP.currentItemCount = 0;
                     BP.inPot.Clear();

@@ -78,10 +78,8 @@ public class ParabolaController : MonoBehaviour
     }
     public void Throw()
     {
-        print("Throwing");
         RefreshTransforms(Speed);
         FollowParabola();
-        print("Computed");
     }
     // Update is called once per frame
     void Update()

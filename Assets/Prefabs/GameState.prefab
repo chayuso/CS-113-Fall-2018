@@ -53,7 +53,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlockedTiles: []
   RedPotion: {fileID: 1394426700061376, guid: eeead643a0131f1459c41ea32c12e98c, type: 2}
-  CyanPotion: {fileID: 1426917120634830, guid: ff7c5025d79ee2a4b96f3127af6b82d9, type: 2}
+  BluePotion: {fileID: 1426917120634830, guid: ff7c5025d79ee2a4b96f3127af6b82d9, type: 2}
+  GreenPotion: {fileID: 1641065063461222, guid: b4d7eafefd549144cbb752e3518de5aa,
+    type: 2}
   PurplePotion: {fileID: 1312774277685976, guid: d0c86bd36de2e2a4bbd82f88419b3e08,
+    type: 2}
+  CyanPotion: {fileID: 1187675040463662, guid: e62aa6c676b2a424bbae8f7aa2475269, type: 2}
+  YellowPotion: {fileID: 1304753556251220, guid: 29f772354015ff740a52b76543ed6ab8,
+    type: 2}
+  WhitePotion: {fileID: 1259067498752160, guid: 230a3b314dbc4f8419eb2dadcd124b0f,
     type: 2}
   playerScores: 
