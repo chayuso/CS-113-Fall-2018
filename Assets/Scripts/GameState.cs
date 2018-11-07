@@ -13,7 +13,7 @@ public class GameState : MonoBehaviour {
     public GameObject YellowPotion;
     public GameObject WhitePotion;
     public List<int> playerScores;
-    public float timeOrderIntervals = 5f;
+    float timeOrderIntervals = 5f;
     public float currentTime = 0f;
     public List<string> OrderListNames;
     GameObject OrderMenu;
@@ -31,7 +31,12 @@ public class GameState : MonoBehaviour {
         {
             playerScores.Add(0);
         }
-	}
+        if (OrderMenu)
+        {
+            AddRandomPotion();
+        }
+
+    }
     public void AwardPoints(int playerNumber, int Amount)
     {
         playerScores[playerNumber - 1] += Amount;
@@ -53,15 +58,12 @@ public class GameState : MonoBehaviour {
             if (OrderMenu)
             {
                 AddRandomPotion();
-                for(int i = 0; i<OrderListNames.Count;i++)
-                {
-                    GameObject Slot = OrderMenu.transform.Find("Slot" + (i+1).ToString()).gameObject;
-                    Slot.transform.Find("Potion").GetComponent<Image>().color = PotionNameConvert(OrderListNames[i]).PotionColor;
-                    Slot.transform.Find("Mat1").Find("Color").GetComponent<Image>().color = PotionNameConvert(OrderListNames[i]).Mat1Color;
-                    Slot.transform.Find("Mat2").Find("Color").GetComponent<Image>().color = PotionNameConvert(OrderListNames[i]).Mat2Color;
-                }
             }
             
+        }
+        if (OrderListNames.Count >= 5)
+        {
+            return;
         }
         TickClock();
     }
@@ -73,6 +75,17 @@ public class GameState : MonoBehaviour {
         }
         int RNG = Random.Range(0, 6);
         OrderListNames.Add(PotionIntToString(RNG));
+        for (int i = 0; i < OrderListNames.Count; i++)
+        {
+            GameObject Slot = OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
+            Slot.GetComponent<Order>().isDisabled = false;
+            Slot.GetComponent<Order>().OrderType(OrderListNames[i]);
+        }
+        for (int i = 0; i < 5 - OrderListNames.Count; i++)
+        {
+            GameObject Slot = OrderMenu.transform.Find("Slot" + (5 - i).ToString()).gameObject;
+            Slot.GetComponent<Order>().isDisabled = true;
+        }
     }
     string PotionIntToString(int PotionNumber)
     {
@@ -151,6 +164,34 @@ public class GameState : MonoBehaviour {
             Potion = new Order("Red");
         }
         return Potion;
+    }
+    public void RemoveOrder(int OrderNum)
+    {
+        //print(OrderNum);
+        //print(OrderListNames[OrderNum]);
+        List<float> SlotTimes = new List<float>();
+        for (int i = 0; i < OrderListNames.Count; i++)
+        {
+            GameObject Slot = OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
+            SlotTimes.Add(Slot.GetComponent<Order>().currentTime);
+        }
+        GameObject tempSlot = OrderMenu.transform.Find("Slot" + (OrderNum+1).ToString()).gameObject;
+        tempSlot.GetComponent<Order>().isDisabled = true;
+        SlotTimes.Remove(SlotTimes[OrderNum]);
+        OrderListNames.Remove(OrderListNames[OrderNum]);
+        for (int i = 0; i < OrderListNames.Count; i++)
+        {
+            GameObject Slot = OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
+            Slot.GetComponent<Order>().isDisabled = false;
+            Slot.GetComponent<Order>().OrderType(OrderListNames[i]);
+            Slot.GetComponent<Order>().currentTime = SlotTimes[i];
+        }
+        for (int i = 0; i < 5 - OrderListNames.Count; i++)
+        {
+            GameObject Slot = OrderMenu.transform.Find("Slot" + (5 - i).ToString()).gameObject;
+            Slot.GetComponent<Order>().currentTime = 0;
+            Slot.GetComponent<Order>().isDisabled = true;
+        }
     }
     void TickClock()
     {
