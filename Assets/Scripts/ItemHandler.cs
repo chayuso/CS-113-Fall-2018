@@ -124,6 +124,20 @@ public class ItemHandler : MonoBehaviour {
                     BP.currentItemCount = 0;
                     BP.inPot.Clear();
                     BP.ResetGrowClock();
+                    if (!GS.OrderMenu)
+                    {
+                        return true;
+                    }
+                    for (int i = 0; i < GS.OrderListNames.Count; i++)
+                    {
+                        if (GS.OrderListNames[i] == "Red")
+                        {
+                            GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
+                            GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, Mathf.RoundToInt(200 * (1f-Slot.GetComponent<Order>().CurrentOverExpire())));
+                            GS.RemoveOrder(i);
+                            break;
+                        }
+                    }
                     return true;
                 }
                 else if (Recipe == RecipeList[1])
@@ -134,6 +148,20 @@ public class ItemHandler : MonoBehaviour {
                     BP.currentItemCount = 0;
                     BP.inPot.Clear();
                     BP.ResetGrowClock();
+                    if (!GS.OrderMenu)
+                    {
+                        return true;
+                    }
+                    for (int i = 0; i < GS.OrderListNames.Count; i++)
+                    {
+                        if (GS.OrderListNames[i] == "Blue")
+                        {
+                            GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
+                            GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, Mathf.RoundToInt(200 * (1f - Slot.GetComponent<Order>().CurrentOverExpire())));
+                            GS.RemoveOrder(i);
+                            break;
+                        }
+                    }
                     return true;
                 }
                 else if (Recipe == RecipeList[2])
@@ -144,6 +172,20 @@ public class ItemHandler : MonoBehaviour {
                     BP.currentItemCount = 0;
                     BP.inPot.Clear();
                     BP.ResetGrowClock();
+                    if (!GS.OrderMenu)
+                    {
+                        return true;
+                    }
+                    for (int i = 0; i < GS.OrderListNames.Count; i++)
+                    {
+                        if (GS.OrderListNames[i] == "Green")
+                        {
+                            GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
+                            GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, Mathf.RoundToInt(200 * (1f - Slot.GetComponent<Order>().CurrentOverExpire())));
+                            GS.RemoveOrder(i);
+                            break;
+                        }
+                    }
                     return true;
                 }
                 else if (Recipe == RecipeList[3])
@@ -154,6 +196,20 @@ public class ItemHandler : MonoBehaviour {
                     BP.currentItemCount = 0;
                     BP.inPot.Clear();
                     BP.ResetGrowClock();
+                    if (!GS.OrderMenu)
+                    {
+                        return true;
+                    }
+                    for (int i = 0; i < GS.OrderListNames.Count; i++)
+                    {
+                        if (GS.OrderListNames[i] == "Purple")
+                        {
+                            GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
+                            GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, Mathf.RoundToInt(200 * (1f - Slot.GetComponent<Order>().CurrentOverExpire())));
+                            GS.RemoveOrder(i);
+                            break;
+                        }
+                    }
                     return true;
                 }
                 else if (Recipe == RecipeList[4])
@@ -164,6 +220,20 @@ public class ItemHandler : MonoBehaviour {
                     BP.currentItemCount = 0;
                     BP.inPot.Clear();
                     BP.ResetGrowClock();
+                    if (!GS.OrderMenu)
+                    {
+                        return true;
+                    }
+                    for (int i = 0; i < GS.OrderListNames.Count; i++)
+                    {
+                        if (GS.OrderListNames[i] == "Cyan")
+                        {
+                            GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
+                            GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, Mathf.RoundToInt(200 * (1f - Slot.GetComponent<Order>().CurrentOverExpire())));
+                            GS.RemoveOrder(i);
+                            break;
+                        }
+                    }
                     return true;
                 }
                 else if (Recipe == RecipeList[5])
@@ -174,6 +244,20 @@ public class ItemHandler : MonoBehaviour {
                     BP.currentItemCount = 0;
                     BP.inPot.Clear();
                     BP.ResetGrowClock();
+                    if (!GS.OrderMenu)
+                    {
+                        return true;
+                    }
+                    for (int i = 0; i < GS.OrderListNames.Count; i++)
+                    {
+                        if (GS.OrderListNames[i] == "Yellow")
+                        {
+                            GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
+                            GS.AwardPoints(gameObject.GetComponent<PlayerMovement>().playerNumber, Mathf.RoundToInt(200 * (1f - Slot.GetComponent<Order>().CurrentOverExpire())));
+                            GS.RemoveOrder(i);
+                            break;
+                        }
+                    }
                     return true;
                 }
                 else

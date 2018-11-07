@@ -151,6 +151,10 @@ public class Order : MonoBehaviour{
     {
         timetoExpire = newTime;
     }
+    public float CurrentOverExpire()
+    {
+        return currentTime / timetoExpire;
+    }
     void Update()
     {
         if (isDisabled)
@@ -175,6 +179,18 @@ public class Order : MonoBehaviour{
         }
         bar = transform.Find("Bar").Find("BarExpand").gameObject;
         bar.transform.localScale = new Vector3(1f-(currentTime / timetoExpire), bar.transform.localScale.y, bar.transform.localScale.z);
+        if (1-(currentTime / timetoExpire) < .25f)
+        {
+            bar.GetComponent<Image>().color = Color.red;
+        }
+        else if (1 - (currentTime / timetoExpire) < .60f)
+        {
+            bar.GetComponent<Image>().color = Color.yellow;
+        }
+        else
+        {
+            bar.GetComponent<Image>().color = Color.green;
+        }
         //bar.GetComponent<Image>().rectTransform.sizeDelta = new Vector2(bar.GetComponent<Image>().rectTransform.sizeDelta.x * (currentTime / timetoExpire), bar.GetComponent<Image>().rectTransform.sizeDelta.y);
 
     }

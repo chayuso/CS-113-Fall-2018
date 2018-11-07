@@ -16,7 +16,7 @@ public class GameState : MonoBehaviour {
     float timeOrderIntervals = 5f;
     public float currentTime = 0f;
     public List<string> OrderListNames;
-    GameObject OrderMenu;
+    public GameObject OrderMenu;
     // Use this for initialization
     void Start () {
         if (GameObject.Find("Canvas") && GameObject.Find("Canvas").transform.Find("Menu"))
@@ -87,6 +87,7 @@ public class GameState : MonoBehaviour {
             Slot.GetComponent<Order>().isDisabled = true;
         }
     }
+    
     string PotionIntToString(int PotionNumber)
     {
         string return_string;
