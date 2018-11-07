@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameState : MonoBehaviour {
     public List<string> BlockedTiles;
@@ -12,8 +13,16 @@ public class GameState : MonoBehaviour {
     public GameObject YellowPotion;
     public GameObject WhitePotion;
     public List<int> playerScores;
-	// Use this for initialization
-	void Start () {
+    public float timeOrderIntervals = 5f;
+    public float currentTime = 0f;
+    public List<string> OrderListNames;
+    GameObject OrderMenu;
+    // Use this for initialization
+    void Start () {
+        if (GameObject.Find("Canvas") && GameObject.Find("Canvas").transform.Find("Menu"))
+        {
+            OrderMenu = GameObject.Find("Canvas").transform.Find("Menu").gameObject;
+        }
         foreach (AlignTile tile in FindObjectsOfType<AlignTile>())
         {
             BlockedTiles.Add(tile.gameObject.name);
@@ -35,5 +44,120 @@ public class GameState : MonoBehaviour {
             Prefab.transform.rotation);
         SpawnedItem.transform.localScale = Prefab.transform.localScale;
         return SpawnedItem;
+    }
+    private void Update()
+    {
+        if (currentTime>timeOrderIntervals)
+        {
+            currentTime = 0;
+            if (OrderMenu)
+            {
+                AddRandomPotion();
+                for(int i = 0; i<OrderListNames.Count;i++)
+                {
+                    GameObject Slot = OrderMenu.transform.Find("Slot" + (i+1).ToString()).gameObject;
+                    Slot.transform.Find("Potion").GetComponent<Image>().color = PotionNameConvert(OrderListNames[i]).PotionColor;
+                    Slot.transform.Find("Mat1").Find("Color").GetComponent<Image>().color = PotionNameConvert(OrderListNames[i]).Mat1Color;
+                    Slot.transform.Find("Mat2").Find("Color").GetComponent<Image>().color = PotionNameConvert(OrderListNames[i]).Mat2Color;
+                }
+            }
+            
+        }
+        TickClock();
+    }
+    void AddRandomPotion()
+    {
+        if (OrderListNames.Count >= 5)
+        {
+            return;
+        }
+        int RNG = Random.Range(0, 6);
+        OrderListNames.Add(PotionIntToString(RNG));
+    }
+    string PotionIntToString(int PotionNumber)
+    {
+        string return_string;
+        if (PotionNumber == 0)
+        {
+            //RedPotion
+            return_string = "Red";
+        }
+        else if (PotionNumber == 1)
+        {
+            //BluePotion
+            return_string = "Blue";
+        }
+        else if (PotionNumber == 2)
+        {
+            //GreenPotion
+            return_string = "Green";
+        }
+        else if (PotionNumber == 3)
+        {
+            //PurplePotion
+            return_string = "Purple";
+        }
+        else if (PotionNumber == 4)
+        {
+            //CyanPotion
+            return_string = "Cyan";
+        }
+        else if (PotionNumber == 5)
+        {
+            //YellowPotion
+            return_string = "Yellow";
+        }
+        else
+        {
+            return_string = "Red";
+        }
+        return return_string;
+    }
+    Order PotionNameConvert(string pName)
+    {
+        Order Potion;
+        if (pName == "Red")
+        {
+            //RedPotion
+            Potion = new Order("Red");
+        }
+        else if (pName == "Blue")
+        {
+            //BluePotion
+            Potion = new Order("Blue");
+        }
+        else if (pName == "Green")
+        {
+            //GreenPotion
+            Potion = new Order("Green");
+        }
+        else if (pName == "Purple")
+        {
+            //PurplePotion
+            Potion = new Order("Purple");
+        }
+        else if (pName == "Cyan")
+        {
+            //CyanPotion
+            Potion = new Order("Cyan");
+        }
+        else if (pName == "Yellow")
+        {
+            //YellowPotion
+            Potion = new Order("Yellow");
+        }
+        else
+        {
+            Potion = new Order("Red");
+        }
+        return Potion;
+    }
+    void TickClock()
+    {
+        currentTime += Time.deltaTime;
+    }
+    void ResetGrowClock()
+    {
+        currentTime = 0;
     }
 }
