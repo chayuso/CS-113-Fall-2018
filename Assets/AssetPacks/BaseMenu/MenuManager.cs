@@ -27,11 +27,15 @@ public class MenuManager : MonoBehaviour {
     public void FadeIn(CanvasGroup uiElement)
     {
         StartCoroutine(FadeCanvasGroup(uiElement, uiElement.alpha, 1, transitionTime));
+        uiElement.interactable = true;
+        uiElement.blocksRaycasts = true;
     }
 
     public void FadeOut(CanvasGroup uiElement)
     {
         StartCoroutine(FadeCanvasGroup(uiElement, uiElement.alpha, 0, transitionTime/2));
+        uiElement.interactable = false;
+        uiElement.blocksRaycasts = false;
     }
 
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 1)
