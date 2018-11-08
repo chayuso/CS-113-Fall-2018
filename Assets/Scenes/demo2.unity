@@ -8607,31 +8607,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 313800389}
   m_Mesh: {fileID: 4300000, guid: dd492a42466feb84fa56987a99fa0bab, type: 3}
---- !u!1 &313815787 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1123213565928750, guid: e9054b05578a9284a93d148b95866194,
-    type: 2}
-  m_PrefabInternal: {fileID: 1604231181}
---- !u!114 &313815791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 313815787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7cac8667c98e5043a4eadc89dc24a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PotionName: 
-  Mat1Name: 
-  Mat2Name: 
-  PotionColor: {r: 0, g: 0, b: 0, a: 0}
-  Mat1Color: {r: 0, g: 0, b: 0, a: 0}
-  Mat2Color: {r: 0, g: 0, b: 0, a: 0}
-  SlotNum: 0
-  isDisabled: 1
-  currentTime: 0
 --- !u!1 &314826209
 GameObject:
   m_ObjectHideFlags: 0
@@ -34229,31 +34204,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4256590238889970, guid: d2a8ac8344680ac4482ad497cc6d1684,
     type: 2}
   m_PrefabInternal: {fileID: 948387222}
---- !u!1 &1237336047 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1593684413443044, guid: e9054b05578a9284a93d148b95866194,
-    type: 2}
-  m_PrefabInternal: {fileID: 1604231181}
---- !u!114 &1237336051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1237336047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7cac8667c98e5043a4eadc89dc24a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PotionName: 
-  Mat1Name: 
-  Mat2Name: 
-  PotionColor: {r: 0, g: 0, b: 0, a: 0}
-  Mat1Color: {r: 0, g: 0, b: 0, a: 0}
-  Mat2Color: {r: 0, g: 0, b: 0, a: 0}
-  SlotNum: 3
-  isDisabled: 1
-  currentTime: 0
 --- !u!1 &1249345649
 GameObject:
   m_ObjectHideFlags: 0
@@ -35938,31 +35888,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1301973729}
   m_Mesh: {fileID: 4300000, guid: dd492a42466feb84fa56987a99fa0bab, type: 3}
---- !u!1 &1307077908 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1408522932736604, guid: e9054b05578a9284a93d148b95866194,
-    type: 2}
-  m_PrefabInternal: {fileID: 1604231181}
---- !u!114 &1307077912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1307077908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7cac8667c98e5043a4eadc89dc24a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PotionName: 
-  Mat1Name: 
-  Mat2Name: 
-  PotionColor: {r: 0, g: 0, b: 0, a: 0}
-  Mat1Color: {r: 0, g: 0, b: 0, a: 0}
-  Mat2Color: {r: 0, g: 0, b: 0, a: 0}
-  SlotNum: 1
-  isDisabled: 1
-  currentTime: 0
 --- !u!1001 &1312887602
 Prefab:
   m_ObjectHideFlags: 0
@@ -38521,31 +38446,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c265aeebde221c041aea9b31dc4715ee, type: 2}
   m_IsPrefabAsset: 0
---- !u!1 &1387988483 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1252921499022210, guid: e9054b05578a9284a93d148b95866194,
-    type: 2}
-  m_PrefabInternal: {fileID: 1604231181}
---- !u!114 &1387988487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1387988483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7cac8667c98e5043a4eadc89dc24a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PotionName: 
-  Mat1Name: 
-  Mat2Name: 
-  PotionColor: {r: 0, g: 0, b: 0, a: 0}
-  Mat1Color: {r: 0, g: 0, b: 0, a: 0}
-  Mat2Color: {r: 0, g: 0, b: 0, a: 0}
-  SlotNum: 4
-  isDisabled: 1
-  currentTime: 0
 --- !u!1 &1393123392
 GameObject:
   m_ObjectHideFlags: 0
@@ -45363,10 +45263,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1123213565928750, guid: e9054b05578a9284a93d148b95866194, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9054b05578a9284a93d148b95866194, type: 2}
   m_IsPrefabAsset: 0
@@ -47545,31 +47441,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1668897158}
   m_Mesh: {fileID: 4300000, guid: 6ab95cfe90001ee448d71e9b5f2c563c, type: 3}
---- !u!1 &1669166399 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1830411095048340, guid: e9054b05578a9284a93d148b95866194,
-    type: 2}
-  m_PrefabInternal: {fileID: 1604231181}
---- !u!114 &1669166403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1669166399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7cac8667c98e5043a4eadc89dc24a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PotionName: 
-  Mat1Name: 
-  Mat2Name: 
-  PotionColor: {r: 0, g: 0, b: 0, a: 0}
-  Mat1Color: {r: 0, g: 0, b: 0, a: 0}
-  Mat2Color: {r: 0, g: 0, b: 0, a: 0}
-  SlotNum: 2
-  isDisabled: 1
-  currentTime: 0
 --- !u!1 &1675287201
 GameObject:
   m_ObjectHideFlags: 0

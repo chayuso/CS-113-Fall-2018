@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 224319213626862310}
   - component: {fileID: 222991037534109644}
   - component: {fileID: 114695836100966778}
+  - component: {fileID: 114726462291608784}
   m_Layer: 5
   m_Name: Slot1
   m_TagString: Untagged
@@ -320,6 +321,7 @@ GameObject:
   - component: {fileID: 224423485426806086}
   - component: {fileID: 222734407881056854}
   - component: {fileID: 114404725016038150}
+  - component: {fileID: 114283023458759096}
   m_Layer: 5
   m_Name: Slot5
   m_TagString: Untagged
@@ -456,6 +458,7 @@ GameObject:
   - component: {fileID: 224430584651255208}
   - component: {fileID: 222438891568654212}
   - component: {fileID: 114969827582208312}
+  - component: {fileID: 114770910091374820}
   m_Layer: 5
   m_Name: Slot2
   m_TagString: Untagged
@@ -626,6 +629,7 @@ GameObject:
   - component: {fileID: 224233158603328004}
   - component: {fileID: 222031250445862468}
   - component: {fileID: 114777042740340460}
+  - component: {fileID: 114910807747696092}
   m_Layer: 5
   m_Name: Slot4
   m_TagString: Untagged
@@ -879,6 +883,7 @@ GameObject:
   - component: {fileID: 224794385141294056}
   - component: {fileID: 222405430086806644}
   - component: {fileID: 114126571495048508}
+  - component: {fileID: 114297387064434428}
   m_Layer: 5
   m_Name: Slot3
   m_TagString: Untagged
@@ -1448,6 +1453,26 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114283023458759096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1252921499022210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7cac8667c98e5043a4eadc89dc24a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PotionName: 
+  Mat1Name: 
+  Mat2Name: 
+  PotionColor: {r: 0, g: 0, b: 0, a: 0}
+  Mat1Color: {r: 0, g: 0, b: 0, a: 0}
+  Mat2Color: {r: 0, g: 0, b: 0, a: 0}
+  SlotNum: 4
+  isDisabled: 1
+  currentTime: 0
 --- !u!114 &114291084824001794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1475,6 +1500,26 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114297387064434428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1830411095048340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7cac8667c98e5043a4eadc89dc24a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PotionName: 
+  Mat1Name: 
+  Mat2Name: 
+  PotionColor: {r: 0, g: 0, b: 0, a: 0}
+  Mat1Color: {r: 0, g: 0, b: 0, a: 0}
+  Mat2Color: {r: 0, g: 0, b: 0, a: 0}
+  SlotNum: 2
+  isDisabled: 1
+  currentTime: 0
 --- !u!114 &114298211588130312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2120,6 +2165,26 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114726462291608784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123213565928750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7cac8667c98e5043a4eadc89dc24a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PotionName: 
+  Mat1Name: 
+  Mat2Name: 
+  PotionColor: {r: 0, g: 0, b: 0, a: 0}
+  Mat1Color: {r: 0, g: 0, b: 0, a: 0}
+  Mat2Color: {r: 0, g: 0, b: 0, a: 0}
+  SlotNum: 0
+  isDisabled: 1
+  currentTime: 0
 --- !u!114 &114753704410497426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2174,6 +2239,26 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114770910091374820
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1408522932736604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7cac8667c98e5043a4eadc89dc24a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PotionName: 
+  Mat1Name: 
+  Mat2Name: 
+  PotionColor: {r: 0, g: 0, b: 0, a: 0}
+  Mat1Color: {r: 0, g: 0, b: 0, a: 0}
+  Mat2Color: {r: 0, g: 0, b: 0, a: 0}
+  SlotNum: 1
+  isDisabled: 1
+  currentTime: 0
 --- !u!114 &114773039029869416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2406,6 +2491,26 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114910807747696092
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593684413443044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7cac8667c98e5043a4eadc89dc24a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PotionName: 
+  Mat1Name: 
+  Mat2Name: 
+  PotionColor: {r: 0, g: 0, b: 0, a: 0}
+  Mat1Color: {r: 0, g: 0, b: 0, a: 0}
+  Mat2Color: {r: 0, g: 0, b: 0, a: 0}
+  SlotNum: 3
+  isDisabled: 1
+  currentTime: 0
 --- !u!114 &114944220305305306
 MonoBehaviour:
   m_ObjectHideFlags: 1
