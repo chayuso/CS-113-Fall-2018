@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour {
     float addZ = 0;
     public string inputHorizontal = "Horizontal";
     public string inputVertical = "Vertical";
+    public string inputDash = "Dash1";
     public string Direction = "N";
     public string compassDirection = "N";
     public GameObject selectedTile;
@@ -157,7 +158,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
-        if (Input.GetButtonDown("XBOX_X"))
+        if (Input.GetButtonDown(inputDash))
         {
             //transform.Translate(dashForce * movement * movementSpeed * Time.deltaTime, Space.World);
             transform.GetComponent<Rigidbody>().AddForce(movement * dashForce,ForceMode.Acceleration);
