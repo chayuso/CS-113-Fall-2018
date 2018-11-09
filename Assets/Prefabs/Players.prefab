@@ -1297,7 +1297,7 @@ MonoBehaviour:
   ItemPosition: {fileID: 1945391289780720}
   Item: {fileID: 0}
   GroundCheck: {fileID: 1178621560752066}
-  GrabButton: Grab2
+  GrabButton: Grab1
   DropPosition: {fileID: 4765452255368398}
 --- !u!114 &114599399532597624
 MonoBehaviour:
@@ -1314,8 +1314,9 @@ MonoBehaviour:
   tileX: 0
   tileY: 0
   tileZ: 0
-  inputHorizontal: Horizontal
-  inputVertical: Vertical
+  inputHorizontal: Horizontal1
+  inputVertical: Vertical1
+  inputDash: Dash1
   Direction: N
   compassDirection: N
   selectedTile: {fileID: 0}
@@ -1373,7 +1374,7 @@ MonoBehaviour:
   ItemPosition: {fileID: 1948376094962028}
   Item: {fileID: 0}
   GroundCheck: {fileID: 1636488524807668}
-  GrabButton: Grab1
+  GrabButton: Grab2
   DropPosition: {fileID: 4466447608819568}
 --- !u!114 &114920208272185916
 MonoBehaviour:
@@ -1390,8 +1391,9 @@ MonoBehaviour:
   tileX: 0
   tileY: 0
   tileZ: 0
-  inputHorizontal: LeftHorizontal
-  inputVertical: LeftVertical
+  inputHorizontal: Horizontal2
+  inputVertical: Vertical2
+  inputDash: Dash2
   Direction: N
   compassDirection: N
   selectedTile: {fileID: 0}
