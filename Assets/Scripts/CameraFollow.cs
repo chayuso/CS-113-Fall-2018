@@ -32,7 +32,7 @@ public class CameraFollow : MonoBehaviour {
             transitionPoint = GetPoint(PlayerObjects[0].transform, PlayerObjects[1].transform);
             if (PlayerObjects.Length == 2)
             {
-                transitionPoint.y = Vector3.Distance(PlayerObjects[0].transform.position, PlayerObjects[1].transform.position)/2f;
+                //transitionPoint.y = Vector3.Distance(PlayerObjects[0].transform.position, PlayerObjects[1].transform.position)/2f;
             }
             else if (PlayerObjects.Length == 3)
             {

@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/AssetPacks/BaseMenu/Scenes/ExampleMenu.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/demo2.unity
     guid: 289ae4673adc96447afe3c7579e203a7
+  - enabled: 1
+    path: Assets/Scenes/David_Level.unity
+    guid: f4dba7468bf96244ca4b961b2a0d0fb3
   m_configObjects: {}
