@@ -12,6 +12,7 @@ TagManager:
   - CookingPot
   - Table
   - PotionStation
+  - TestScene
   layers:
   - Default
   - TransparentFX

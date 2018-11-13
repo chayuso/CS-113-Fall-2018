@@ -10,7 +10,9 @@ public class ItemHandler : MonoBehaviour {
     PlayerMovement PM;
     public string GrabButton = "Fire1";
     public Transform DropPosition;
+    public string inputUseItem = "Dash1";
     public List<List<string>> RecipeList;
+    public float rotateSpeed;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -40,9 +42,17 @@ public class ItemHandler : MonoBehaviour {
         {
             GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
         }
-        yield return new WaitForSeconds(0.5f);
-        Potion.GetComponent<ItemAlign>().isThrown = true;
+        yield return new WaitForSeconds(0.1f);
+        Potion.GetComponent<ItemAlign>().inAir = true;
         Potion.GetComponent<SphereCollider>().enabled = true;
+        Potion.GetComponent<SphereCollider>().isTrigger= true;
+        yield return new WaitForSeconds(0.4f);
+        if (Potion)
+        {
+            Potion.GetComponent<ItemAlign>().isThrown = true;
+            Potion.GetComponent<SphereCollider>().isTrigger = false;
+        }
+       
     }
 	// Update is called once per frame
 	void Update () {
@@ -57,6 +67,17 @@ public class ItemHandler : MonoBehaviour {
             {
                 Item.transform.parent = ItemPosition.transform;
             }
+            if (Item.GetComponent<ItemType>() && Item.GetComponent<ItemType>().itemName.ToLower() == "sword")
+            {
+                Item.transform.localEulerAngles = new Vector3(0, 0, 0);
+                
+            }
+
+        }
+        if (Input.GetButton(inputUseItem))
+        {
+            transform.Rotate(Vector3.up * rotateSpeed* Time.deltaTime);
+            //transform.GetComponent<Rigidbody>().AddForce(movement * dashForce,ForceMode.Acceleration);
         }
     }
     List<List<string>> MakeRecipieList()
@@ -330,6 +351,12 @@ public class ItemHandler : MonoBehaviour {
     {
         if (Item)
         {
+            if (Item.GetComponent<ItemType>() && Item.GetComponent<ItemType>().itemName.ToLower()=="boomerang")
+            {
+                Item.GetComponent<ItemAlign>().BoomerangThrow(GetComponent<PlayerMovement>().Direction,PM.tileZ);
+                FreeDrop();
+                return;
+            }
             if (PM.selectedTile && !Item.GetComponent<ParabolaController>())
             {
                 foreach (Transform childItem in PM.selectedTile.transform)
@@ -477,7 +504,7 @@ public class ItemHandler : MonoBehaviour {
                 return Item;
             }
         }
-        else if (GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
+        if (GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
         {
             Transform childItem = GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.transform;
             childItem.parent = ItemPosition.transform;

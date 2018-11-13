@@ -36,7 +36,7 @@ public class CameraFollow : MonoBehaviour {
             }
             else if (PlayerObjects.Length == 3)
             {
-                float dist = Vector3.Distance(transitionPoint, PlayerObjects[2].transform.position) / 2f;
+                //float dist = Vector3.Distance(transitionPoint, PlayerObjects[2].transform.position) / 2f;
                 transitionPoint = GetPoint(transitionPoint, PlayerObjects[2].transform.position);
                 //transitionPoint.y = dist;
             }
@@ -45,7 +45,7 @@ public class CameraFollow : MonoBehaviour {
                 
                 Vector3 transitionPoint2;
                 transitionPoint2 = GetPoint(PlayerObjects[2].transform, PlayerObjects[3].transform);
-                float dist = Vector3.Distance(transitionPoint, transitionPoint2) / 2f;
+                //float dist = Vector3.Distance(transitionPoint, transitionPoint2) / 2f;
                 transitionPoint = GetPoint(transitionPoint,transitionPoint2);
                 //transitionPoint.y =dist;
             }

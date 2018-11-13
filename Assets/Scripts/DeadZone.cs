@@ -19,7 +19,10 @@ public class DeadZone : MonoBehaviour {
         {
             if (other.gameObject.tag=="Player")
             {
-                other.GetComponent<ItemHandler>().DropItem();
+                if (other.GetComponent<ItemHandler>().Item && !other.GetComponent<ItemHandler>().Item.GetComponent<Respawn>())
+                {
+                    other.GetComponent<ItemHandler>().DropItem();
+                }
             }
             other.transform.position = other.GetComponent<Respawn>().RespawnPoint;
         }

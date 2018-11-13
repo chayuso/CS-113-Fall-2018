@@ -153,6 +153,20 @@ public class AlignTile : MonoBehaviour {
                 StartCoroutine(RespawnDelay(g));
             }
         }
+        foreach (GameObject g in UpperNeighborTiles)
+        {
+            if (g)
+            {
+                StartCoroutine(RespawnDelay(g));
+            }
+        }
+        foreach (GameObject g in LowerNeighborTiles)
+        {
+            if (g)
+            {
+                StartCoroutine(RespawnDelay(g));
+            }
+        }
     }
     void RecursiveFindMesh(GameObject g, bool isEnabled)
     {

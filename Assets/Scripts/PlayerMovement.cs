@@ -25,9 +25,11 @@ public class PlayerMovement : MonoBehaviour {
     public int playerNumber = 1;
     public float dashForce = 5f;
     GameState GS;
+    ItemHandler IH;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
+        IH = GetComponent<ItemHandler>();
         playerRigidbody = GetComponent<Rigidbody>();
         playerRigidbody.freezeRotation = true;
         playerRigidbody.drag = 5.0f;
@@ -51,14 +53,44 @@ public class PlayerMovement : MonoBehaviour {
 
         if (!GS.BlockedTiles.Contains(CurrentTile))
         {
-            GetComponent<Rigidbody>().AddForce(-Vector3.up * forceValue);
-            transform.parent = null;
+            if (transform.parent)
+            {
+                if (transform.parent.tag != "Item")
+                {
+                    GetComponent<Rigidbody>().AddForce(-Vector3.up * forceValue);
+                    GetComponent<Rigidbody>().useGravity = true;
+                    transform.parent = null;
+                }
+                else
+                {
+                    GetComponent<Rigidbody>().useGravity = false;
+                }
+            }
+            else
+            {
+                GetComponent<Rigidbody>().AddForce(-Vector3.up * forceValue);
+                GetComponent<Rigidbody>().useGravity = true;
+                transform.parent = null;
+            }
         }
         else
         {
             if (GameObject.Find(CurrentTile))
             {
-                transform.parent = GameObject.Find(CurrentTile).transform;
+                if (!GS.BlockedTiles.Contains(CurrentTile))
+                {
+                    if (transform.parent)
+                    {
+                        if (transform.parent.tag != "Item")
+                        {
+                            transform.parent = GameObject.Find(CurrentTile).transform;
+                        }
+                    }
+                    else
+                    {
+                        transform.parent = GameObject.Find(CurrentTile).transform;
+                    }
+                }
             }
         }
         float xtemp = DirectionNumbers(CompassDirection())[0] / 2f;
@@ -153,17 +185,16 @@ public class PlayerMovement : MonoBehaviour {
         float moveVertical = Input.GetAxisRaw(inputVertical);
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        if (movement != new Vector3(0,0,0))
+        if (movement != new Vector3(0,0,0) && !Input.GetButton(IH.inputUseItem))
         { transform.rotation = Quaternion.LookRotation(movement); }
 
 
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
         if (Input.GetButtonDown(inputDash))
-        {
-            //transform.Translate(dashForce * movement * movementSpeed * Time.deltaTime, Space.World);
-            transform.GetComponent<Rigidbody>().AddForce(movement * dashForce,ForceMode.Acceleration);
+        {      
+            //transform.GetComponent<Rigidbody>().AddForce(movement * dashForce,ForceMode.Acceleration);
         }
-        //rigidbody.AddForce(movement * movementSpeed * Time.deltaTime, ForceMode.Impulse);
+       
     }
 
     string UpdateTilePosition()
