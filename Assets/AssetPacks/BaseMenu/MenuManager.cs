@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,12 @@ public class MenuManager : MonoBehaviour {
     [SerializeField]
     private List<GameObject> levelSelectButtons;
     private int currentLevel = 0;
+
+    [SerializeField]
+    private Text levelTitle;
+    [SerializeField]
+    private Image levelImage;
+    private string levelName;
 
 	IEnumerator Start ()
     {
@@ -80,5 +87,26 @@ public class MenuManager : MonoBehaviour {
             currentLevel = 0;
 
         levelSelectButtons[currentLevel].SetActive(true);
+    }
+
+    public void loadScene()
+    {
+        SceneManager.LoadScene(levelName);
+    }
+
+    public void setLevelName(string newName)
+    {
+        Debug.Log("Yes");
+        levelName = newName;
+    }
+
+    public void setLevelImage(Sprite newSprite)
+    {
+        levelImage.sprite = newSprite;
+    }
+
+    public void setLevelTitle(string newTitle)
+    {
+        levelTitle.text = newTitle;
     }
 }
