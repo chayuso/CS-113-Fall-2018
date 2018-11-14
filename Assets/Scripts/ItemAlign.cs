@@ -50,6 +50,7 @@ public class ItemAlign : MonoBehaviour {
         TileName = UpdateTilePosition();
         FindParentTile();
         GetComponent<Rigidbody>().useGravity = true;
+        Dehighlight();
         //defaultMat = GetComponent<Renderer>().material;
     }
     // Use this for initialization
@@ -510,12 +511,48 @@ public class ItemAlign : MonoBehaviour {
             
         }
     }
-    /*public void Highlight()
+    public void Highlight(Color HColor)
     {
-        GetComponent<Renderer>().material = SelectMat;
+        HighlightColorCheck(gameObject, HColor);
     }
     public void Dehighlight()
     {
-        GetComponent<Renderer>().material = defaultMat;
-    }*/
+        DehighlightColorCheck(gameObject);
+    }
+
+    void HighlightColorCheck(GameObject tObject,Color HColor)
+    {
+        if (tObject.GetComponent<Renderer>())
+        {
+            if (tObject.GetComponent<Renderer>().material.HasProperty("_HColor"))
+            {
+               tObject.GetComponent<Renderer>().material.SetColor("_HColor",HColor);
+
+            }
+        }
+        if (tObject.transform.childCount != 0)
+        {
+            foreach (Transform childObject in tObject.transform)
+            {
+                HighlightColorCheck(childObject.gameObject, HColor);
+            }
+        }
+    }
+    void DehighlightColorCheck(GameObject tObject)
+    {
+        if (tObject.GetComponent<Renderer>())
+        {
+            if (tObject.GetComponent<Renderer>().material.HasProperty("_HColor"))
+            {
+                tObject.GetComponent<Renderer>().material.SetColor("_HColor", Color.gray);
+            }
+        }
+        if (tObject.transform.childCount!=0)
+        {
+            foreach (Transform childObject in tObject.transform)
+            {
+                DehighlightColorCheck(childObject.gameObject);
+            }
+        }
+    }
 }

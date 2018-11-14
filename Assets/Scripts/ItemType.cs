@@ -19,6 +19,7 @@ public class ItemType : MonoBehaviour {
     {
         if (itemName.ToLower() == "sword" && other.tag == "Player")
         {
+            if(other.GetComponent<Rigidbody>().velocity.y<15f)
             other.GetComponent<Rigidbody>().AddForce(Vector3.up * swordForceValue);
         }
         else if (itemName.ToLower() == "boomerang" && other.tag == "Player")

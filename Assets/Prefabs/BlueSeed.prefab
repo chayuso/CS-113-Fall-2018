@@ -54,7 +54,7 @@ MeshRenderer:
   m_GameObject: {fileID: 1620411779405924}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: BlueSeed
   isIngredient: 0
+  swordForceValue: 25000
 --- !u!114 &114819745772029532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,6 +163,13 @@ MonoBehaviour:
   OnTile: {fileID: 0}
   dynamName: 
   isThrown: 0
+  inAir: 0
+  neighborTiles: []
+  isBoomeranging: 0
+  speedBoomerang: 25
+  journeyLength: 1
+  Point1: {x: 0, y: 0, z: 0}
+  Point2: {x: 0, y: 0, z: 0}
 --- !u!135 &135406411671035570
 SphereCollider:
   m_ObjectHideFlags: 1

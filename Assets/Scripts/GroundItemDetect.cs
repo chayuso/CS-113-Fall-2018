@@ -5,9 +5,10 @@ using UnityEngine;
 public class GroundItemDetect : MonoBehaviour {
     public GameObject DetectedItem;
     public List<GameObject> OtherItems;
+    Color PColor = Color.white;
 	// Use this for initialization
 	void Start () {
-		
+        //PColor = transform.parent.Find("face").gameObject.GetComponent<Renderer>().material.GetColor("_OutlineColor");
 	}
 	
 	// Update is called once per frame
@@ -24,7 +25,7 @@ public class GroundItemDetect : MonoBehaviour {
             if (!DetectedItem)
             {
                 DetectedItem = other.gameObject;
-                //DetectedItem.GetComponent<ItemAlign>().Highlight();
+                DetectedItem.GetComponent<ItemAlign>().Highlight(PColor);
             }
             else if(!OtherItems.Contains(other.gameObject))
             {
@@ -36,12 +37,12 @@ public class GroundItemDetect : MonoBehaviour {
     {
         if (other.gameObject == DetectedItem)
         {
-            //DetectedItem.GetComponent<ItemAlign>().Dehighlight();
+            DetectedItem.GetComponent<ItemAlign>().Dehighlight();
             DetectedItem = null;
             if (OtherItems.Count != 0)
             {
                 DetectedItem = OtherItems[0];
-                //DetectedItem.GetComponent<ItemAlign>().Highlight();
+                DetectedItem.GetComponent<ItemAlign>().Highlight(PColor);
                 OtherItems.Remove(DetectedItem);
             }
         }
