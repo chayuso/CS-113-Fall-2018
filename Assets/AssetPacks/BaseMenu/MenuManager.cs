@@ -96,7 +96,6 @@ public class MenuManager : MonoBehaviour {
 
     public void setLevelName(string newName)
     {
-        Debug.Log("Yes");
         levelName = newName;
     }
 
