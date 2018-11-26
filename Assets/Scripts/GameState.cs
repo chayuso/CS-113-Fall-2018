@@ -17,7 +17,25 @@ public class GameState : MonoBehaviour {
     public float currentTime = 0f;
     public List<string> OrderListNames;
     public GameObject OrderMenu;
+    public GameObject SoundManager;
+    public AudioManager SM;
     // Use this for initialization
+    private void Awake()
+    {
+        if (!GameObject.Find("_AudioManager"))
+        {
+            var SMtemp = (GameObject)Instantiate(
+                SoundManager,
+                transform.position,
+                transform.rotation);
+            SMtemp.transform.name = "_AudioManager";
+            SM = SMtemp.GetComponent<AudioManager>();
+        }
+        else
+        {
+            SM = GameObject.Find("_AudioManager").GetComponent<AudioManager>();
+        }
+    }
     void Start () {
         if (GameObject.Find("Canvas") && GameObject.Find("Canvas").transform.Find("Menu"))
         {

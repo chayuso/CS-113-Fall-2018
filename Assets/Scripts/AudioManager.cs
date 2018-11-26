@@ -2,14 +2,27 @@
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
-    
-    public static AudioManager manager;
+    public static AudioManager manager = null;
 
     public float lowPitchRange = 0.95f;
     public float highPitchRange = 1.05f;
     public List<Song> sounds = new List<Song>();
     private Dictionary<string, List<AudioSource>> soundsDict = new Dictionary<string, List<AudioSource>>();
-    
+    void Awake()
+    {
+        //Check if there is already an instance of SoundManager
+        if (manager == null)
+            //if not, set it to this.
+            manager = this;
+        //If instance already exists:
+        else if (manager != this)
+            //Destroy this, this enforces our singleton pattern so there can only be one instance of SoundManager.
+            Destroy(gameObject);
+
+        //Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
+        DontDestroyOnLoad(gameObject);
+
+    }
     void Start ()
     {
         manager = this;
