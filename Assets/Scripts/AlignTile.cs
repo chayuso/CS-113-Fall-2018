@@ -20,6 +20,7 @@ public class AlignTile : MonoBehaviour {
     public GameObject[] UpperNeighborTiles = new GameObject[9];
     public GameObject[] LeveledNeighborTiles = new GameObject[9];
     public GameObject[] LowerNeighborTiles = new GameObject[9];
+    GameState GS;
     /*  Array Structure
      *  
      * [NW, N,  NE,
@@ -37,6 +38,7 @@ public class AlignTile : MonoBehaviour {
         UpperNeighborTiles = GetNeighborTiles(1);
         LeveledNeighborTiles = GetNeighborTiles(0);
         LowerNeighborTiles = GetNeighborTiles(-1);
+        GS = GameObject.Find("GameState").GetComponent<GameState>();
     }
     GameObject[] GetNeighborTiles(float levelOffset)
     {
@@ -146,6 +148,7 @@ public class AlignTile : MonoBehaviour {
     }
     public void DestroyNeighbors()
     {
+        GS.SM.PlaySFX("Breaking",transform.position);
         foreach (GameObject g in LeveledNeighborTiles)
         {
             if (g)

@@ -26,7 +26,7 @@ public class ItemHandler : MonoBehaviour {
     IEnumerator ThrowingSequenceTimer(GameObject Potion)
     {
         Potion.GetComponent<Rigidbody>().freezeRotation = false;
-        Potion.GetComponent<ItemAlign>().disableTileUpdate = false;
+        Potion.GetComponent<ItemAlign>().disableTileUpdate =true;
         if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
         {
             //GroundCheck.GetComponent<GroundItemDetect>().DetectedItem.GetComponent<ItemAlign>().Dehighlight();
@@ -42,6 +42,7 @@ public class ItemHandler : MonoBehaviour {
         {
             GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
         }
+        GS.SM.PlaySFX("Throw");
         yield return new WaitForSeconds(0.1f);
         Potion.GetComponent<ItemAlign>().inAir = true;
         Potion.GetComponent<SphereCollider>().enabled = true;
@@ -302,10 +303,15 @@ public class ItemHandler : MonoBehaviour {
             if (Item)
             {
                 DropItem();
+                GS.SM.PlaySFX("UI_Hover");
             }
             else
             {
                 Item = FindItem();
+                if (Item)
+                {
+                    GS.SM.PlaySFX("UI_Select");
+                }
             }
         }
     }
@@ -389,7 +395,10 @@ public class ItemHandler : MonoBehaviour {
                     }
                     else if (childItem.tag == "PotionStation" && Item.tag == "CookingPot")
                     {
-                        PotionCreation(Item);
+                        if (PotionCreation(Item))
+                        {
+                            GS.SM.PlaySFX("UI_Select",transform.position);
+                        }
                     }
                 }
                 Item.transform.parent = null;

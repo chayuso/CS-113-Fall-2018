@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour {
     public float dashForce = 5f;
     GameState GS;
     ItemHandler IH;
+    bool isMoving = false;
+    float MoveTime = 0;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -35,15 +37,19 @@ public class PlayerMovement : MonoBehaviour {
         playerRigidbody.drag = 5.0f;
         playerRigidbody.maxAngularVelocity = 100.0f;
     }
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
         Movement();
         InvalidTileCheck();
         Direction = QuarterDirection();
         compassDirection = CompassDirection();
         CheckFrontTile();
-        
+        if (MoveTime >= .25f && isMoving)
+        {
+            GS.SM.PlaySFX("Walking",transform.position);
+            MoveTime = 0;
+        }
+        MoveTime += Time.deltaTime;
     }
     void InvalidTileCheck()
     {
@@ -100,13 +106,20 @@ public class PlayerMovement : MonoBehaviour {
         {
             float moveVertical = 0f;
             float moveHorizontal = 0f;
+            int moved = 0;
             if ((Input.GetAxisRaw(inputVertical) >= 0f && neighborTiles[0]) || (Input.GetAxisRaw(inputVertical) <= 0f && neighborTiles[2]))
             {
                 moveVertical = Input.GetAxisRaw(inputVertical);
+                moved++;
             }
             if ((Input.GetAxisRaw(inputHorizontal) >= 0f && neighborTiles[1]) || (Input.GetAxisRaw(inputHorizontal) <= 0f && neighborTiles[3]))
             {
                 moveHorizontal = Input.GetAxisRaw(inputHorizontal);
+                moved++;
+            }
+            if (moved == 2)
+            {
+                isMoving = false;
             }
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             transform.Translate(-movement * movementSpeed * Time.deltaTime, Space.World);
@@ -185,8 +198,15 @@ public class PlayerMovement : MonoBehaviour {
         float moveVertical = Input.GetAxisRaw(inputVertical);
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        if (movement != new Vector3(0,0,0) && !Input.GetButton(IH.inputUseItem))
-        { transform.rotation = Quaternion.LookRotation(movement); }
+        if (movement != new Vector3(0, 0, 0) && !Input.GetButton(IH.inputUseItem))
+        {
+            transform.rotation = Quaternion.LookRotation(movement);
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
 
 
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);

@@ -15,6 +15,7 @@ public class Seed : MonoBehaviour {
     bool originalisIngredient;
     GameObject bar;
     Renderer thisRend;
+    GameState GS;
     // Use this for initialization
     void Start () {
         thisRend = GetComponent<Renderer>();
@@ -25,6 +26,7 @@ public class Seed : MonoBehaviour {
         transform.name = originalItemName = GetComponent<ItemType>().itemName;
         thisRend.enabled = true;
         originalisIngredient = GetComponent<ItemType>().isIngredient;
+        GS = GameObject.Find("GameState").GetComponent<GameState>();
     }
 	
 	// Update is called once per frame
@@ -67,6 +69,7 @@ public class Seed : MonoBehaviour {
         transform.name = GetComponent<ItemType>().itemName = GrownPrefab.GetComponent<ItemType>().itemName;
         GetComponent<ItemType>().isIngredient = GrownPrefab.GetComponent<ItemType>().isIngredient;
         Destroy(gameObject);
+        GS.SM.PlaySFX("UI_Select",transform.position);
     }
     void Shrink()
     {

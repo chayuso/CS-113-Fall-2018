@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DeadZone : MonoBehaviour {
-
+    GameState GS;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        GS = GameObject.Find("GameState").GetComponent<GameState>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -25,6 +25,7 @@ public class DeadZone : MonoBehaviour {
                 }
             }
             other.transform.position = other.GetComponent<Respawn>().RespawnPoint;
+            GS.SM.PlaySFX("UI_Hover");
         }
         else if(other.gameObject.tag == "Item"|| other.gameObject.tag == "Seed")
         {
