@@ -16,7 +16,7 @@ public class Respawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        UpdateLastPosition();
+        //UpdateLastPosition();
 
     }
     void UpdateLastPosition()

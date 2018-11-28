@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour {
         //Checks and reverts movement if walking in a occupied tile
         string CurrentTile = UpdateTilePosition();
         CurrentTile = CurrentTile.Split('x')[0]+"x"+ CurrentTile.Split('x')[1] + "x"+ (int.Parse(CurrentTile.Split('x')[2])-1).ToString();
-
+        print(GS.BlockedTiles.Contains(CurrentTile));
         if (!GS.BlockedTiles.Contains(CurrentTile))
         {
             if (transform.parent)
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (GameObject.Find(CurrentTile))
             {
-                if (!GS.BlockedTiles.Contains(CurrentTile))
+                if (GS.BlockedTiles.Contains(CurrentTile))
                 {
                     if (transform.parent)
                     {
