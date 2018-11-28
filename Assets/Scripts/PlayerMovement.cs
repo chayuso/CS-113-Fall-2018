@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (transform.parent)
             {
-                if (transform.parent.tag != "Item")
+                if (transform.parent.tag != "Item" && !transform.parent.GetComponent<FloatingBlock>())
                 {
                     GetComponent<Rigidbody>().AddForce(-Vector3.up * forceValue);
                     GetComponent<Rigidbody>().useGravity = true;
