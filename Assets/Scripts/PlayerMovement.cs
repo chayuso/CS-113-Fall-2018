@@ -61,11 +61,20 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (transform.parent)
             {
-                if (transform.parent.tag != "Item" && !transform.parent.GetComponent<FloatingBlock>())
+                if (transform.parent.tag != "Item" )
                 {
-                    GetComponent<Rigidbody>().AddForce(-Vector3.up * forceValue);
-                    GetComponent<Rigidbody>().useGravity = true;
-                    transform.parent = null;
+                    if (!transform.parent.GetComponent<FloatingBlock>())
+                    {
+                        GetComponent<Rigidbody>().AddForce(-Vector3.up * forceValue);
+                        GetComponent<Rigidbody>().useGravity = true;
+                        transform.parent = null;
+                    }
+                    else if (!GS.BlockedTiles.Contains(CurrentTile.Split('x')[0] + "x" + CurrentTile.Split('x')[1] + "x" + (int.Parse(CurrentTile.Split('x')[2]) - 1).ToString()))
+                    {
+                        GetComponent<Rigidbody>().AddForce(-Vector3.up * forceValue);
+                        GetComponent<Rigidbody>().useGravity = true;
+                        transform.parent = null;
+                    }
                 }
                 else
                 {
