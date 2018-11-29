@@ -173,8 +173,6 @@ public class Order : MonoBehaviour{
         TickClock();
         if (currentTime >= timetoExpire)
         {
-            print(currentTime);
-            print(timetoExpire);
             GS.RemoveOrder(SlotNum);
         }
         bar = transform.Find("Bar").Find("BarExpand").gameObject;

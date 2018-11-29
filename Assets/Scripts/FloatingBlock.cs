@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FloatingBlock : MonoBehaviour {
-   public float blockSpeed = 0.03f;
-    float speed = 0.03f;
+    public float blockSpeed = 0.03f;
+    //float speed = 0.03f;
     public float journeyLength = 1f;
     public Transform Point1;
     public Transform Point2;
@@ -67,9 +67,16 @@ public class FloatingBlock : MonoBehaviour {
             transitionPoint = Point1.position;
             //journeyLength = Vector3.Distance(transform.position, transitionPoint);
         }
-        float distCoveredCamera = Time.deltaTime * (speed * 0.1f);
-        float fracJourneyCamera = distCoveredCamera / journeyLength;
-        transform.position = Vector3.Lerp(transform.position, transitionPoint, blockSpeed);
-
+        //float distCoveredCamera = Time.deltaTime * (speed * 0.1f);
+        //float fracJourneyCamera = distCoveredCamera / journeyLength;
+        //transform.position = Vector3.Lerp(transform.position, transitionPoint, blockSpeed);
+        if (Vector3.Normalize(transitionPoint - transform.position) == new Vector3(0, 1f, 0) || Vector3.Normalize(transitionPoint - transform.position) == new Vector3(0, -1f, 0))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, transitionPoint, blockSpeed);
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, transitionPoint, blockSpeed);
+        }
     }
 }

@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour {
         //Checks and reverts movement if walking in a occupied tile
         string CurrentTile = UpdateTilePosition();
         CurrentTile = CurrentTile.Split('x')[0]+"x"+ CurrentTile.Split('x')[1] + "x"+ (int.Parse(CurrentTile.Split('x')[2])-1).ToString();
-        print(GS.BlockedTiles.Contains(CurrentTile));
         if (!GS.BlockedTiles.Contains(CurrentTile))
         {
             if (transform.parent)
@@ -155,7 +154,7 @@ public class PlayerMovement : MonoBehaviour {
             if (selectedTile.tag != "HalfTile")
             {
                 selectedTile = null;
-                foreach (GameObject g in neighborTiles)
+                /*foreach (GameObject g in neighborTiles)
                 {
                     if (g)
                         if (g.tag == "HalfTile")
@@ -164,13 +163,13 @@ public class PlayerMovement : MonoBehaviour {
                         selectedTile.GetComponent<TileHighlight>().Highlight();
                         return true;
                     }
-                }
+                }*/
                 return false;
             }
             selectedTile.GetComponent<TileHighlight>().Highlight();
             return true;
         }
-        foreach (GameObject g in neighborTiles)
+        /*foreach (GameObject g in neighborTiles)
         {
             if(g)
             if (g.tag == "HalfTile")
@@ -179,7 +178,7 @@ public class PlayerMovement : MonoBehaviour {
                 selectedTile.GetComponent<TileHighlight>().Highlight();
                 return true;
             }
-        }
+        }*/
         return false;
     }
     List<GameObject> getNearbyTileGameObjects()
