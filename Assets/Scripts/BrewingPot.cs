@@ -6,7 +6,7 @@ public class BrewingPot : MonoBehaviour {
     public int maxItems = 3;
     public int currentItemCount = 0;
     public List<string> inPot;
-    float timeToBrew = 1f;
+    float timeToBrew = 5f;
     public float currentBrewTime = 0f;
     public float timeToBurn = 5f;
     public float currentBurnTime = 0;

@@ -73,9 +73,43 @@ public class ItemHandler : MonoBehaviour {
             if (Item.GetComponent<ItemType>() && Item.GetComponent<ItemType>().itemName.ToLower() == "sword")
             {
                 Item.transform.localEulerAngles = new Vector3(0, 0, 0);
-                
+
+            }
+            if (Item.GetComponent<ItemType>())
+            {
+                if (Item.GetComponent<ItemType>().itemName.Contains("Potion"))
+                {
+
+                    if (gameObject.transform.Find("ThrowArch"))
+                    {
+                        if (gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>())
+                        {
+                            gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>().enabled = true;
+                        }
+                    }
+                }
+                else
+                {
+                    if (gameObject.transform.Find("ThrowArch"))
+                    {
+                        if (gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>())
+                        {
+                            gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>().enabled = false;
+                        }
+                    }
+                }
             }
 
+        }
+        else
+        {
+            if (gameObject.transform.Find("ThrowArch"))
+            {
+                if (gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>())
+                {
+                    gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>().enabled = false;
+                }
+            }
         }
         if (Input.GetButton(inputUseItem))
         {
