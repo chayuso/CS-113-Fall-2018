@@ -292,6 +292,11 @@ public class ItemAlign : MonoBehaviour {
                 GetComponent<Rigidbody>().useGravity = true;
                 FindParentTile();
             }
+            else if (transform.parent.tag == "Untagged")
+            {
+                GetComponent<Rigidbody>().useGravity = true;
+                FindParentTile();
+            }
             else
             {
                 Align();
