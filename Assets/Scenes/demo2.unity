@@ -8016,6 +8016,11 @@ Prefab:
       propertyPath: m_Name
       value: BluePotion
       objectReference: {fileID: 0}
+    - target: {fileID: 114509626839848194, guid: ff7c5025d79ee2a4b96f3127af6b82d9,
+        type: 2}
+      propertyPath: Speed
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7c5025d79ee2a4b96f3127af6b82d9, type: 2}
   m_IsPrefabAsset: 0
@@ -21974,6 +21979,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 114655714145883944, guid: 29f772354015ff740a52b76543ed6ab8,
+        type: 2}
+      propertyPath: Speed
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29f772354015ff740a52b76543ed6ab8, type: 2}
   m_IsPrefabAsset: 0
@@ -24361,6 +24371,11 @@ Prefab:
     - target: {fileID: 4180964653827886, guid: 230a3b314dbc4f8419eb2dadcd124b0f, type: 2}
       propertyPath: m_RootOrder
       value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 114049355024254008, guid: 230a3b314dbc4f8419eb2dadcd124b0f,
+        type: 2}
+      propertyPath: Speed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 230a3b314dbc4f8419eb2dadcd124b0f, type: 2}
@@ -36279,6 +36294,11 @@ Prefab:
       propertyPath: m_Name
       value: bottlePotionHealth (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 114583358745800604, guid: eeead643a0131f1459c41ea32c12e98c,
+        type: 2}
+      propertyPath: Speed
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eeead643a0131f1459c41ea32c12e98c, type: 2}
   m_IsPrefabAsset: 0
@@ -37337,6 +37357,11 @@ Prefab:
     - target: {fileID: 4026825045009848, guid: d0c86bd36de2e2a4bbd82f88419b3e08, type: 2}
       propertyPath: m_RootOrder
       value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 114602842546194194, guid: d0c86bd36de2e2a4bbd82f88419b3e08,
+        type: 2}
+      propertyPath: Speed
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0c86bd36de2e2a4bbd82f88419b3e08, type: 2}
@@ -48988,6 +49013,11 @@ Prefab:
     - target: {fileID: 4431449850059936, guid: b4d7eafefd549144cbb752e3518de5aa, type: 2}
       propertyPath: m_RootOrder
       value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 114564437707476546, guid: b4d7eafefd549144cbb752e3518de5aa,
+        type: 2}
+      propertyPath: Speed
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4d7eafefd549144cbb752e3518de5aa, type: 2}

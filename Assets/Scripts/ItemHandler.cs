@@ -13,6 +13,7 @@ public class ItemHandler : MonoBehaviour {
     public string inputUseItem = "Dash1";
     public List<List<string>> RecipeList;
     public float rotateSpeed;
+    float timeToBrew = 7.5f;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -52,6 +53,7 @@ public class ItemHandler : MonoBehaviour {
         {
             Potion.GetComponent<ItemAlign>().isThrown = true;
             Potion.GetComponent<SphereCollider>().isTrigger = false;
+            Potion.GetComponent<Rigidbody>().useGravity = true;
         }
        
     }
@@ -119,7 +121,7 @@ public class ItemHandler : MonoBehaviour {
     bool PotionCreation(GameObject brewPot)
     {
         BrewingPot BP = brewPot.GetComponent<BrewingPot>();
-        if (BP.inPot.Count != 2 || BP.currentBrewTime < BP.timeToBrew)
+        if (BP.inPot.Count != 2 || BP.currentBrewTime < timeToBrew)
         {
             return false;
         }
