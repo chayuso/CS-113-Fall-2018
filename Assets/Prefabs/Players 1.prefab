@@ -493,7 +493,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1573588131310842
 GameObject:
   m_ObjectHideFlags: 1
@@ -701,7 +701,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1847472189146666
 GameObject:
   m_ObjectHideFlags: 1
@@ -825,7 +825,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1847472189146666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.504, z: 0.85}
+  m_LocalPosition: {x: 0, y: 0, z: 0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4177887280012782}
@@ -1136,7 +1136,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1445881240851608}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.56, y: 2.29, z: -0.9299996}
+  m_LocalPosition: {x: 2.689, y: 2.29, z: -7.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4168523439076230}
@@ -1286,7 +1286,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1724215013076530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.504, z: 0.85}
+  m_LocalPosition: {x: 0, y: 0, z: 0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4446627511135462}
@@ -1419,7 +1419,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1573588131310842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.504, z: 0.85}
+  m_LocalPosition: {x: 0, y: 0, z: 0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4242006287781386}
@@ -1471,7 +1471,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217541267712806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.504, z: 0.85}
+  m_LocalPosition: {x: 0, y: 0, z: 0.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4168523439076230}
@@ -2464,6 +2464,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DetectedItem: {fileID: 0}
   OtherItems: []
+  ItemsL: []
+  SeedsL: []
+  tileX: 0
+  tileY: 0
+  tileZ: 0
+  offsetX: 1
+  offsetY: 1
+  offsetZ: 1
+  TileName: 
+  UpperNeighborTiles: []
+  LeveledNeighborTiles: []
+  LowerNeighborTiles: []
 --- !u!114 &114187307891180472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2476,6 +2488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RespawnPoint: {x: 0, y: 0, z: 0}
+  neighborTiles: []
+  lastTile: {fileID: 0}
 --- !u!114 &114254484134913330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2525,6 +2539,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DetectedItem: {fileID: 0}
   OtherItems: []
+  ItemsL: []
+  SeedsL: []
+  tileX: 0
+  tileY: 0
+  tileZ: 0
+  offsetX: 1
+  offsetY: 1
+  offsetZ: 1
+  TileName: 
+  UpperNeighborTiles: []
+  LeveledNeighborTiles: []
+  LowerNeighborTiles: []
 --- !u!114 &114374413693330852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2587,6 +2613,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RespawnPoint: {x: 0, y: 0, z: 0}
+  neighborTiles: []
+  lastTile: {fileID: 0}
 --- !u!114 &114460647434735708
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2600,6 +2628,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DetectedItem: {fileID: 0}
   OtherItems: []
+  ItemsL: []
+  SeedsL: []
+  tileX: 0
+  tileY: 0
+  tileZ: 0
+  offsetX: 1
+  offsetY: 1
+  offsetZ: 1
+  TileName: 
+  UpperNeighborTiles: []
+  LeveledNeighborTiles: []
+  LowerNeighborTiles: []
 --- !u!114 &114473362538349954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2642,6 +2682,8 @@ MonoBehaviour:
   GroundCheck: {fileID: 1724215013076530}
   GrabButton: Grab4
   DropPosition: {fileID: 4768429695758726}
+  inputUseItem: Dash1
+  rotateSpeed: 0
 --- !u!114 &114496233103380528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2676,6 +2718,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RespawnPoint: {x: 0, y: 0, z: 0}
+  neighborTiles: []
+  lastTile: {fileID: 0}
 --- !u!114 &114741429175937440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2689,6 +2733,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DetectedItem: {fileID: 0}
   OtherItems: []
+  ItemsL: []
+  SeedsL: []
+  tileX: 0
+  tileY: 0
+  tileZ: 0
+  offsetX: 1
+  offsetY: 1
+  offsetZ: 1
+  TileName: 
+  UpperNeighborTiles: []
+  LeveledNeighborTiles: []
+  LowerNeighborTiles: []
 --- !u!114 &114801697846911150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2706,6 +2762,8 @@ MonoBehaviour:
   GroundCheck: {fileID: 1573588131310842}
   GrabButton: Grab3
   DropPosition: {fileID: 4234401374753450}
+  inputUseItem: Dash1
+  rotateSpeed: 0
 --- !u!114 &114803575302713152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2723,6 +2781,8 @@ MonoBehaviour:
   GroundCheck: {fileID: 1217541267712806}
   GrabButton: Grab2
   DropPosition: {fileID: 4354824888060368}
+  inputUseItem: Dash1
+  rotateSpeed: 0
 --- !u!114 &114839543756788086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2740,6 +2800,8 @@ MonoBehaviour:
   GroundCheck: {fileID: 1847472189146666}
   GrabButton: Grab1
   DropPosition: {fileID: 4124872720975492}
+  inputUseItem: Dash1
+  rotateSpeed: 0
 --- !u!114 &114892635796070016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2752,6 +2814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RespawnPoint: {x: 0, y: 0, z: 0}
+  neighborTiles: []
+  lastTile: {fileID: 0}
 --- !u!114 &114961619467292316
 MonoBehaviour:
   m_ObjectHideFlags: 1
