@@ -69,7 +69,7 @@ public class GroundItemDetect : MonoBehaviour {
             {
                 if (g.GetComponent<ItemAlign>())
                 {
-                    if (g.transform.parent)
+                    if (g.transform.parent && !g.GetComponent<ItemAlign>().disableTileUpdate)
                     {
                         if (g.transform.parent.tag != "HalfTile")
                         {
@@ -102,7 +102,7 @@ public class GroundItemDetect : MonoBehaviour {
                             }
                         }
                     }
-                    else
+                    else if (!g.GetComponent<ItemAlign>().disableTileUpdate)
                     {
                         foreach (string s in UpperNeighborTiles)
                         {
@@ -173,7 +173,7 @@ public class GroundItemDetect : MonoBehaviour {
             {
                 if (g.GetComponent<ItemAlign>())
                 {
-                    if (g.transform.parent)
+                    if (g.transform.parent && !g.GetComponent<ItemAlign>().disableTileUpdate)
                     {
                         if (g.transform.parent.tag != "HalfTile")
                         {
@@ -206,7 +206,7 @@ public class GroundItemDetect : MonoBehaviour {
                             }
                         }
                     }
-                    else
+                    else if (!g.GetComponent<ItemAlign>().disableTileUpdate)
                     {
                         foreach (string s in UpperNeighborTiles)
                         {
