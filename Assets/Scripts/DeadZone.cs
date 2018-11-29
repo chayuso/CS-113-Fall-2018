@@ -24,8 +24,22 @@ public class DeadZone : MonoBehaviour {
                     other.GetComponent<ItemHandler>().DropItem();
                 }
             }
-            other.transform.position = other.GetComponent<Respawn>().RespawnPoint;
+            
             GS.SM.PlaySFX("UI_Hover");
+            GS.playerLives[other.GetComponent<PlayerMovement>().playerNumber - 1] -= 1;
+            if (GS.playerLives[other.GetComponent<PlayerMovement>().playerNumber - 1] > 0)
+            {
+                other.transform.position = other.GetComponent<Respawn>().RespawnPoint;
+            }
+            else
+            {
+                other.gameObject.SetActive(false);
+                GameObject Cam = GameObject.FindGameObjectWithTag("CameraAnchor");
+                if (Cam)
+                {
+                    Cam.GetComponent<CameraFollow>().BuildPlayerTrackingList();
+                }
+            }
         }
         else if(other.gameObject.tag == "Item"|| other.gameObject.tag == "Seed")
         {

@@ -13,6 +13,7 @@ public class GameState : MonoBehaviour {
     public GameObject YellowPotion;
     public GameObject WhitePotion;
     public List<int> playerScores;
+    public List<int> playerLives;
     float timeOrderIntervals = 5f;
     public float currentTime = 0f;
     public List<string> OrderListNames;
@@ -48,6 +49,7 @@ public class GameState : MonoBehaviour {
         for (int i = 0; i < FindObjectsOfType<PlayerMovement>().Length; i++)
         {
             playerScores.Add(0);
+            playerLives.Add(3);
         }
         if (OrderMenu)
         {

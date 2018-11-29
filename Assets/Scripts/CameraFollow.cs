@@ -7,23 +7,56 @@ public class CameraFollow : MonoBehaviour {
     public float speed = 25f;
     public float journeyLength = 1f;
     GameObject[] PlayerObjects;
+    Vector3 startPos;
     // Use this for initialization
     void Start () {
+        startPos = transform.position;
         if (!playerCamera)
         {
             playerCamera = gameObject;
         }
-        PlayerObjects = GameObject.FindGameObjectsWithTag("Player");
+        BuildPlayerTrackingList();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         CameraTransitions();
     }
+    public void BuildPlayerTrackingList()
+    {
+        PlayerObjects = GameObject.FindGameObjectsWithTag("Player");
+        List<int> DisableList = new List<int>();
+        for (int i=0; i<PlayerObjects.Length;i++ )
+        {
+            if (!PlayerObjects[i].active)
+            {
+                DisableList.Add(i);
+            }
+        }
+        GameObject[] PlayerObjectsTemp = new GameObject[PlayerObjects.Length - DisableList.Count];
+        int index = 0;
+        for (int i = 0; i < PlayerObjects.Length - DisableList.Count; i++)
+        {
+            if (!DisableList.Contains(index))
+            {
+                PlayerObjectsTemp[index] = PlayerObjects[index];
+            }
+            else
+            {
+                i--;
+            }
+            index++;
+        }
+        PlayerObjects = PlayerObjectsTemp;
+    }
     void CameraTransitions()
     {
         Vector3 transitionPoint;
-        if (PlayerObjects.Length == 1)
+        if (PlayerObjects.Length == 0)
+        {
+            transitionPoint = startPos;
+        }
+        else if (PlayerObjects.Length == 1)
         {
             transitionPoint = PlayerObjects[0].transform.position;
         }

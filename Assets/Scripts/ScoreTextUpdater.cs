@@ -15,9 +15,9 @@ public class ScoreTextUpdater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (GS.playerScores.Count>= playerNumber)
+        if (GS.playerLives.Count>= playerNumber)
         {
-            TextM.text = GS.playerScores[playerNumber - 1].ToString();
+            TextM.text = GS.playerLives[playerNumber - 1].ToString();
         }
 	}
 }
