@@ -29,9 +29,9 @@ public class ArcSwap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (IH.Item && IH.Item.GetComponent<ItemType>())
+        if (IH.Item)
         {
-            if (IH.Item.GetComponent<ItemType>().itemName.Contains("Potion") && Input.GetButtonDown(ToggleButton))
+            if (IH.Item.GetComponent<ParabolaController>() && Input.GetButtonDown(ToggleButton))
             {
                 SwapState();
             }         

@@ -75,27 +75,24 @@ public class ItemHandler : MonoBehaviour {
                 Item.transform.localEulerAngles = new Vector3(0, 0, 0);
 
             }
-            if (Item.GetComponent<ItemType>())
+            if (Item.GetComponent<ParabolaController>())
             {
-                if (Item.GetComponent<ItemType>().itemName.Contains("Potion"))
-                {
 
-                    if (gameObject.transform.Find("ThrowArch"))
+                if (gameObject.transform.Find("ThrowArch"))
+                {
+                    if (gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>())
                     {
-                        if (gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>())
-                        {
-                            gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>().enabled = true;
-                        }
+                        gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>().enabled = true;
                     }
                 }
-                else
+            }
+            else
+            {
+                if (gameObject.transform.Find("ThrowArch"))
                 {
-                    if (gameObject.transform.Find("ThrowArch"))
+                    if (gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>())
                     {
-                        if (gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>())
-                        {
-                            gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>().enabled = false;
-                        }
+                        gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>().enabled = false;
                     }
                 }
             }
@@ -362,6 +359,8 @@ public class ItemHandler : MonoBehaviour {
         {
             if (Item.GetComponent<ParabolaController>())
             {
+                Item.GetComponent<ParabolaController>().ParabolaRoot = transform.Find("ThrowArch").gameObject;
+                Item.GetComponent<ParabolaController>().initParabola();
                 Item.GetComponent<ParabolaController>().Throw();
                 StartCoroutine(ThrowingSequenceTimer(Item));
                 Item = null;
@@ -475,6 +474,8 @@ public class ItemHandler : MonoBehaviour {
             {
                 if (Item.GetComponent<ParabolaController>())
                 {
+                    Item.GetComponent<ParabolaController>().ParabolaRoot = transform.Find("ThrowArch").gameObject;
+                    Item.GetComponent<ParabolaController>().initParabola();                  
                     Item.GetComponent<ParabolaController>().Throw();
                     StartCoroutine(ThrowingSequenceTimer(Item));
                     Item = null;

@@ -40,8 +40,25 @@ public class ItemAlign : MonoBehaviour {
     {
         if (inAir && (other.gameObject.tag == "FullTile" || other.gameObject.tag == "HalfTile"))
         {
-            other.GetComponent<AlignTile>().DestroyNeighbors();
-            Destroy(gameObject);
+            if (GetComponent<ItemType>())
+            {
+                if (GetComponent<ItemType>().itemName.Contains("Potion"))
+                {
+                    other.GetComponent<AlignTile>().DestroyNeighbors();
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    inAir = false;
+                    disableTileUpdate = false;
+                }
+            }
+            else
+            {
+                inAir = false;
+                disableTileUpdate = false;
+            }
+            
         }
     }
     void Start()
@@ -271,8 +288,25 @@ public class ItemAlign : MonoBehaviour {
         }
         if (isThrown && OnTile)
         {
-            OnTile.GetComponent<AlignTile>().DestroyNeighbors();
-            Destroy(gameObject);
+            if (GetComponent<ItemType>())
+            {
+                if (GetComponent<ItemType>().itemName.Contains("Potion"))
+                {
+                    OnTile.GetComponent<AlignTile>().DestroyNeighbors();
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    isThrown = false;
+                    disableTileUpdate = false;
+                }
+            }
+            else
+            {
+                inAir = false;
+                disableTileUpdate = false;
+            }
+
         }
         dynamName = DynamicUpdateTilePosition(0,0, floorTileVar);
         if (GS.BlockedTiles.Contains(DynamicUpdateTilePosition(0, 0, floorTileVar)) )
@@ -302,6 +336,12 @@ public class ItemAlign : MonoBehaviour {
                 Align();
                 GetComponent<Rigidbody>().useGravity = false;
                 GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+            }
+            if (transform.parent)
+            {
+                AlignTo(int.Parse(transform.parent.name.Split('x')[0]),
+                                        int.Parse(transform.parent.name.Split('x')[1]),
+                                        int.Parse(transform.parent.name.Split('x')[2]));
             }
             CanPickup = true;
         }
