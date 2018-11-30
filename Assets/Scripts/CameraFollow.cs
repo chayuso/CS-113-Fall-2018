@@ -28,7 +28,7 @@ public class CameraFollow : MonoBehaviour {
         List<int> DisableList = new List<int>();
         for (int i=0; i<PlayerObjects.Length;i++ )
         {
-            if (!PlayerObjects[i].active)
+            if (!PlayerObjects[i].activeSelf)
             {
                 DisableList.Add(i);
             }

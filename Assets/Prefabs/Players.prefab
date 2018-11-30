@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4505841980036044}
   - component: {fileID: 114207895083999648}
+  - component: {fileID: 114514260026798692}
   - component: {fileID: 120403871385555304}
   m_Layer: 0
   m_Name: ThrowArch
@@ -200,6 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4360439131290358}
   - component: {fileID: 114550402453456632}
+  - component: {fileID: 114062273184091282}
   - component: {fileID: 120074767771715904}
   m_Layer: 0
   m_Name: ThrowArch
@@ -485,7 +487,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020570827150812}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4360439131290358}
@@ -511,7 +513,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1683773288301388}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.67, z: 4}
+  m_LocalPosition: {x: 0, y: 0.5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4360439131290358}
@@ -524,7 +526,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1720985188603136}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.67, z: 4}
+  m_LocalPosition: {x: 0, y: 0.5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4505841980036044}
@@ -537,7 +539,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1148519777083232}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4505841980036044}
@@ -1249,6 +1251,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114062273184091282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396804451159038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f9c2d1336a8c04e9c55d1a13602eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Point1: {fileID: 1020570827150812}
+  Point2: {fileID: 1474205863201616}
+  Point3: {fileID: 1683773288301388}
+  ArcState: 2
+  ToggleButton: Dash1
 --- !u!114 &114100924949674966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1341,6 +1359,22 @@ MonoBehaviour:
   RespawnPoint: {x: 0, y: 0, z: 0}
   neighborTiles: []
   lastTile: {fileID: 0}
+--- !u!114 &114514260026798692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1116789344116046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63f9c2d1336a8c04e9c55d1a13602eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Point1: {fileID: 1148519777083232}
+  Point2: {fileID: 1078487251599282}
+  Point3: {fileID: 1720985188603136}
+  ArcState: 2
+  ToggleButton: Dash2
 --- !u!114 &114550402453456632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1503,7 +1537,7 @@ LineRenderer:
   m_Positions:
   - {x: 1.56, y: 3.29, z: 0.07000041}
   - {x: 1.56, y: 5.29, z: 2.0700004}
-  - {x: 1.56, y: 3.96, z: 4.0700006}
+  - {x: 1.56, y: 3.79, z: 4.0700006}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
@@ -1596,7 +1630,7 @@ LineRenderer:
   m_Positions:
   - {x: 0.55999994, y: 3.29, z: 0.07000041}
   - {x: 0.55999994, y: 5.29, z: 2.0700004}
-  - {x: 0.55999994, y: 3.96, z: 4.0700006}
+  - {x: 0.55999994, y: 3.79, z: 4.0700006}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 1
