@@ -337,7 +337,7 @@ public class ItemAlign : MonoBehaviour {
                 GetComponent<Rigidbody>().useGravity = false;
                 GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
             }
-            if (transform.parent)
+            if (transform.parent && transform.parent.tag =="HalfTile" && !transform.parent.transform.name.Contains("Respawn"))
             {
                 AlignTo(int.Parse(transform.parent.name.Split('x')[0]),
                                         int.Parse(transform.parent.name.Split('x')[1]),
