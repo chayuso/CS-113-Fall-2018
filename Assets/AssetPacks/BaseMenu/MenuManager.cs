@@ -108,4 +108,9 @@ public class MenuManager : MonoBehaviour {
     {
         levelTitle.text = newTitle;
     }
+
+    public void setVolume(Slider newVolume)
+    {
+        AudioListener.volume = newVolume.value;
+    }
 }
