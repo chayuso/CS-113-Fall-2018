@@ -6,14 +6,25 @@ public class ItemType : MonoBehaviour {
     public string itemName = "";
     public bool isIngredient = false;
     public float swordForceValue = 25000f;
+    Rigidbody rb;
     // Use this for initialization
     void Start() {
-
+        if (GetComponent<Rigidbody>())
+        {
+            rb = GetComponent<Rigidbody>();
+                
+        }
     }
 
     // Update is called once per frame
     void Update() {
-
+        if (itemName.Contains("Potion"))
+        {
+            if (rb && rb.useGravity)
+            {
+                rb.AddForce(Vector3.down * 50f);
+            }
+        }
     }
     private void OnTriggerEnter(Collider other)
     {

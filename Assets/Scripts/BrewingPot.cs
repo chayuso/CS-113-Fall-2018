@@ -301,6 +301,9 @@ public class BrewingPot : MonoBehaviour {
         Potion.transform.position = potionPosition1;
         Potion2.transform.position = potionPosition2;
         Potion3.transform.position = potionPosition3;
+        Potion.GetComponent<Rigidbody>().AddForce(Vector3.up * 1111f);
+        Potion2.GetComponent<Rigidbody>().AddForce(Vector3.up * 1111f);
+        Potion3.GetComponent<Rigidbody>().AddForce(Vector3.up * 1111f);
     }
     GameObject SpawnItem(GameObject Prefab)
     {
