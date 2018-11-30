@@ -52,7 +52,7 @@ public class BrewingPot : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        if (transform.parent && transform.parent.GetComponent<TileHighlight>() && transform.parent.GetComponent<TileHighlight>().TileObject.gameObject.tag == "Table" && inPot.Count!=0)
+        if (transform.parent && transform.parent.GetComponent<TileHighlight>() && transform.parent.GetComponent<TileHighlight>().TileObject.gameObject.tag == "Table" && inPot.Count!=0 && GetComponent<MeshRenderer>().enabled)
         {
             TickGrowClock();
         }

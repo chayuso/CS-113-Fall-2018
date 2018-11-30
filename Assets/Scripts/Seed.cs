@@ -31,7 +31,7 @@ public class Seed : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (transform.parent && transform.parent.GetComponent<Soil>() && currentGrowTime < timeToGrow)
+        if (transform.parent && transform.parent.GetComponent<Soil>() && currentGrowTime < timeToGrow && GetComponent<MeshRenderer>().enabled)
         {
             TickGrowClock();
         }
