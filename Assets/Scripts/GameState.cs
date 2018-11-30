@@ -20,6 +20,7 @@ public class GameState : MonoBehaviour {
     public GameObject OrderMenu;
     public GameObject SoundManager;
     public AudioManager SM;
+    public GameObject ExplosionParticle;
     // Use this for initialization
     private void Awake()
     {

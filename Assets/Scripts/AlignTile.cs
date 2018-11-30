@@ -148,6 +148,8 @@ public class AlignTile : MonoBehaviour {
     }
     public void DestroyNeighbors()
     {
+        GameObject Explosion = GS.SpawnItem(GS.ExplosionParticle);
+        Explosion.transform.position = transform.position;
         GS.SM.PlaySFX("Breaking",transform.position);
         foreach (GameObject g in LeveledNeighborTiles)
         {

@@ -64,9 +64,12 @@ MonoBehaviour:
   WhitePotion: {fileID: 1259067498752160, guid: 230a3b314dbc4f8419eb2dadcd124b0f,
     type: 2}
   playerScores: 
+  playerLives: 
   currentTime: 0
   OrderListNames: []
   OrderMenu: {fileID: 0}
   SoundManager: {fileID: 1676216900968170, guid: c4d7c77947d61e047a897e810704c452,
     type: 2}
   SM: {fileID: 0}
+  ExplosionParticle: {fileID: 1334692206637282, guid: 99ad7a8627fcdbd49af948da815bcfc4,
+    type: 2}
