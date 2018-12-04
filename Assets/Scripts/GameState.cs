@@ -21,6 +21,7 @@ public class GameState : MonoBehaviour {
     public GameObject SoundManager;
     public AudioManager SM;
     public GameObject ExplosionParticle;
+	public int playerLivesInt = 3;
     // Use this for initialization
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class GameState : MonoBehaviour {
         for (int i = 0; i < FindObjectsOfType<PlayerMovement>().Length; i++)
         {
             playerScores.Add(0);
-            playerLives.Add(3);
+            playerLives.Add(playerLivesInt);
         }
         if (OrderMenu)
         {

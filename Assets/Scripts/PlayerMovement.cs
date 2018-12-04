@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour {
     ItemHandler IH;
     bool isMoving = false;
     float MoveTime = 0;
+	public float MoveSoundInterval = .5f;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour {
         Direction = QuarterDirection();
         compassDirection = CompassDirection();
         CheckFrontTile();
-        if (MoveTime >= .25f && isMoving)
+        if (MoveTime >= MoveSoundInterval && isMoving)
         {
             GS.SM.PlaySFX("Walking",transform.position);
             MoveTime = 0;
