@@ -28,8 +28,8 @@ public class BrewingPot : MonoBehaviour {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
         RecipeList = MakeRecipieList();
         potionPosition1 = new Vector3(transform.position.x+.1f, transform.position.y + 1, transform.position.z - .1f);
-        potionPosition2 = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
-        potionPosition3 = new Vector3(transform.position.x - .1f, transform.position.y + 5, transform.position.z + .1f);
+        potionPosition2 = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+        potionPosition3 = new Vector3(transform.position.x - .1f, transform.position.y + 3, transform.position.z + .1f);
     }
     Color TranslateColor(string stringColor)
     {
@@ -168,7 +168,7 @@ public class BrewingPot : MonoBehaviour {
                         if (GS.OrderListNames[i] == "Red")
                         {
                             GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
-                            GS.RemoveOrder(i);
+                            //GS.RemoveOrder(i);
                             PotionSpawn(GS.RedPotion);
                             break;
                         }
@@ -189,7 +189,7 @@ public class BrewingPot : MonoBehaviour {
                         if (GS.OrderListNames[i] == "Blue")
                         {
                             GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
-                            GS.RemoveOrder(i);
+                            //GS.RemoveOrder(i);
                             PotionSpawn(GS.BluePotion);
                             break;
                         }
@@ -210,7 +210,7 @@ public class BrewingPot : MonoBehaviour {
                         if (GS.OrderListNames[i] == "Green")
                         {
                             GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
-                            GS.RemoveOrder(i);
+                            //GS.RemoveOrder(i);
                             PotionSpawn(GS.GreenPotion);
                             break;
                         }
@@ -232,7 +232,7 @@ public class BrewingPot : MonoBehaviour {
                         if (GS.OrderListNames[i] == "Purple")
                         {
                             GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
-                            GS.RemoveOrder(i);
+                            //GS.RemoveOrder(i);
                             PotionSpawn(GS.PurplePotion);
                             break;
                         }
@@ -253,7 +253,7 @@ public class BrewingPot : MonoBehaviour {
                         if (GS.OrderListNames[i] == "Cyan")
                         {
                             GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
-                            GS.RemoveOrder(i);
+                            //GS.RemoveOrder(i);
                             PotionSpawn(GS.CyanPotion);
                             break;
                         }
@@ -274,7 +274,7 @@ public class BrewingPot : MonoBehaviour {
                         if (GS.OrderListNames[i] == "Yellow")
                         {
                             GameObject Slot = GS.OrderMenu.transform.Find("Slot" + (i + 1).ToString()).gameObject;
-                            GS.RemoveOrder(i);
+                            //GS.RemoveOrder(i);
                             PotionSpawn(GS.YellowPotion);
                             break;
                         }
@@ -301,9 +301,9 @@ public class BrewingPot : MonoBehaviour {
         Potion.transform.position = potionPosition1;
         Potion2.transform.position = potionPosition2;
         Potion3.transform.position = potionPosition3;
-        Potion.GetComponent<Rigidbody>().AddForce(Vector3.up * 1000f);
-        Potion2.GetComponent<Rigidbody>().AddForce(Vector3.up * 1000f);
-        Potion3.GetComponent<Rigidbody>().AddForce(-Vector3.up * 1000f);
+        Potion.GetComponent<Rigidbody>().AddForce(Vector3.up * 5000f);
+        Potion2.GetComponent<Rigidbody>().AddForce(Vector3.up * 1f);
+        Potion3.GetComponent<Rigidbody>().AddForce(-Vector3.up * 1f);
     }
     GameObject SpawnItem(GameObject Prefab)
     {

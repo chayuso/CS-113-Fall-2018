@@ -14,7 +14,7 @@ public class GameState : MonoBehaviour {
     public GameObject WhitePotion;
     public List<int> playerScores;
     public List<int> playerLives;
-    float timeOrderIntervals = 5f;
+    float timeOrderIntervals = .001f;
     public float currentTime = 0f;
     public List<string> OrderListNames;
     public GameObject OrderMenu;
@@ -83,7 +83,7 @@ public class GameState : MonoBehaviour {
             }
             
         }
-        if (OrderListNames.Count >= 5)
+        if (OrderListNames.Count >= 1)
         {
             return;
         }
