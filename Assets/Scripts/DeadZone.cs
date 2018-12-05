@@ -41,6 +41,7 @@ public class DeadZone : MonoBehaviour {
                     {
                         Cam.GetComponent<CameraFollow>().BuildPlayerTrackingList();
                     }
+                    GS.CheckWinner();
                 }
             }
             else

@@ -18,10 +18,14 @@ public class GameState : MonoBehaviour {
     public float currentTime = 0f;
     public List<string> OrderListNames;
     public GameObject OrderMenu;
+    public GameObject WinMenu;
     public GameObject SoundManager;
     public AudioManager SM;
     public GameObject ExplosionParticle;
 	public int playerLivesInt = 3;
+    int OrderLength = 1;
+    Color colorPlayer1 = new Color(0, 0.3061082f, 1f);
+    Color colorPlayer2 = new Color(0.9622642f, 0f, 0f);
     // Use this for initialization
     private void Awake()
     {
@@ -40,9 +44,17 @@ public class GameState : MonoBehaviour {
         }
     }
     void Start () {
-        if (GameObject.Find("Canvas") && GameObject.Find("Canvas").transform.Find("Menu"))
+        if (GameObject.Find("Canvas"))
         {
-            OrderMenu = GameObject.Find("Canvas").transform.Find("Menu").gameObject;
+            if (GameObject.Find("Canvas").transform.Find("Menu"))
+            {
+                OrderMenu = GameObject.Find("Canvas").transform.Find("Menu").gameObject;
+            }
+            if (GameObject.Find("Canvas").transform.Find("PauseMenu").transform.Find("WinMenu"))
+            {
+                WinMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").transform.Find("WinMenu").gameObject;
+            }
+
         }
         foreach (AlignTile tile in FindObjectsOfType<AlignTile>())
         {
@@ -83,7 +95,7 @@ public class GameState : MonoBehaviour {
             }
             
         }
-        if (OrderListNames.Count >= 1)
+        if (OrderListNames.Count >= OrderLength)
         {
             return;
         }
@@ -91,7 +103,7 @@ public class GameState : MonoBehaviour {
     }
     void AddRandomPotion()
     {
-        if (OrderListNames.Count >= 5)
+        if (OrderListNames.Count >= OrderLength)
         {
             return;
         }
@@ -103,13 +115,42 @@ public class GameState : MonoBehaviour {
             Slot.GetComponent<Order>().isDisabled = false;
             Slot.GetComponent<Order>().OrderType(OrderListNames[i]);
         }
-        for (int i = 0; i < 5 - OrderListNames.Count; i++)
+        for (int i = 0; i < OrderLength - OrderListNames.Count; i++)
         {
-            GameObject Slot = OrderMenu.transform.Find("Slot" + (5 - i).ToString()).gameObject;
+            GameObject Slot = OrderMenu.transform.Find("Slot" + (OrderLength - i).ToString()).gameObject;
             Slot.GetComponent<Order>().isDisabled = true;
         }
     }
-    
+    public void CheckWinner()
+    {
+        int players = playerLives.Count;
+        int deadplayers = 0;
+        int winner = 0;
+        for (int i = 0; i < players; i++)
+        {
+            if (playerLives[i] <= 0)
+            {
+                deadplayers++;
+            }
+            else
+            {
+                winner = i+1;
+            }
+        }
+        if (players - deadplayers == 1)
+        {
+            WinMenu.SetActive(true);
+            WinMenu.transform.Find("Title").gameObject.GetComponent<Text>().text = "Player " + winner.ToString() + " Wins!";
+            if (winner == 1)
+            {
+                WinMenu.transform.Find("Title").GetComponent<Text>().color = colorPlayer1;
+            }
+            else
+            {
+                WinMenu.transform.Find("Title").GetComponent<Text>().color = colorPlayer2;
+            }
+        }
+    }
     string PotionIntToString(int PotionNumber)
     {
         string return_string;
@@ -211,7 +252,7 @@ public class GameState : MonoBehaviour {
         }
         for (int i = 0; i < 5 - OrderListNames.Count; i++)
         {
-            GameObject Slot = OrderMenu.transform.Find("Slot" + (5 - i).ToString()).gameObject;
+            GameObject Slot = OrderMenu.transform.Find("Slot" + (OrderLength - i).ToString()).gameObject;
             Slot.GetComponent<Order>().currentTime = 0;
             Slot.GetComponent<Order>().isDisabled = true;
         }
