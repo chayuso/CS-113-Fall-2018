@@ -118,7 +118,7 @@ Material:
     - _SketchHalftoneMin: 0.2
     - _SkinBrightness: 0.25
     - _SkinTransparency: 1
-    - _Smoothness: 1
+    - _Smoothness: 100
     - _SmoothnessTextureChannel: 0
     - _SpecSmooth: 0
     - _SpecularHighlights: 0

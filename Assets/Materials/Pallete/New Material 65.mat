@@ -82,7 +82,7 @@ Material:
     - _RimMin: 0.5
     - _SketchHalftoneMax: 1
     - _SketchHalftoneMin: 0.2
-    - _Smoothness: 1.07
+    - _Smoothness: 100
     - _SmoothnessTextureChannel: 0
     - _SpecSmooth: 0.05
     - _SpecularHighlights: 1
