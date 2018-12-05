@@ -22,6 +22,7 @@ public class GameState : MonoBehaviour {
     public GameObject SoundManager;
     public AudioManager SM;
     public GameObject ExplosionParticle;
+    Slider VolumeSlider;
 	public int playerLivesInt = 3;
     int OrderLength = 1;
     Color colorPlayer1 = new Color(0, 0.3061082f, 1f);
@@ -53,6 +54,8 @@ public class GameState : MonoBehaviour {
             if (GameObject.Find("Canvas").transform.Find("PauseMenu").transform.Find("WinMenu"))
             {
                 WinMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").transform.Find("WinMenu").gameObject;
+                VolumeSlider = GameObject.Find("Canvas").transform.Find("PauseMenu").transform.Find("PauseMenu").transform.Find("Buttons").transform.Find("Volume").GetComponent<Slider>();
+                VolumeSlider.onValueChanged.AddListener(delegate { setVolume(); });
             }
 
         }
@@ -150,6 +153,10 @@ public class GameState : MonoBehaviour {
                 WinMenu.transform.Find("Title").GetComponent<Text>().color = colorPlayer2;
             }
         }
+    }
+    public void setVolume()
+    {
+        AudioListener.volume =VolumeSlider.value;
     }
     string PotionIntToString(int PotionNumber)
     {
