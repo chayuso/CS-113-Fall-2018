@@ -7,11 +7,11 @@ public class PauseMenu : MonoBehaviour {
 
     [SerializeField]
     private GameObject pauseMenu;
-	
+    public string MenuButton = "MenuButton";
 	void Update ()
     {
         //Known Bug: Players can still move
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetButtonDown(MenuButton))
             pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
 	}
 
