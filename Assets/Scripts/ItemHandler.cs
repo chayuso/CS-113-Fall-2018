@@ -52,7 +52,7 @@ public class ItemHandler : MonoBehaviour {
         if (Potion)
         {
             Potion.GetComponent<ItemAlign>().isThrown = true;
-            Potion.GetComponent<SphereCollider>().isTrigger = false;
+            //Potion.GetComponent<SphereCollider>().isTrigger = false;
             Potion.GetComponent<Rigidbody>().useGravity = true;
         }
        
