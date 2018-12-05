@@ -351,12 +351,12 @@ public class ItemHandler : MonoBehaviour {
     void FreeDrop()
     {
         Item.transform.parent = null;
-        if (Item.tag == "CookingPot")
+        /*if (Item.tag == "CookingPot")
         {
             Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         }
         else
-        {
+        {*/
             if (Item.GetComponent<ParabolaController>())
             {
                 Item.GetComponent<ParabolaController>().ParabolaRoot = transform.Find("ThrowArch").gameObject;
@@ -367,7 +367,7 @@ public class ItemHandler : MonoBehaviour {
                 return;
             }
             Item.GetComponent<Rigidbody>().freezeRotation = false;
-        }
+        //}
         Item.GetComponent<ItemAlign>().disableTileUpdate = false;
         Item.GetComponent<SphereCollider>().enabled = true;
         Item.transform.position = DropPosition.position;
@@ -428,23 +428,23 @@ public class ItemHandler : MonoBehaviour {
                         }
                         return;
                     }
-                    else if (childItem.tag == "PotionStation" && Item.tag == "CookingPot")
+                    /*else if (childItem.tag == "PotionStation" && Item.tag == "CookingPot")
                     {
                         if (PotionCreation(Item))
                         {
                             GS.SM.PlaySFX("UI_Select",transform.position);
                         }
-                    }
+                    }*/
                 }
                 Item.transform.parent = null;
-                if (Item.tag == "CookingPot")
+                /*if (Item.tag == "CookingPot")
                 {
                     Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                 }
                 else
-                {
+                {*/
                     Item.GetComponent<Rigidbody>().freezeRotation = false;
-                }
+                //}
                 Item.transform.position = PM.selectedTile.transform.position;
                 Item.GetComponent<ItemAlign>().disableTileUpdate = false;
                 if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
@@ -466,12 +466,12 @@ public class ItemHandler : MonoBehaviour {
                 return;
             }
             Item.transform.parent = null;
-            if (Item.tag == "CookingPot")
+            /*if (Item.tag == "CookingPot")
             {
                 Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             }
             else
-            {
+            {*/
                 if (Item.GetComponent<ParabolaController>())
                 {
                     Item.GetComponent<ParabolaController>().ParabolaRoot = transform.Find("ThrowArch").gameObject;
@@ -482,7 +482,7 @@ public class ItemHandler : MonoBehaviour {
                     return;
                 }
                 Item.GetComponent<Rigidbody>().freezeRotation = false;
-            }
+            //}
             Item.GetComponent<ItemAlign>().disableTileUpdate = false;
             Item.GetComponent<SphereCollider>().enabled = true;
             if (Item == GroundCheck.GetComponent<GroundItemDetect>().DetectedItem)
@@ -509,25 +509,25 @@ public class ItemHandler : MonoBehaviour {
         {
             foreach (Transform childItem in PM.selectedTile.transform)
             {
-                if (childItem.tag == "Item"|| childItem.tag == "Seed"|| childItem.tag == "CookingPot")
+                if (childItem.tag == "Item"|| childItem.tag == "Seed")//|| childItem.tag == "CookingPot")
                 {
                     childItem.parent = ItemPosition.transform;
                     childItem.transform.position = ItemPosition.transform.position;
                     Item = childItem.gameObject;
                     Item.GetComponent<ItemAlign>().disableTileUpdate = true;                   
-                    if (Item.tag == "CookingPot")
+                    /*if (Item.tag == "CookingPot")
                     {
                         Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                     }
                     else
-                    {
+                    {*/
                         if (Item.GetComponent<ParabolaController>())
                         {
                             Item.GetComponent<ParabolaController>().ParabolaRoot = transform.Find("ThrowArch").gameObject;
                             Item.GetComponent<ParabolaController>().initParabola();
                         }
                         Item.GetComponent<Rigidbody>().freezeRotation = true;
-                    }
+                    //}
                     Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                     return childItem.gameObject;
                 }
@@ -536,14 +536,14 @@ public class ItemHandler : MonoBehaviour {
             {
                 Item = SpawnItem(PM.selectedTile.GetComponent<ItemChest>().Item);
                 Item.GetComponent<ItemAlign>().disableTileUpdate = true;
-                if (Item.tag == "CookingPot")
+                /*if (Item.tag == "CookingPot")
                 {
                     Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
                 }
                 else
-                {
+                {*/
                     Item.GetComponent<Rigidbody>().freezeRotation = true;
-                }
+                //}
                 Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
                 Item.transform.parent = ItemPosition.transform;
                 Item.transform.position = ItemPosition.transform.position;
@@ -557,19 +557,19 @@ public class ItemHandler : MonoBehaviour {
             childItem.transform.position = ItemPosition.transform.position;
             Item = childItem.gameObject;
             Item.GetComponent<ItemAlign>().disableTileUpdate = true;
-            if (Item.tag == "CookingPot")
+            /*if (Item.tag == "CookingPot")
             {
                 Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             }
             else
-            {
+            {*/
                 if (Item.GetComponent<ParabolaController>())
                 {
                     Item.GetComponent<ParabolaController>().ParabolaRoot = transform.Find("ThrowArch").gameObject;
                     Item.GetComponent<ParabolaController>().initParabola();
                 }
                 Item.GetComponent<Rigidbody>().freezeRotation = true;
-            }
+            //}
             Item.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             return childItem.gameObject;
         }
