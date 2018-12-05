@@ -27,7 +27,10 @@ public class PresentDispenser : MonoBehaviour {
     }
     void TickClock()
     {
-        currentTime += Time.deltaTime;
+        if (transform.childCount == 0)
+        {
+            currentTime += Time.deltaTime;
+        }
     }
     void ResetClock()
     {
