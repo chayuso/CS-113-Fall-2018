@@ -8,33 +8,18 @@ public class CameraFollow : MonoBehaviour {
     public float journeyLength = 1f;
     GameObject[] PlayerObjects;
     Vector3 startPos;
-    GameState GS;
-    Vector3 transitionPoint2;
-    bool lateStart = false;
     // Use this for initialization
     void Start () {
-        GS = GameObject.Find("GameState").GetComponent<GameState>();
         startPos = transform.position;
         if (!playerCamera)
         {
             playerCamera = gameObject;
         }
-        
         BuildPlayerTrackingList();
-    }
+	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (!lateStart)
-        {
-            lateStart = true;
-            string[] Corners = GS.getCornerBlocks();
-            Transform TopLeft = GameObject.Find(Corners[0]).transform;
-            Transform BotRight = GameObject.Find(Corners[1]).transform;
-            Vector3 UpLeft = new Vector3(TopLeft.position.x,TopLeft.position.y, GameObject.Find(Corners[2]).transform.position.z);
-            Vector3 DownRight = new Vector3(BotRight.position.x, BotRight.position.y, GameObject.Find(Corners[3]).transform.position.z);
-            transitionPoint2 = GetPoint(UpLeft, DownRight);
-        }
         CameraTransitions();
     }
     public void BuildPlayerTrackingList()
@@ -80,9 +65,6 @@ public class CameraFollow : MonoBehaviour {
             transitionPoint = GetPoint(PlayerObjects[0].transform, PlayerObjects[1].transform);
             if (PlayerObjects.Length == 2)
             {
-                //float dist = Vector3.Distance(transitionPoint, transitionPoint2) / 2f;
-                transitionPoint = GetPoint(transitionPoint, transitionPoint2);
-
                 //transitionPoint.y = Vector3.Distance(PlayerObjects[0].transform.position, PlayerObjects[1].transform.position)/2f;
             }
             else if (PlayerObjects.Length == 3)
