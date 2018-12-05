@@ -175,5 +175,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436cc06d326ad2c4a888f070771bd5ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToSpawnPotion: 15
+  timeToSpawnPotion: 5
   currentTime: 0
