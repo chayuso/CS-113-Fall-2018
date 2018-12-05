@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
     public bool TrackMapCorners = false;
+    public bool TrackMapOnly = false;
     public GameObject playerCamera;
     public float speed = 25f;
     public float journeyLength = 1f;
@@ -32,9 +33,11 @@ public class CameraFollow : MonoBehaviour {
             string[] Corners = GS.getCornerBlocks();
             Transform TopLeft = GameObject.Find(Corners[0]).transform;
             Transform BotRight = GameObject.Find(Corners[1]).transform;
-            Vector3 UpLeft = new Vector3(TopLeft.position.x,TopLeft.position.y, GameObject.Find(Corners[2]).transform.position.z);
-            Vector3 DownRight = new Vector3(BotRight.position.x, BotRight.position.y, GameObject.Find(Corners[3]).transform.position.z);
+            Vector3 UpLeft = new Vector3(GameObject.Find(Corners[0]).transform.position.x, GameObject.Find(Corners[2]).transform.position.y, GameObject.Find(Corners[4]).transform.position.z);
+            Vector3 DownRight = new Vector3(GameObject.Find(Corners[1]).transform.position.x, GameObject.Find(Corners[3]).transform.position.y, GameObject.Find(Corners[5]).transform.position.z);
             transitionPoint2 = GetPoint(UpLeft, DownRight);
+            print(UpLeft);
+            print(DownRight);
         }
         CameraTransitions();
     }
@@ -82,10 +85,15 @@ public class CameraFollow : MonoBehaviour {
             if (PlayerObjects.Length == 2)
             {
                 //float dist = Vector3.Distance(transitionPoint, transitionPoint2) / 2f;
-                if (TrackMapCorners)
+                if (TrackMapOnly)
+                {
+                    transitionPoint = transitionPoint2;
+                }
+                else if (TrackMapCorners)
                 {
                     transitionPoint = GetPoint(transitionPoint, transitionPoint2);
                 }
+                
 
                 //transitionPoint.y = Vector3.Distance(PlayerObjects[0].transform.position, PlayerObjects[1].transform.position)/2f;
             }

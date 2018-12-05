@@ -46,7 +46,7 @@ public class GameState : MonoBehaviour {
     }
     public string[] getCornerBlocks()
     {
-        string[] Corners = new string[4];
+        string[] Corners = new string[6];
         int lowestx = 100000;
         int highesty = -10000;
         int leftcornerz = 0;
@@ -54,11 +54,17 @@ public class GameState : MonoBehaviour {
         int lowesty = 10000;
         int rightcornerz = 0;
 
+        int highX = -10000;
+        int lowX = 10000;
+
+        int highY = -10000;
+        int lowY = 10000;
+
         int highZ = -10000;
         int lowZ = 10000;
         foreach (string sname in BlockedTiles)
         {
-            if (int.Parse(sname.Split('x')[0]) <= lowestx && int.Parse(sname.Split('x')[1]) >= highesty)
+            /*if (int.Parse(sname.Split('x')[0]) <= lowestx && int.Parse(sname.Split('x')[1]) >= highesty)
             {
                 lowestx = int.Parse(sname.Split('x')[0]);
                 highesty = int.Parse(sname.Split('x')[1]);
@@ -69,18 +75,40 @@ public class GameState : MonoBehaviour {
                 highestx = int.Parse(sname.Split('x')[0]);
                 lowesty = int.Parse(sname.Split('x')[1]);
                 rightcornerz = int.Parse(sname.Split('x')[2]);
-            }
-            if (int.Parse(sname.Split('x')[2]) >= highZ)
+            }*/
+            if (int.Parse(sname.Split('x')[0]) >= highX)
             {
+                highX = int.Parse(sname.Split('x')[0]);
+                Corners[0] = sname;
+            }
+            if (int.Parse(sname.Split('x')[0]) <= lowX)
+            {
+                lowX = int.Parse(sname.Split('x')[0]);
+                Corners[1] = sname;
+            }
+            if (int.Parse(sname.Split('x')[2]) >= highY)
+            {
+                highY = int.Parse(sname.Split('x')[2]);
                 Corners[2] = sname;
             }
-            if (int.Parse(sname.Split('x')[2]) <= lowZ)
+            if (int.Parse(sname.Split('x')[2]) <= lowY)
             {
+                lowY = int.Parse(sname.Split('x')[2]);
                 Corners[3] = sname;
             }
+            if (int.Parse(sname.Split('x')[1]) >= highZ)
+            {
+                highZ = int.Parse(sname.Split('x')[1]);
+                Corners[4] = sname;
+            }
+            if (int.Parse(sname.Split('x')[1]) <= lowZ)
+            {
+                lowZ = int.Parse(sname.Split('x')[1]);
+                Corners[5] = sname;
+            }
         }
-        Corners[0] = lowestx + "x" + highesty +"x"+ leftcornerz;
-        Corners[1] = highestx + "x" +lowesty + "x" + rightcornerz;
+        //Corners[0] = lowestx + "x" + highesty +"x"+ leftcornerz;
+        //Corners[1] = highestx + "x" +lowesty + "x" + rightcornerz;
         return Corners;
     }
     void Start () {
