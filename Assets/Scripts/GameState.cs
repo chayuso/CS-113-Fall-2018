@@ -44,6 +44,45 @@ public class GameState : MonoBehaviour {
             SM = GameObject.Find("_AudioManager").GetComponent<AudioManager>();
         }
     }
+    public string[] getCornerBlocks()
+    {
+        string[] Corners = new string[4];
+        int lowestx = 100000;
+        int highesty = -10000;
+        int leftcornerz = 0;
+        int highestx = -10000;
+        int lowesty = 10000;
+        int rightcornerz = 0;
+
+        int highZ = -10000;
+        int lowZ = 10000;
+        foreach (string sname in BlockedTiles)
+        {
+            if (int.Parse(sname.Split('x')[0]) <= lowestx && int.Parse(sname.Split('x')[1]) >= highesty)
+            {
+                lowestx = int.Parse(sname.Split('x')[0]);
+                highesty = int.Parse(sname.Split('x')[1]);
+                leftcornerz = int.Parse(sname.Split('x')[2]);
+            }
+            if (int.Parse(sname.Split('x')[0]) >= highestx && int.Parse(sname.Split('x')[1]) <= lowesty)
+            {
+                highestx = int.Parse(sname.Split('x')[0]);
+                lowesty = int.Parse(sname.Split('x')[1]);
+                rightcornerz = int.Parse(sname.Split('x')[2]);
+            }
+            if (int.Parse(sname.Split('x')[2]) >= highZ)
+            {
+                Corners[2] = sname;
+            }
+            if (int.Parse(sname.Split('x')[2]) <= lowZ)
+            {
+                Corners[3] = sname;
+            }
+        }
+        Corners[0] = lowestx + "x" + highesty +"x"+ leftcornerz;
+        Corners[1] = highestx + "x" +lowesty + "x" + rightcornerz;
+        return Corners;
+    }
     void Start () {
         if (GameObject.Find("Canvas"))
         {
@@ -257,7 +296,7 @@ public class GameState : MonoBehaviour {
             Slot.GetComponent<Order>().OrderType(OrderListNames[i]);
             Slot.GetComponent<Order>().currentTime = SlotTimes[i];
         }
-        for (int i = 0; i < 5 - OrderListNames.Count; i++)
+        for (int i = 0; i < OrderLength - OrderListNames.Count; i++)
         {
             GameObject Slot = OrderMenu.transform.Find("Slot" + (OrderLength - i).ToString()).gameObject;
             Slot.GetComponent<Order>().currentTime = 0;
