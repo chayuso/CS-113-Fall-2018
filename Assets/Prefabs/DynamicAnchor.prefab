@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c85cfe375a5217442aa28e1daaf1a9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TrackMapCorners: 1
+  TrackMapOnly: 0
   playerCamera: {fileID: 0}
   speed: 25
   journeyLength: 1

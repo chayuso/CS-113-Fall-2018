@@ -38,8 +38,6 @@ public class CameraFollow : MonoBehaviour {
             Vector3 UpLeft = new Vector3(GameObject.Find(Corners[0]).transform.position.x+1, GameObject.Find(Corners[2]).transform.position.y + Zoffset, GameObject.Find(Corners[4]).transform.position.z + 1);
             Vector3 DownRight = new Vector3(GameObject.Find(Corners[1]).transform.position.x - 1, GameObject.Find(Corners[3]).transform.position.y, GameObject.Find(Corners[5]).transform.position.z - (Zoffset-(Zoffset/6)));
             transitionPoint2 = GetPoint(UpLeft, DownRight);
-            print(UpLeft);
-            print(DownRight);
         }
         CameraTransitions();
     }

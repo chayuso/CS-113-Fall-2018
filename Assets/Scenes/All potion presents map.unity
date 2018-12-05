@@ -8850,6 +8850,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 114603278473016844, guid: e05e9cfffe8a7614eb317629d63a93c0,
+        type: 2}
+      propertyPath: TrackMapOnly
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e05e9cfffe8a7614eb317629d63a93c0, type: 2}
   m_IsPrefabAsset: 0
