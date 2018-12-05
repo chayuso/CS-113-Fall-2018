@@ -47,12 +47,12 @@ public class GameState : MonoBehaviour {
     public string[] getCornerBlocks()
     {
         string[] Corners = new string[6];
-        int lowestx = 100000;
+        /*int lowestx = 100000;
         int highesty = -10000;
         int leftcornerz = 0;
         int highestx = -10000;
         int lowesty = 10000;
-        int rightcornerz = 0;
+        int rightcornerz = 0;*/
 
         int highX = -10000;
         int lowX = 10000;

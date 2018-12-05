@@ -13,6 +13,7 @@ public class CameraFollow : MonoBehaviour {
     GameState GS;
     Vector3 transitionPoint2;
     bool lateStart = false;
+    float Zoffset = 1;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -31,10 +32,11 @@ public class CameraFollow : MonoBehaviour {
         {
             lateStart = true;
             string[] Corners = GS.getCornerBlocks();
-            Transform TopLeft = GameObject.Find(Corners[0]).transform;
-            Transform BotRight = GameObject.Find(Corners[1]).transform;
-            Vector3 UpLeft = new Vector3(GameObject.Find(Corners[0]).transform.position.x, GameObject.Find(Corners[2]).transform.position.y, GameObject.Find(Corners[4]).transform.position.z);
-            Vector3 DownRight = new Vector3(GameObject.Find(Corners[1]).transform.position.x, GameObject.Find(Corners[3]).transform.position.y, GameObject.Find(Corners[5]).transform.position.z);
+            //Transform TopLeft = GameObject.Find(Corners[0]).transform;
+            //Transform BotRight = GameObject.Find(Corners[1]).transform;
+            Zoffset = (GameObject.Find(Corners[4]).transform.position.z - GameObject.Find(Corners[5]).transform.position.z) * .68f;
+            Vector3 UpLeft = new Vector3(GameObject.Find(Corners[0]).transform.position.x+1, GameObject.Find(Corners[2]).transform.position.y + Zoffset, GameObject.Find(Corners[4]).transform.position.z + 1);
+            Vector3 DownRight = new Vector3(GameObject.Find(Corners[1]).transform.position.x - 1, GameObject.Find(Corners[3]).transform.position.y, GameObject.Find(Corners[5]).transform.position.z - (Zoffset-(Zoffset/6)));
             transitionPoint2 = GetPoint(UpLeft, DownRight);
             print(UpLeft);
             print(DownRight);
