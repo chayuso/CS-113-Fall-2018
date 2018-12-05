@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour {
     ItemHandler IH;
     bool isMoving = false;
     float MoveTime = 0;
-	public float MoveSoundInterval = .5f;
+	float MoveSoundInterval = .35f;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();

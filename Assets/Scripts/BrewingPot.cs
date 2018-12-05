@@ -27,9 +27,9 @@ public class BrewingPot : MonoBehaviour {
         Circle2 = transform.Find("Circle2").gameObject;
         GS = GameObject.Find("GameState").GetComponent<GameState>();
         RecipeList = MakeRecipieList();
-        potionPosition1 = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        potionPosition1 = new Vector3(transform.position.x+.1f, transform.position.y + 1, transform.position.z - .1f);
         potionPosition2 = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
-        potionPosition3 = new Vector3(transform.position.x, transform.position.y + 5, transform.position.z);
+        potionPosition3 = new Vector3(transform.position.x - .1f, transform.position.y + 5, transform.position.z + .1f);
     }
     Color TranslateColor(string stringColor)
     {
@@ -301,9 +301,9 @@ public class BrewingPot : MonoBehaviour {
         Potion.transform.position = potionPosition1;
         Potion2.transform.position = potionPosition2;
         Potion3.transform.position = potionPosition3;
-        Potion.GetComponent<Rigidbody>().AddForce(Vector3.up * 1111f);
-        Potion2.GetComponent<Rigidbody>().AddForce(Vector3.up * 1111f);
-        Potion3.GetComponent<Rigidbody>().AddForce(Vector3.up * 1111f);
+        Potion.GetComponent<Rigidbody>().AddForce(Vector3.up * 1000f);
+        Potion2.GetComponent<Rigidbody>().AddForce(Vector3.up * 1000f);
+        Potion3.GetComponent<Rigidbody>().AddForce(-Vector3.up * 1000f);
     }
     GameObject SpawnItem(GameObject Prefab)
     {
