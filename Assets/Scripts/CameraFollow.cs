@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
+    public bool TrackMapCorners = false;
     public GameObject playerCamera;
     public float speed = 25f;
     public float journeyLength = 1f;
@@ -81,7 +82,10 @@ public class CameraFollow : MonoBehaviour {
             if (PlayerObjects.Length == 2)
             {
                 //float dist = Vector3.Distance(transitionPoint, transitionPoint2) / 2f;
-                transitionPoint = GetPoint(transitionPoint, transitionPoint2);
+                if (TrackMapCorners)
+                {
+                    transitionPoint = GetPoint(transitionPoint, transitionPoint2);
+                }
 
                 //transitionPoint.y = Vector3.Distance(PlayerObjects[0].transform.position, PlayerObjects[1].transform.position)/2f;
             }
