@@ -19,9 +19,12 @@ public class MenuManager : MonoBehaviour {
     [SerializeField]
     private Image levelImage;
     private string levelName;
+    [SerializeField]
+    private Slider volume;
 
-	IEnumerator Start ()
+    IEnumerator Start ()
     {
+        volume.value = AudioListener.volume;
         FadeIn(uiElements[0]);
         yield return new WaitForSeconds(durationTime);
         FadeOut(uiElements[0]);

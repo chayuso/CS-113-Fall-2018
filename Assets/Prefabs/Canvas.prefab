@@ -3455,6 +3455,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1948144527009574}
   MenuButton: MenuButton
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  volume: {fileID: 114908480935988848}
 --- !u!114 &114404725016038150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5808,7 +5812,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.8873018, b: 0, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1

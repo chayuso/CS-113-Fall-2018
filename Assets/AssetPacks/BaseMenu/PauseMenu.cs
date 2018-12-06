@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour {
 
@@ -10,11 +11,14 @@ public class PauseMenu : MonoBehaviour {
     public string MenuButton = "MenuButton";
     private float trueDeltaTime;
     [SerializeField]
-    private List<PlayerMovement> players; 
+    private List<PlayerMovement> players;
+    [SerializeField]
+    private Slider volume;
 
     private void Start()
     {
         trueDeltaTime = Time.timeScale;
+        volume.value = AudioListener.volume;
     }
 
     void Update ()
@@ -44,5 +48,10 @@ public class PauseMenu : MonoBehaviour {
     public void reloadCurrentScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void setVolume(Slider newVolume)
+    {
+        AudioListener.volume = newVolume.value;
     }
 }

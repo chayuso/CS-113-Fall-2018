@@ -6072,16 +6072,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114389267777062554, guid: e9054b05578a9284a93d148b95866194,
-        type: 2}
-      propertyPath: players.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224590762150193678, guid: e9054b05578a9284a93d148b95866194,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 224590762150193678, guid: e9054b05578a9284a93d148b95866194,
         type: 2}
       propertyPath: m_LocalPosition.x
