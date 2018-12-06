@@ -11,16 +11,14 @@ public class MenuManager : MonoBehaviour {
     public List<CanvasGroup> uiElements;
 
     [SerializeField]
-    private List<GameObject> levelSelectButtons;
-    private int currentLevel = 0;
-
-    [SerializeField]
     private Text levelTitle;
     [SerializeField]
     private Image levelImage;
-    private string levelName;
+    private string levelName = "Angela_map";
     [SerializeField]
     private Slider volume;
+    [SerializeField]
+    private Image loading;
 
     IEnumerator Start ()
     {
@@ -79,21 +77,9 @@ public class MenuManager : MonoBehaviour {
 		Application.Quit();
 	}
 
-    public void scrollLevels(int direction)
-    {
-        levelSelectButtons[currentLevel].SetActive(false);
-        currentLevel += direction;
-
-        if (currentLevel < 0)
-            currentLevel = levelSelectButtons.Count - 1;
-        if (currentLevel == levelSelectButtons.Count)
-            currentLevel = 0;
-
-        levelSelectButtons[currentLevel].SetActive(true);
-    }
-
     public void loadScene()
     {
+        loading.gameObject.SetActive(true);
         SceneManager.LoadScene(levelName);
     }
 
