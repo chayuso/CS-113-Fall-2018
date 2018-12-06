@@ -8,12 +8,28 @@ public class PauseMenu : MonoBehaviour {
     [SerializeField]
     private GameObject pauseMenu;
     public string MenuButton = "MenuButton";
-	void Update ()
+    private float trueDeltaTime;
+    [SerializeField]
+    private List<PlayerMovement> players; 
+
+    private void Start()
     {
-        //Known Bug: Players can still move
-        if(Input.GetButtonDown(MenuButton))
+        trueDeltaTime = Time.timeScale;
+    }
+
+    void Update ()
+    {
+        if (Input.GetButtonDown(MenuButton))
+        {
+
+            Time.timeScale = !pauseMenu.activeInHierarchy ? 0 : trueDeltaTime;
+
+            foreach (PlayerMovement player in players)
+                player.enabled = pauseMenu.activeInHierarchy;
+
             pauseMenu.SetActive(!pauseMenu.activeInHierarchy);
-	}
+        }
+    }
 
     public void loadScene(string newScene)
     {
