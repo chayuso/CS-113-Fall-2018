@@ -345,21 +345,21 @@ public class PlayerMovement : MonoBehaviour {
     {
         //float moveHorizontal = Input.GetAxisRaw(inputHorizontal);
         //float moveVertical = Input.GetAxisRaw(inputVertical);
-        float moveHorizontal = 0;
-        float moveVertical = 0;
+        //float moveHorizontal = 0;
+        //float moveVertical = 0;
         Vector2 stickInput = new Vector2(Input.GetAxisRaw(inputHorizontal), Input.GetAxisRaw(inputVertical));
         if (stickInput.magnitude < deadzone)
             stickInput = Vector2.zero;
         else
             stickInput = stickInput.normalized * ((stickInput.magnitude - deadzone) / (1 - deadzone));
-        if (Input.GetAxisRaw(inputHorizontal) > deadzone || Input.GetAxisRaw(inputHorizontal) < -deadzone)
+        /*if (Input.GetAxisRaw(inputHorizontal) > deadzone || Input.GetAxisRaw(inputHorizontal) < -deadzone)
         {
             moveHorizontal = Input.GetAxisRaw(inputHorizontal);
         }
         if (Input.GetAxisRaw(inputVertical) > deadzone || Input.GetAxisRaw(inputVertical) < -deadzone)
         {
             moveVertical = Input.GetAxisRaw(inputVertical);
-        }
+        }*/
         Vector3 movement = new Vector3(stickInput.x, 0.0f, stickInput.y);
         //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         if (movement != new Vector3(0, 0, 0) && !Input.GetButton(IH.inputUseItem))
