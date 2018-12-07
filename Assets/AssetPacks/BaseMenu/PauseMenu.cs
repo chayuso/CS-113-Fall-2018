@@ -37,6 +37,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void loadScene(string newScene)
     {
+        Time.timeScale = trueDeltaTime;
         SceneManager.LoadScene(newScene);
     }
 
@@ -47,6 +48,7 @@ public class PauseMenu : MonoBehaviour {
 
     public void reloadCurrentScene()
     {
+        Time.timeScale = trueDeltaTime;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

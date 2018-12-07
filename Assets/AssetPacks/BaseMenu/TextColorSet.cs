@@ -6,7 +6,7 @@ public class TextColorSet : MonoBehaviour {
     public Text text;
     public Image image;
 
-	public void setYellowColor()
+    public void setYellowColor()
     {
         text.color = Color.yellow;
     }
@@ -26,5 +26,10 @@ public class TextColorSet : MonoBehaviour {
     {
         image.color = Color.white;
         image.CrossFadeAlpha(alpha, 0, true);
+    }
+
+    public void PlaySFX(string name)
+    {
+        AudioManager.manager.PlaySFX(name);
     }
 }

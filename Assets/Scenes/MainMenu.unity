@@ -245,12 +245,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4d7c77947d61e047a897e810704c452, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &120811269 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114543736015218790, guid: c4d7c77947d61e047a897e810704c452,
-    type: 2}
-  m_PrefabInternal: {fileID: 120811268}
-  m_Script: {fileID: 11500000, guid: 2e79ca1647a880f4fb8640f9b99c5958, type: 3}
 --- !u!1 &133763155
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +589,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 272137347}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -640,7 +634,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 272137347}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -1262,7 +1256,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 395916826}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -1307,7 +1301,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 395916826}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -1430,7 +1424,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 435203940}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -1475,7 +1469,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 435203940}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -2092,7 +2086,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 607558055}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -2137,7 +2131,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 607558055}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -2648,7 +2642,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 764953796}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -2693,7 +2687,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 764953796}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -3058,7 +3052,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 835292985}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -3103,7 +3097,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 835292985}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -3503,7 +3497,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 938025781}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -3548,7 +3542,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 938025781}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -3836,7 +3830,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 1059301015}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -3881,7 +3875,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 1059301015}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -3900,17 +3894,6 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0.8
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 1059301015}
-          m_MethodName: setSelected
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -4212,7 +4195,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 1153938002}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -4257,7 +4240,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 1153938002}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -6587,7 +6570,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 2003874760}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -6632,7 +6615,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 2003874760}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -6959,7 +6942,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 2075730352}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:
@@ -7004,7 +6987,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 120811269}
+        - m_Target: {fileID: 2075730352}
           m_MethodName: PlaySFX
           m_Mode: 5
           m_Arguments:

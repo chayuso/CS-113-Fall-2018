@@ -20,7 +20,7 @@ public class MenuManager : MonoBehaviour {
     [SerializeField]
     private Image loading;
 
-    IEnumerator Start ()
+    IEnumerator Intro ()
     {
         volume.value = AudioListener.volume;
         FadeIn(uiElements[0]);
@@ -30,6 +30,21 @@ public class MenuManager : MonoBehaviour {
         FadeIn(uiElements[1]);
         uiElements[1].interactable = true;
         uiElements[1].blocksRaycasts = true;
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine("Intro");
     }
 
     public void FadeIn(CanvasGroup uiElement)

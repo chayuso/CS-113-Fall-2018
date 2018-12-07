@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour {
     public static AudioManager manager = null;
@@ -30,8 +31,15 @@ public class AudioManager : MonoBehaviour {
         for (int i = 0; i < sounds.Count; ++i)
             soundsDict[sounds[i].name] = sounds[i].sources;
 	}
-	
-	public void Play(string name)
+
+    private void panic()
+    {
+        Debug.Log("Audio Manager::PlaySFX Something has gone wrong! SFX not present in dict");
+        for (int i = 0; i < sounds.Count; ++i)
+            soundsDict[sounds[i].name] = sounds[i].sources;
+    }
+
+    public void Play(string name)
     {
         int randomIndex = Random.Range(0, soundsDict[name].Count);
         soundsDict[name][randomIndex].Play();
@@ -46,6 +54,12 @@ public class AudioManager : MonoBehaviour {
 
     public void PlaySFX(string name)
     {
+        if (!soundsDict.ContainsKey(name))
+        {
+            panic();
+            return;
+        }
+
         int randomIndex = Random.Range(0, soundsDict[name].Count);
         float randomPitch = Random.Range(lowPitchRange, highPitchRange);
 
