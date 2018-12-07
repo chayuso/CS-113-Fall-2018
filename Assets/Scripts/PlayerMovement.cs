@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
     public string compassDirection = "N";
     public GameObject selectedTile;
     public List<GameObject> neighborTiles;
+    public List<GameObject> frontTiles;
     Rigidbody playerRigidbody;
     public float forceValue = 1111f;
     public int playerNumber = 1;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
     float MoveTime = 0;
 	float MoveSoundInterval = .35f;
     public bool enableSideTileSearch = false;
+    float deadzone = .25f;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -149,7 +152,8 @@ public class PlayerMovement : MonoBehaviour {
                 selectedTile.GetComponent<TileHighlight>().Dehighlight();
             }
         }
-        neighborTiles = getNearbyTileGameObjects();
+        neighborTiles = getNeighborTileGameObjects();
+        frontTiles = getFrontTileGameObjects();
         selectedTile = tempFrontTile;
         if (selectedTile)
         {
@@ -158,15 +162,44 @@ public class PlayerMovement : MonoBehaviour {
                 selectedTile = null;
                 if (enableSideTileSearch)
                 {
-                    foreach (GameObject g in neighborTiles)
+                    GameObject Tile = null;
+                    foreach (GameObject g in frontTiles)
                     {
                         if (g)
-                            if (g.tag == "HalfTile")
+                        {
+                            if (Tile == null && g.tag == "HalfTile")
                             {
-                                selectedTile = g;
-                                selectedTile.GetComponent<TileHighlight>().Highlight();
-                                return true;
+                                Tile = g;
                             }
+                            if (Tile != null && Tile.transform.childCount == 0 && g.transform.childCount != 0)
+                            {
+                                Tile = g;
+                            }
+                            if (Tile != null && g.tag == "HalfTile" && g.transform.childCount!=0)
+                            {
+                                if (g.GetComponent<ItemChest>())
+                                {
+                                    Tile = g;
+                                }
+                                else
+                                {
+                                    foreach (Transform t in g.transform)
+                                    {
+                                        if (t.tag == "CookingPot")
+                                        {
+                                            Tile = g;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }                           
+                    }
+                    if (Tile != null)
+                    {
+                        selectedTile = Tile;
+                        selectedTile.GetComponent<TileHighlight>().Highlight();
+                        return true;
                     }
                 }
                 return false;
@@ -176,26 +209,126 @@ public class PlayerMovement : MonoBehaviour {
         }
         if (enableSideTileSearch)
         {
-            foreach (GameObject g in neighborTiles)
+            GameObject Tile = null;
+            foreach (GameObject g in frontTiles)
             {
                 if (g)
-                    if (g.tag == "HalfTile")
+                {
+                    if (Tile == null && g.tag == "HalfTile")
                     {
-                        selectedTile = g;
-                        selectedTile.GetComponent<TileHighlight>().Highlight();
-                        return true;
+                        Tile = g;
                     }
+                    if (Tile != null && Tile.transform.childCount == 0 && g.transform.childCount != 0)
+                    {
+                        Tile = g;
+                    }
+                    if (Tile != null && g.tag == "HalfTile" && g.transform.childCount != 0)
+                    {
+                        if (g.GetComponent<ItemChest>())
+                        {
+                            Tile = g;
+                        }
+                        else
+                        {
+                            foreach (Transform t in g.transform)
+                            {
+                                if (t.tag == "CookingPot")
+                                {
+                                    Tile = g;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (Tile != null)
+            {
+                selectedTile = Tile;
+                selectedTile.GetComponent<TileHighlight>().Highlight();
+                return true;
             }
         }
         return false;
     }
-    List<GameObject> getNearbyTileGameObjects()
+
+    List<GameObject> getNeighborTileGameObjects()
     {
         List<GameObject> gList = new List<GameObject>();
         gList.Add(GameObject.Find(getTile("N")));
         gList.Add(GameObject.Find(getTile("E")));
         gList.Add(GameObject.Find(getTile("S")));
         gList.Add(GameObject.Find(getTile("W")));
+
+        return gList;
+    }
+    List<GameObject> getFrontTileGameObjects()
+    {
+        List<GameObject> gList = new List<GameObject>();
+        if (compassDirection == "N")
+        {
+            gList.Add(GameObject.Find(getTile("N")));
+            gList.Add(GameObject.Find(getTile("NW")));
+            gList.Add(GameObject.Find(getTile("NE")));
+            gList.Add(GameObject.Find(getTile("W")));
+            gList.Add(GameObject.Find(getTile("E")));
+        }
+        else if (compassDirection == "NE")
+        {
+            gList.Add(GameObject.Find(getTile("NE")));
+            gList.Add(GameObject.Find(getTile("N")));
+            gList.Add(GameObject.Find(getTile("E")));
+        }
+        else if (compassDirection == "E")
+        {
+
+            gList.Add(GameObject.Find(getTile("E")));
+            gList.Add(GameObject.Find(getTile("NE")));
+            gList.Add(GameObject.Find(getTile("SE")));
+            gList.Add(GameObject.Find(getTile("N")));
+            gList.Add(GameObject.Find(getTile("S")));
+        }
+        else if (compassDirection == "SE")
+        {
+            gList.Add(GameObject.Find(getTile("SE")));
+            gList.Add(GameObject.Find(getTile("E")));
+            gList.Add(GameObject.Find(getTile("S")));
+        }
+        else if (compassDirection == "S")
+        {
+            gList.Add(GameObject.Find(getTile("S")));
+            gList.Add(GameObject.Find(getTile("SE")));
+            gList.Add(GameObject.Find(getTile("SW")));
+            gList.Add(GameObject.Find(getTile("E")));
+            gList.Add(GameObject.Find(getTile("W")));
+        }
+        else if (compassDirection == "SW")
+        {
+            gList.Add(GameObject.Find(getTile("SW")));
+            gList.Add(GameObject.Find(getTile("S")));
+            gList.Add(GameObject.Find(getTile("W")));
+        }
+        else if (compassDirection == "W")
+        {
+            gList.Add(GameObject.Find(getTile("W")));
+            gList.Add(GameObject.Find(getTile("SW")));
+            gList.Add(GameObject.Find(getTile("NW")));
+            gList.Add(GameObject.Find(getTile("S")));
+            gList.Add(GameObject.Find(getTile("N")));
+        }
+        else if (compassDirection == "NW")
+        {
+            gList.Add(GameObject.Find(getTile("NW")));
+            gList.Add(GameObject.Find(getTile("W")));
+            gList.Add(GameObject.Find(getTile("N")));
+        }
+        else
+        {
+            gList.Add(GameObject.Find(getTile("N")));
+            gList.Add(GameObject.Find(getTile("E")));
+            gList.Add(GameObject.Find(getTile("S")));
+            gList.Add(GameObject.Find(getTile("W")));
+        }
         return gList;
     }
     string getTile(string Dir)
@@ -210,13 +343,32 @@ public class PlayerMovement : MonoBehaviour {
     }
     void Movement()
     {
-        float moveHorizontal = Input.GetAxisRaw(inputHorizontal);
-        float moveVertical = Input.GetAxisRaw(inputVertical);
-
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        //float moveHorizontal = Input.GetAxisRaw(inputHorizontal);
+        //float moveVertical = Input.GetAxisRaw(inputVertical);
+        float moveHorizontal = 0;
+        float moveVertical = 0;
+        Vector2 stickInput = new Vector2(Input.GetAxisRaw(inputHorizontal), Input.GetAxisRaw(inputVertical));
+        if (stickInput.magnitude < deadzone)
+            stickInput = Vector2.zero;
+        else
+            stickInput = stickInput.normalized * ((stickInput.magnitude - deadzone) / (1 - deadzone));
+        if (Input.GetAxisRaw(inputHorizontal) > deadzone || Input.GetAxisRaw(inputHorizontal) < -deadzone)
+        {
+            moveHorizontal = Input.GetAxisRaw(inputHorizontal);
+        }
+        if (Input.GetAxisRaw(inputVertical) > deadzone || Input.GetAxisRaw(inputVertical) < -deadzone)
+        {
+            moveVertical = Input.GetAxisRaw(inputVertical);
+        }
+        Vector3 movement = new Vector3(stickInput.x, 0.0f, stickInput.y);
+        //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         if (movement != new Vector3(0, 0, 0) && !Input.GetButton(IH.inputUseItem))
         {
-            transform.rotation = Quaternion.LookRotation(movement);
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, movement, .35f, 0.0f);
+
+            // Move our position a step closer to the target.
+            transform.rotation = Quaternion.LookRotation(newDir);
+            //transform.rotation = Quaternion.LookRotation(movement);
             isMoving = true;
         }
         else
