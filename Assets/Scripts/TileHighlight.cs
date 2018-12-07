@@ -16,7 +16,7 @@ public class TileHighlight : MonoBehaviour {
         }
         if (TileObject.GetComponent<Renderer>() && TileObject.GetComponent<Renderer>().material.HasProperty("_HColor"))
         {
-            regHighlightColor = Color.gray;
+            regHighlightColor = new Color(0.1981132f,0.1981132f,0.1981132f);//Color.gray;
             TileObject.GetComponent<Renderer>().material.SetColor("_HColor", regHighlightColor);
             //regHighlightColor = TileObject.GetComponent<Renderer>().material.GetColor("_HColor");
         }

@@ -32,7 +32,8 @@ public class PlayerMovement : MonoBehaviour {
     float MoveTime = 0;
 	float MoveSoundInterval = .35f;
     public bool enableSideTileSearch = false;
-    float deadzone = .25f;
+    public float deadzone = .25f;
+	public float stepValue =.35f;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -364,7 +365,7 @@ public class PlayerMovement : MonoBehaviour {
         //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         if (movement != new Vector3(0, 0, 0) && !Input.GetButton(IH.inputUseItem))
         {
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, movement, .35f, 0.0f);
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, movement, stepValue, 0.0f);
 
             // Move our position a step closer to the target.
             transform.rotation = Quaternion.LookRotation(newDir);
