@@ -21,10 +21,10 @@ public class ArcSwap : MonoBehaviour {
 
     public int ArcState = 0;
     public string ToggleButton = "Dash1";
-    ItemHandler IH;
+    //ItemHandler IH;
     // Use this for initialization
     void Start () {
-        IH = transform.parent.GetComponent<ItemHandler>();
+        //IH = transform.parent.GetComponent<ItemHandler>();
     }
 	
 	// Update is called once per frame

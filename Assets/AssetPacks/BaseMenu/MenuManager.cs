@@ -9,6 +9,8 @@ public class MenuManager : MonoBehaviour {
     public float transitionTime = 1f;
     public float durationTime = 1f;
     public List<CanvasGroup> uiElements;
+    public Text m_Text;
+    public Button m_Button;
 
     [SerializeField]
     private Text levelTitle;
@@ -20,6 +22,14 @@ public class MenuManager : MonoBehaviour {
     [SerializeField]
     private Image loading;
 
+
+    public void LoadButton()
+    {
+        //Start loading the Scene asynchronously and output the progress bar
+        StartCoroutine(loadScene());
+    }
+
+    
     IEnumerator Intro ()
     {
         volume.value = AudioListener.volume;
@@ -82,21 +92,63 @@ public class MenuManager : MonoBehaviour {
         }
     }
 
-	public void loadScene(string newScene)
+	/*public void loadScene(string newScene)
 	{
 		SceneManager.LoadScene(newScene);
-	}
+	}*/
+    IEnumerator loadScene()
+    {
+        loading.gameObject.SetActive(true);
+        if (levelName == "demo1")
+        {
+            loading.transform.Find("PlantsTutorial").gameObject.SetActive(true);
+        }
+        else if (levelName == "All potion presents map")
+        {
+            loading.transform.Find("PotionTutorial").gameObject.SetActive(true);
+        }
+        else
+        {
+            loading.transform.Find("GrowingTutorial").gameObject.SetActive(true);
+        }
+        yield return null;
 
-	public void quitGame()
+        //Begin to load the Scene you specify
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(levelName);
+        //Don't let the Scene activate until you allow it to
+        asyncOperation.allowSceneActivation = false;
+        //When the load is still in progress, output the Text and progress bar
+        m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";
+        while (!asyncOperation.isDone)
+        {
+            //Output the current progress
+            m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";
+            // Check if the load has finished
+            if (asyncOperation.progress >= 0.9f)
+            {
+                //Change the Text to show the Scene is ready
+                m_Text.text = "Continue";
+                loading.transform.Find("A").gameObject.SetActive(true);
+                //Wait to you press the space key to activate the Scene
+                if (Input.anyKey || Input.GetButtonDown("XBOX_A"))
+                    //Activate the Scene
+                    asyncOperation.allowSceneActivation = true;
+            }
+
+            yield return null;
+
+        }
+    }
+    public void quitGame()
 	{
 		Application.Quit();
 	}
 
-    public void loadScene()
+    /*public void loadScene()
     {
         loading.gameObject.SetActive(true);
         SceneManager.LoadScene(levelName);
-    }
+    }*/
 
     public void setLevelName(string newName)
     {
