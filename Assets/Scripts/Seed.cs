@@ -64,8 +64,9 @@ public class Seed : MonoBehaviour {
         GameObject Temp = SpawnItem(GrownPrefab);
         transform.tag = "Item";
         currentGrowTime = timeToGrow;
-        Temp.transform.localPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        Temp.transform.parent = null;
+        Temp.transform.parent = transform.parent;
+        Temp.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z);
+        //Temp.transform.parent = null;
         transform.name = GetComponent<ItemType>().itemName = GrownPrefab.GetComponent<ItemType>().itemName;
         GetComponent<ItemType>().isIngredient = GrownPrefab.GetComponent<ItemType>().isIngredient;
         Destroy(gameObject);
