@@ -29,14 +29,18 @@ public class ArcSwap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (IH.Item)
+        /*if (IH.Item)
         {
             if (IH.Item.GetComponent<ParabolaController>() && Input.GetButtonDown(ToggleButton))
             {
                 SwapState();
             }         
+        }*/
+        if (Input.GetButtonDown(ToggleButton))
+        {
+            SwapState();
         }
-	}
+    }
     public void SwapState()
     {
         if (ArcState >= 2)

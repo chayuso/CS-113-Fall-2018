@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour {
     bool isMoving = false;
     float MoveTime = 0;
 	float MoveSoundInterval = .35f;
+    public bool enableSideTileSearch = false;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -155,31 +156,37 @@ public class PlayerMovement : MonoBehaviour {
             if (selectedTile.tag != "HalfTile")
             {
                 selectedTile = null;
-                /*foreach (GameObject g in neighborTiles)
+                if (enableSideTileSearch)
                 {
-                    if (g)
-                        if (g.tag == "HalfTile")
+                    foreach (GameObject g in neighborTiles)
                     {
-                        selectedTile = g;
-                        selectedTile.GetComponent<TileHighlight>().Highlight();
-                        return true;
+                        if (g)
+                            if (g.tag == "HalfTile")
+                            {
+                                selectedTile = g;
+                                selectedTile.GetComponent<TileHighlight>().Highlight();
+                                return true;
+                            }
                     }
-                }*/
+                }
                 return false;
             }
             selectedTile.GetComponent<TileHighlight>().Highlight();
             return true;
         }
-        /*foreach (GameObject g in neighborTiles)
+        if (enableSideTileSearch)
         {
-            if(g)
-            if (g.tag == "HalfTile")
+            foreach (GameObject g in neighborTiles)
             {
-                selectedTile = g;
-                selectedTile.GetComponent<TileHighlight>().Highlight();
-                return true;
+                if (g)
+                    if (g.tag == "HalfTile")
+                    {
+                        selectedTile = g;
+                        selectedTile.GetComponent<TileHighlight>().Highlight();
+                        return true;
+                    }
             }
-        }*/
+        }
         return false;
     }
     List<GameObject> getNearbyTileGameObjects()
