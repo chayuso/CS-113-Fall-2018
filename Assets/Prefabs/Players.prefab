@@ -1267,6 +1267,9 @@ MonoBehaviour:
   Point3: {fileID: 1683773288301388}
   ArcState: 2
   ToggleButton: Dash1
+  IncreaseTrigger: Increase_Arc_1
+  DecreaseTrigger: Decrease_Arc_1
+  DecreaseButton: Decrease_Arc_Button_1
 --- !u!114 &114100924949674966
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1375,6 +1378,9 @@ MonoBehaviour:
   Point3: {fileID: 1720985188603136}
   ArcState: 2
   ToggleButton: Dash2
+  IncreaseTrigger: Increase_Arc_2
+  DecreaseTrigger: Decrease_Arc_2
+  DecreaseButton: Decrease_Arc_Button_2
 --- !u!114 &114550402453456632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1433,6 +1439,7 @@ MonoBehaviour:
   forceValue: 1111
   playerNumber: 1
   dashForce: 500
+  enableSideTileSearch: 0
 --- !u!114 &114735253100688058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1499,6 +1506,7 @@ MonoBehaviour:
   forceValue: 1111
   playerNumber: 2
   dashForce: 500
+  enableSideTileSearch: 0
 --- !u!120 &120074767771715904
 LineRenderer:
   m_ObjectHideFlags: 1
