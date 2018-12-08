@@ -32,8 +32,8 @@ public class PlayerMovement : MonoBehaviour {
     float MoveTime = 0;
 	float MoveSoundInterval = .35f;
     public bool enableSideTileSearch = false;
-    public float deadzone = .25f;
-	public float stepValue =.35f;
+    float deadzone = .25f;
+	float stepValue =.5f;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
