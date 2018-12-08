@@ -22,11 +22,13 @@ public class GameState : MonoBehaviour {
     public GameObject SoundManager;
     public AudioManager SM;
     public GameObject ExplosionParticle;
+    public GameObject CreationParticle;
     Slider VolumeSlider;
 	public int playerLivesInt = 3;
     int OrderLength = 1;
     Color colorPlayer1 = new Color(0, 0.3061082f, 1f);
     Color colorPlayer2 = new Color(0.9622642f, 0f, 0f);
+
     // Use this for initialization
     private void Awake()
     {
