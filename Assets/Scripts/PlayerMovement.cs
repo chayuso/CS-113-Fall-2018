@@ -172,7 +172,7 @@ public class PlayerMovement : MonoBehaviour {
                             {
                                 Tile = g;
                             }
-                            if (Tile != null && Tile.transform.childCount == 0 && g.transform.childCount != 0)
+                            if (Tile != null && Tile.transform.childCount == 0 && g.transform.childCount != 0 && g.tag == "HalfTile")
                             {
                                 Tile = g;
                             }
@@ -219,7 +219,7 @@ public class PlayerMovement : MonoBehaviour {
                     {
                         Tile = g;
                     }
-                    if (Tile != null && Tile.transform.childCount == 0 && g.transform.childCount != 0)
+                    if (Tile != null && Tile.transform.childCount == 0 && g.transform.childCount != 0 && g.tag == "HalfTile")
                     {
                         Tile = g;
                     }
