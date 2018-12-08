@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour {
     bool isMoving = false;
     float MoveTime = 0;
 	float MoveSoundInterval = .35f;
-    public bool enableSideTileSearch = false;
+    bool enableSideTileSearch = true;
     float deadzone = .25f;
 	float stepValue =.5f;
     // Use this for initialization
