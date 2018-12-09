@@ -105,7 +105,7 @@ public class MenuManager : MonoBehaviour {
         {
             loading.transform.Find("PlantsTutorial").gameObject.SetActive(true);
         }
-        else if (levelName == "All potion presents map")
+        else if (levelName == "v2 Present Map")
         {
             loading.transform.Find("PotionTutorial").gameObject.SetActive(true);
         }
