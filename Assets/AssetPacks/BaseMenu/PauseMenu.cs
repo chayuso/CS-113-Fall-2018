@@ -19,6 +19,12 @@ public class PauseMenu : MonoBehaviour {
     {
         trueDeltaTime = Time.timeScale;
         volume.value = AudioListener.volume;
+        players.Clear();
+        PlayerMovement[] playerArray = FindObjectsOfType<PlayerMovement>();
+        for (int i = 0; i < playerArray.Length; i++)
+        {
+            players.Add(playerArray[i]);
+        }
     }
 
     void Update ()

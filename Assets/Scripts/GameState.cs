@@ -135,7 +135,7 @@ public class GameState : MonoBehaviour {
         for (int i = 0; i < FindObjectsOfType<PlayerMovement>().Length; i++)
         {
             playerScores.Add(0);
-            playerLives.Add(playerLivesInt);
+            playerLives.Add(SM.GetComponent<StockAmount>().stock);
         }
         if (OrderMenu)
         {
