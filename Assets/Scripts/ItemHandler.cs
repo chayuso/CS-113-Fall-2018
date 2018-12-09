@@ -14,6 +14,7 @@ public class ItemHandler : MonoBehaviour {
     public List<List<string>> RecipeList;
     public float rotateSpeed;
     float timeToBrew = 7.5f;
+    GameObject ButtonXSprite;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -23,7 +24,14 @@ public class ItemHandler : MonoBehaviour {
             DropPosition = transform;
         }
         RecipeList = MakeRecipieList();
-	}
+        if (gameObject.transform.Find("player"))
+        {
+            if (gameObject.transform.Find("player").Find("ButtonX"))
+            {
+                ButtonXSprite = gameObject.transform.Find("player").Find("ButtonX").gameObject;
+            }
+        }
+    }
     IEnumerator ThrowingSequenceTimer(GameObject Potion)
     {
         Potion.GetComponent<Rigidbody>().freezeRotation = false;
@@ -83,7 +91,12 @@ public class ItemHandler : MonoBehaviour {
                     if (gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>())
                     {
                         gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>().enabled = true;
+
                     }
+                }
+                if (ButtonXSprite)
+                {
+                    ButtonXSprite.GetComponent<SpriteRenderer>().enabled = true;
                 }
             }
             else
@@ -94,6 +107,10 @@ public class ItemHandler : MonoBehaviour {
                     {
                         gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>().enabled = false;
                     }
+                }
+                if (ButtonXSprite)
+                {
+                    ButtonXSprite.GetComponent<SpriteRenderer>().enabled = false;
                 }
             }
 
@@ -106,6 +123,10 @@ public class ItemHandler : MonoBehaviour {
                 {
                     gameObject.transform.Find("ThrowArch").GetComponent<LineRenderer>().enabled = false;
                 }
+            }
+            if (ButtonXSprite)
+            {
+                ButtonXSprite.GetComponent<SpriteRenderer>().enabled = false;
             }
         }
         if (Input.GetButton(inputUseItem))

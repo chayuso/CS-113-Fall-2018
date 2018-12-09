@@ -19,11 +19,11 @@ public class ArcSwap : MonoBehaviour {
     Vector3 Point2State3 = new Vector3(0, 2, 2.5f);
     Vector3 Point2State4 = new Vector3(0, 2, 3);
 
-    Vector3 Point3State0 = new Vector3(0, 0.5f, 2);
-    Vector3 Point3State1 = new Vector3(0, 0.5f, 3);
-    Vector3 Point3State2 = new Vector3(0, 0.5f, 4);
-    Vector3 Point3State3 = new Vector3(0, 0.5f, 5);
-    Vector3 Point3State4 = new Vector3(0, 0.5f, 6);
+    Vector3 Point3State0 = new Vector3(0, 0, 2);
+    Vector3 Point3State1 = new Vector3(0, 0, 3);
+    Vector3 Point3State2 = new Vector3(0, 0, 4);
+    Vector3 Point3State3 = new Vector3(0, 0, 5);
+    Vector3 Point3State4 = new Vector3(0, 0, 6);
 
     public int ArcState = 0;
     public string ToggleButton = "Dash1";
@@ -33,6 +33,7 @@ public class ArcSwap : MonoBehaviour {
     private bool Right_isAxisInUse = false;
     private bool Left_isAxisInUse = false;
     ItemHandler IH;
+    int iterateValue = 1;
     // Use this for initialization
     void Start () {
         IH = transform.parent.GetComponent<ItemHandler>();
@@ -109,6 +110,15 @@ public class ArcSwap : MonoBehaviour {
         {
             ArcState++;
         }
+        /*if (ArcState >= 4)
+        {
+            iterateValue = -1;
+        }
+        else if (ArcState <= 0)
+        {
+            iterateValue = 1;
+        }
+        ArcState += iterateValue;*/
         UpdateArcState();
     }
     public void UpdateArcState()
