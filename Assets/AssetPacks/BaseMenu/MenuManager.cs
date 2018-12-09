@@ -22,7 +22,9 @@ public class MenuManager : MonoBehaviour {
     [SerializeField]
     private Image loading;
 
-
+    float holdTime = 0.35f;
+    float holdValue = 0;
+    bool isloading = false;
     public void LoadButton()
     {
         //Start loading the Scene asynchronously and output the progress bar
@@ -112,32 +114,55 @@ public class MenuManager : MonoBehaviour {
             loading.transform.Find("GrowingTutorial").gameObject.SetActive(true);
         }
         yield return null;
-
-        //Begin to load the Scene you specify
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(levelName);
-        //Don't let the Scene activate until you allow it to
-        asyncOperation.allowSceneActivation = false;
-        //When the load is still in progress, output the Text and progress bar
-        m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";
-        while (!asyncOperation.isDone)
+        if (isloading)
         {
-            //Output the current progress
-            m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";
-            // Check if the load has finished
-            if (asyncOperation.progress >= 0.9f)
-            {
-                //Change the Text to show the Scene is ready
-                m_Text.text = "Continue";
-                loading.transform.Find("A").gameObject.SetActive(true);
-                //Wait to you press the space key to activate the Scene
-                if (Input.anyKey || Input.GetButtonDown("XBOX_A"))
-                    //Activate the Scene
-                    asyncOperation.allowSceneActivation = true;
-            }
-
             yield return null;
-
         }
+        else
+        {
+            //Begin to load the Scene you specify
+            isloading = true;
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(levelName);
+
+            //Don't let the Scene activate until you allow it to
+            asyncOperation.allowSceneActivation = false;
+            //When the load is still in progress, output the Text and progress bar
+            m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";
+            while (!asyncOperation.isDone)
+            {
+                //Output the current progress
+                m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";
+                // Check if the load has finished
+                if (asyncOperation.progress >= 0.9f)
+                {
+                    //Change the Text to show the Scene is ready
+                    m_Text.text = "Continue";
+                    loading.transform.Find("A").gameObject.transform.localScale = new Vector3(1, 1, 1);
+                    loading.transform.Find("A").gameObject.SetActive(true);
+                    //Wait to you press the space key to activate the Scene
+                    if (Input.anyKey || Input.GetButton("XBOX_A"))
+                    {
+                        //Activate the Scene
+                        holdValue += Time.deltaTime;
+                        GameObject AButtonUI = loading.transform.Find("A").gameObject;
+                        AButtonUI.transform.localScale = new Vector3(1-(holdValue / holdTime), 1 - (holdValue / holdTime), 1 - (holdValue / holdTime));
+                        if (holdValue >= holdTime)
+                        {
+                            asyncOperation.allowSceneActivation = true;
+                        }
+                    }
+                    else
+                    {
+                        loading.transform.Find("A").gameObject.transform.localScale = new Vector3(1, 1, 1);
+                        holdValue = 0;
+                    }
+                }
+
+                yield return null;
+
+            }
+        }
+        
     }
     public void quitGame()
 	{

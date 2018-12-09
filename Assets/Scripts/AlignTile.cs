@@ -21,6 +21,7 @@ public class AlignTile : MonoBehaviour {
     public GameObject[] LeveledNeighborTiles = new GameObject[9];
     public GameObject[] LowerNeighborTiles = new GameObject[9];
     GameState GS;
+    public string originName;
     /*  Array Structure
      *  
      * [NW, N,  NE,
@@ -57,7 +58,6 @@ public class AlignTile : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        
     }
     public string DynamicTilePosition(float xAdd = 0, float yAdd = 0, float zAdd = 0)
     {
@@ -81,6 +81,7 @@ public class AlignTile : MonoBehaviour {
         transform.position = new Vector3(Xposition+addX, Zposition+addZ, Yposition+addY);
 
         transform.name = tileX.ToString() + "x" + tileY.ToString() + "x" + tileZ.ToString();
+        originName = transform.name;
 
     }
     void CancelPosition()
@@ -236,7 +237,7 @@ public class AlignTile : MonoBehaviour {
         g.transform.name += "(Respawning)";
         RecursiveFindMesh(g, false);
         yield return new WaitForSeconds(respawnTime);
-        g.transform.name = oldName;
+        g.transform.name = g.GetComponent<AlignTile>().originName;
         RecursiveFindMesh(g, true);
         GameObject.Find("GameState").GetComponent<GameState>().BlockedTiles.Add(g.name);
     }

@@ -31,9 +31,9 @@ public class PlayerMovement : MonoBehaviour {
     bool isMoving = false;
     float MoveTime = 0;
 	float MoveSoundInterval = .35f;
-    public bool enableSideTileSearch = false;
-    public float deadzone = .25f;
-	public float stepValue =.35f;
+    bool enableSideTileSearch = true;
+    float deadzone = .25f;
+	float stepValue =.5f;
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -172,7 +172,7 @@ public class PlayerMovement : MonoBehaviour {
                             {
                                 Tile = g;
                             }
-                            if (Tile != null && Tile.transform.childCount == 0 && g.transform.childCount != 0)
+                            if (Tile != null && Tile.transform.childCount == 0 && g.transform.childCount != 0 && g.tag == "HalfTile")
                             {
                                 Tile = g;
                             }
@@ -219,7 +219,7 @@ public class PlayerMovement : MonoBehaviour {
                     {
                         Tile = g;
                     }
-                    if (Tile != null && Tile.transform.childCount == 0 && g.transform.childCount != 0)
+                    if (Tile != null && Tile.transform.childCount == 0 && g.transform.childCount != 0 && g.tag == "HalfTile")
                     {
                         Tile = g;
                     }

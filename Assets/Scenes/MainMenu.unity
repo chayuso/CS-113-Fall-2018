@@ -195,7 +195,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Angela Level
+  m_Text: Symmetry
 --- !u!222 &14450392
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2220,7 +2220,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Angela Level
+          m_StringArgument: Symmetry
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1464255941}
@@ -2267,8 +2267,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 539f8d3d4a21ac94cb50977ce8c112f7, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: c5a6270c9589cd340a298be387680df4, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2783,7 +2783,7 @@ MonoBehaviour:
         m_MethodName: setLevelImage
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 714e5670fb68bc94190f1dcb16bb67dc,
+          m_ObjectArgument: {fileID: 21300000, guid: 455b1b17e879c884981102ba3d79d747,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
@@ -2823,8 +2823,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 539f8d3d4a21ac94cb50977ce8c112f7, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 455b1b17e879c884981102ba3d79d747, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3443,7 +3443,7 @@ GameObject:
   - component: {fileID: 938025782}
   - component: {fileID: 938025781}
   m_Layer: 0
-  m_Name: All potion presents map
+  m_Name: v2 Present Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3631,14 +3631,14 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: All potion presents map
+          m_StringArgument: Potion Mayhem
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1464255941}
         m_MethodName: setLevelImage
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 714e5670fb68bc94190f1dcb16bb67dc,
+          m_ObjectArgument: {fileID: 21300000, guid: 75bce1e4c2e0dba4798011127ed096a7,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
@@ -3654,7 +3654,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: All potion presents map
+          m_StringArgument: v2 Present Map
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3678,8 +3678,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 539f8d3d4a21ac94cb50977ce8c112f7, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 75bce1e4c2e0dba4798011127ed096a7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4405,7 +4405,7 @@ MonoBehaviour:
         m_MethodName: setLevelImage
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 714e5670fb68bc94190f1dcb16bb67dc,
+          m_ObjectArgument: {fileID: 21300000, guid: 72806bfc8a7219a4a985df9ece29b709,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
@@ -4445,8 +4445,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 539f8d3d4a21ac94cb50977ce8c112f7, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 72806bfc8a7219a4a985df9ece29b709, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5681,9 +5681,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Presents Map
-
-'
+  m_Text: Mayhem
 --- !u!222 &1512011751
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5758,7 +5756,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Angela_Map
+  m_Text: Symmetry
 --- !u!222 &1513675117
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7365,7 +7363,7 @@ MonoBehaviour:
         m_MethodName: setLevelImage
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 21300000, guid: 714e5670fb68bc94190f1dcb16bb67dc,
+          m_ObjectArgument: {fileID: 21300000, guid: 0011f9864cde0db46b6bc74a9f47def4,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
@@ -7405,8 +7403,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 539f8d3d4a21ac94cb50977ce8c112f7, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 0011f9864cde0db46b6bc74a9f47def4, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

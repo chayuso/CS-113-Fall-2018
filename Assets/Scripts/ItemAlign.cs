@@ -106,13 +106,11 @@ public class ItemAlign : MonoBehaviour {
         if (transitionPoint == Point1 && Vector3.Distance(transform.position, transitionPoint) <= .1f)
         {
             transitionPoint = Point2;
-            print("Back");
             //journeyLength = Vector3.Distance(transform.position, transitionPoint);
         }
         else if (transitionPoint == Point2 && Vector3.Distance(transform.position, transitionPoint) <= .1f)
         {
             isBoomeranging =false;
-            print("Finish");
             GetComponent<Rigidbody>().useGravity = true;
             GetComponent<SphereCollider>().enabled = true;
             return;
