@@ -305,7 +305,7 @@ public class BrewingPot : MonoBehaviour {
         Potion2.GetComponent<Rigidbody>().AddForce(Vector3.up * 1f);
         Potion3.GetComponent<Rigidbody>().AddForce(-Vector3.up * 1f);
         GameObject Explosion = GS.SpawnItem(GS.CreationParticle);
-        Explosion.transform.position = transform.position;
+        Explosion.transform.position = new Vector3(transform.position.x, transform.position.y+1, transform.position.z);
     }
     GameObject SpawnItem(GameObject Prefab)
     {
