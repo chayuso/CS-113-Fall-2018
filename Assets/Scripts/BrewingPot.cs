@@ -350,6 +350,12 @@ public class BrewingPot : MonoBehaviour {
         Background.GetComponent<Image>().color = colorRed;
         yield return new WaitForSeconds(.25f);
         Background.GetComponent<Image>().color = colorWhite;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorRed;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorWhite;
+
+
 
     }
     void PotionSpawn(GameObject PotionType)
