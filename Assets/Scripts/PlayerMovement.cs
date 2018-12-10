@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour {
     bool enableSideTileSearch = true;
     float deadzone = .25f;
 	float stepValue =.5f;
+    Vector3 MovementVector = new Vector3(0, 0, 0);
     // Use this for initialization
     void Start () {
         GS = GameObject.Find("GameState").GetComponent<GameState>();
@@ -123,18 +124,19 @@ public class PlayerMovement : MonoBehaviour {
             int moved = 0;
             if ((Input.GetAxisRaw(inputVertical) >= 0f && neighborTiles[0]) || (Input.GetAxisRaw(inputVertical) <= 0f && neighborTiles[2]))
             {
-                moveVertical = Input.GetAxisRaw(inputVertical);
+                moveVertical = MovementVector.z;//Input.GetAxisRaw(inputVertical);
                 moved++;
             }
             if ((Input.GetAxisRaw(inputHorizontal) >= 0f && neighborTiles[1]) || (Input.GetAxisRaw(inputHorizontal) <= 0f && neighborTiles[3]))
             {
-                moveHorizontal = Input.GetAxisRaw(inputHorizontal);
+                moveHorizontal = MovementVector.x;//Input.GetAxisRaw(inputHorizontal);
                 moved++;
             }
             if (moved == 2)
             {
                 isMoving = false;
             }
+
             Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
             transform.Translate(-movement * movementSpeed * Time.deltaTime, Space.World);
             //rigidbody.AddForce(movement * movementSpeed * Time.deltaTime, ForceMode.Impulse);
@@ -377,7 +379,7 @@ public class PlayerMovement : MonoBehaviour {
             isMoving = false;
         }
 
-
+        MovementVector = movement;
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
         if (Input.GetButtonDown(inputDash))
         {      
