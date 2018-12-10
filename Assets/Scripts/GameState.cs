@@ -23,6 +23,7 @@ public class GameState : MonoBehaviour {
     public AudioManager SM;
     public GameObject ExplosionParticle;
     public GameObject CreationParticle;
+    public GameObject InvalidCreationParticle;
     Slider VolumeSlider;
 	public int playerLivesInt = 3;
     int OrderLength = 1;

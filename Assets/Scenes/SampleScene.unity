@@ -6196,6 +6196,25 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1087692687226344, guid: e9054b05578a9284a93d148b95866194, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114239192576972942, guid: e9054b05578a9284a93d148b95866194,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114239192576972942, guid: e9054b05578a9284a93d148b95866194,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114239192576972942, guid: e9054b05578a9284a93d148b95866194,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9054b05578a9284a93d148b95866194, type: 2}
   m_IsPrefabAsset: 0
@@ -33564,11 +33583,6 @@ Prefab:
     - target: {fileID: 4471999537596404, guid: d53c3fe2bd46fa94a9c827997b8db8fb, type: 2}
       propertyPath: m_RootOrder
       value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 114262069281280654, guid: d53c3fe2bd46fa94a9c827997b8db8fb,
-        type: 2}
-      propertyPath: playerLivesInt
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d53c3fe2bd46fa94a9c827997b8db8fb, type: 2}

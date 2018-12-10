@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class BrewingPot : MonoBehaviour {
@@ -172,6 +173,10 @@ public class BrewingPot : MonoBehaviour {
                             PotionSpawn(GS.RedPotion);
                             break;
                         }
+                        else
+                        {
+                            InvalidPotionSpawn();
+                        }
                     }
                     return true;
                 }
@@ -193,6 +198,10 @@ public class BrewingPot : MonoBehaviour {
                             PotionSpawn(GS.BluePotion);
                             break;
                         }
+                        else
+                        {
+                            InvalidPotionSpawn();
+                        }
                     }
                     return true;
                 }
@@ -213,6 +222,10 @@ public class BrewingPot : MonoBehaviour {
                             //GS.RemoveOrder(i);
                             PotionSpawn(GS.GreenPotion);
                             break;
+                        }
+                        else
+                        {
+                            InvalidPotionSpawn();
                         }
                     }
                     return true;
@@ -236,6 +249,10 @@ public class BrewingPot : MonoBehaviour {
                             PotionSpawn(GS.PurplePotion);
                             break;
                         }
+                        else
+                        {
+                            InvalidPotionSpawn();
+                        }
                     }
                     return true;
                 }
@@ -256,6 +273,10 @@ public class BrewingPot : MonoBehaviour {
                             //GS.RemoveOrder(i);
                             PotionSpawn(GS.CyanPotion);
                             break;
+                        }
+                        else
+                        {
+                            InvalidPotionSpawn();
                         }
                     }
                     return true;
@@ -278,6 +299,10 @@ public class BrewingPot : MonoBehaviour {
                             PotionSpawn(GS.YellowPotion);
                             break;
                         }
+                        else
+                        {
+                            InvalidPotionSpawn();
+                        }
                     }
                     return true;
                 }
@@ -292,6 +317,40 @@ public class BrewingPot : MonoBehaviour {
             }
         }
         return false;
+    }
+    void InvalidPotionSpawn()
+    {
+        GameObject Explosion = GS.SpawnItem(GS.InvalidCreationParticle);
+        Explosion.transform.position = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        GS.SM.PlaySFX("Pop", transform.position);
+        StartCoroutine(FlashMenu());
+    }
+    IEnumerator FlashMenu()
+    {
+        GameObject Background = GS.OrderMenu.transform.Find("MenuBackground").Find("BackDrop").gameObject;
+        Color colorRed = new Color(1, 0, 0, 0.2431373f);
+        Color colorWhite = new Color(1, 1, 1, 0.2431373f);
+
+        Background.GetComponent<Image>().color = colorRed;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorWhite;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorRed;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorWhite;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorRed;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorWhite;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorRed;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorWhite;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorRed;
+        yield return new WaitForSeconds(.25f);
+        Background.GetComponent<Image>().color = colorWhite;
+
     }
     void PotionSpawn(GameObject PotionType)
     {

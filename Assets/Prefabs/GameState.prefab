@@ -76,4 +76,6 @@ MonoBehaviour:
     type: 2}
   CreationParticle: {fileID: 1247311384876784, guid: 4adffb0018aeda44e9263f901167af1f,
     type: 2}
+  InvalidCreationParticle: {fileID: 1965343156803978, guid: aa8d6482d70a23445b4b2a928ed1b845,
+    type: 2}
   playerLivesInt: 3
