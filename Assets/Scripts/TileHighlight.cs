@@ -33,6 +33,16 @@ public class TileHighlight : MonoBehaviour {
             if (TileObject.GetComponent<Renderer>().material.HasProperty("_HColor"))
             {
                 TileObject.GetComponent<Renderer>().material.SetColor("_HColor", newHighlightColor);
+                if (transform.childCount != 0)
+                {
+                    foreach (Transform tChild in transform)
+                    {
+                        if (tChild.GetComponent<ItemAlign>())
+                        {
+                            tChild.GetComponent<ItemAlign>().Highlight(newHighlightColor);
+                        }
+                    }
+                }
                 return;
             }
 
@@ -46,6 +56,16 @@ public class TileHighlight : MonoBehaviour {
             if (TileObject.GetComponent<Renderer>().material.HasProperty("_HColor"))
             {
                 TileObject.GetComponent<Renderer>().material.SetColor("_HColor", regHighlightColor);
+                if (transform.childCount != 0)
+                {
+                    foreach (Transform tChild in transform)
+                    {
+                        if (tChild.GetComponent<ItemAlign>())
+                        {
+                            tChild.GetComponent<ItemAlign>().Dehighlight();
+                        }
+                    }
+                }
                 return;
             }
 
