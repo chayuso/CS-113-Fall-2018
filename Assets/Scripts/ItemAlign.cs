@@ -419,9 +419,10 @@ public class ItemAlign : MonoBehaviour {
     GameObject RecursiveFindTopTile(GameObject CurrentTile)
     {
         string TileNameSearch = CurrentTile.name.Split('x')[0]+"x"+ CurrentTile.name.Split('x')[1] + "x"+ (int.Parse(CurrentTile.name.Split('x')[2])+1).ToString();
-        if (GS.BlockedTiles.Contains(TileNameSearch))
+        GameObject TopTile = GameObject.Find(TileNameSearch);
+        if (TopTile)
         {
-            return RecursiveFindTopTile(GameObject.Find(TileNameSearch));
+            return RecursiveFindTopTile(TopTile);
         }
         else
         {
