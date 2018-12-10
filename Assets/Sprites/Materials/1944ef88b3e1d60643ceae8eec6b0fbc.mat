@@ -39,7 +39,7 @@ Material:
     - _RimMin: 0.5
     - _SketchHalftoneMax: 1
     - _SketchHalftoneMin: 0.2
-    - _Smoothness: 0.2
+    - _Smoothness: 100
     - _SpecSmooth: 0.05
     - _TexLod: 5
     - _ZSmooth: -0.5
