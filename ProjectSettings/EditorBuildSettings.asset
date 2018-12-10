@@ -20,16 +20,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/demo1.unity
     guid: 9f84b828df6d1934082f97fb3059a5fa
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/map2_matt.unity
     guid: 53e2914d5e6359347b2978ddf2e91a0f
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 5c7f29f2bad61534f8857f55d0dc2ba7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/All potion presents map.unity
     guid: 1ab02c9757befc2428ac6e52d15ce0c4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/My Gift To You.unity
     guid: 621af650f88c02e4f8e628fcfa19ccfa
   - enabled: 1
