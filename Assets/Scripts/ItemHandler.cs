@@ -32,6 +32,13 @@ public class ItemHandler : MonoBehaviour {
             }
         }
     }
+    Vector3 PotionFlow()
+    {
+        Vector3 PotionDir = new Vector3(0, 0, 0);
+        ArcSwap AS = transform.Find("ThrowArch").GetComponent<ArcSwap>();
+        PotionDir = AS.transform.Find("Point3").transform.position - AS.transform.Find("Point2").transform.position;
+        return PotionDir;
+    }
     IEnumerator ThrowingSequenceTimer(GameObject Potion)
     {
         Potion.GetComponent<Rigidbody>().freezeRotation = false;
@@ -52,6 +59,8 @@ public class ItemHandler : MonoBehaviour {
             GroundCheck.GetComponent<GroundItemDetect>().OtherItems.Remove(Item);
         }
         GS.SM.PlaySFX("Throw");
+        Vector3 PotionDir = PotionFlow();
+
         yield return new WaitForSeconds(0.1f);
         Potion.GetComponent<ItemAlign>().inAir = true;
         Potion.GetComponent<SphereCollider>().enabled = true;
@@ -59,6 +68,7 @@ public class ItemHandler : MonoBehaviour {
         yield return new WaitForSeconds(0.4f);
         if (Potion)
         {
+            Potion.GetComponent<Rigidbody>().AddForce(PotionDir * 500f);     
             Potion.GetComponent<ItemAlign>().isThrown = true;
             //Potion.GetComponent<SphereCollider>().isTrigger = false;
             Potion.GetComponent<Rigidbody>().useGravity = true;
