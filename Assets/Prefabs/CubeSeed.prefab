@@ -87,7 +87,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649937248749532}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54062092972650094
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -115,6 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: RedSeed
+  isIngredient: 0
+  swordForceValue: 25000
 --- !u!114 &114394638621687336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -152,10 +154,22 @@ MonoBehaviour:
   addX: 0
   addY: 0
   addZ: 1
+  TileName: 
   disableTileUpdate: 0
   CanPickup: 1
   SelectMat: {fileID: 2100000, guid: d99e966b020c3e246b48b7e0855f9cc6, type: 2}
   initScale: {x: 0, y: 0, z: 0}
+  initRotation: {x: 0, y: 0, z: 0}
+  OnTile: {fileID: 0}
+  dynamName: 
+  isThrown: 0
+  inAir: 0
+  neighborTiles: []
+  isBoomeranging: 0
+  speedBoomerang: 25
+  journeyLength: 1
+  Point1: {x: 0, y: 0, z: 0}
+  Point2: {x: 0, y: 0, z: 0}
 --- !u!135 &135109621860716780
 SphereCollider:
   m_ObjectHideFlags: 1
