@@ -1011,7 +1011,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: David_Level
+  m_Text: Frosty Frenzy
 --- !u!222 &350804392
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1793,7 +1793,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: demo1
+  m_Text: Flower Power
 --- !u!222 &471328424
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2504,7 +2504,7 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 682199374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
@@ -2801,7 +2801,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: demo1
+          m_StringArgument: Flower Power
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1464255941}
@@ -3432,7 +3432,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Adventurous Brewers
+  m_Text: Potion Toss Mania
 --- !u!222 &915836566
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4423,7 +4423,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Sample Level
+          m_StringArgument: Castle Clash
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1464255941}
@@ -6811,7 +6811,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SampleScene
+  m_Text: Castle Clash
 --- !u!222 &1992382842
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7381,7 +7381,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: David Level
+          m_StringArgument: Frosty Frenzy
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1464255941}
