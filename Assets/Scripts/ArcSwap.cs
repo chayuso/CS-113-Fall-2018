@@ -33,7 +33,6 @@ public class ArcSwap : MonoBehaviour {
     private bool Right_isAxisInUse = false;
     private bool Left_isAxisInUse = false;
     ItemHandler IH;
-    int iterateValue = 1;
     // Use this for initialization
     void Start () {
         IH = transform.parent.GetComponent<ItemHandler>();
@@ -110,15 +109,6 @@ public class ArcSwap : MonoBehaviour {
         {
             ArcState++;
         }
-        /*if (ArcState >= 4)
-        {
-            iterateValue = -1;
-        }
-        else if (ArcState <= 0)
-        {
-            iterateValue = 1;
-        }
-        ArcState += iterateValue;*/
         UpdateArcState();
     }
     public void UpdateArcState()

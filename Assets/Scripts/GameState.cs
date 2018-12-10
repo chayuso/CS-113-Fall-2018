@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameState : MonoBehaviour {
     public List<string> BlockedTiles;
@@ -29,7 +30,8 @@ public class GameState : MonoBehaviour {
     int OrderLength = 1;
     Color colorPlayer1 = new Color(0, 0.3061082f, 1f);
     Color colorPlayer2 = new Color(0.9622642f, 0f, 0f);
-
+    public bool isGameOver = false;
+    //public static EventSystems.EventSystem current;
     // Use this for initialization
     private void Awake()
     {
@@ -212,6 +214,7 @@ public class GameState : MonoBehaviour {
         }
         if (players - deadplayers == 1)
         {
+            isGameOver = true;
             WinMenu.SetActive(true);
             WinMenu.transform.Find("Title").gameObject.GetComponent<Text>().text = "Player " + winner.ToString() + " Wins!";
             if (winner == 1)
@@ -222,7 +225,13 @@ public class GameState : MonoBehaviour {
             {
                 WinMenu.transform.Find("Title").GetComponent<Text>().color = colorPlayer2;
             }
-        }
+            GameObject MenuButton = WinMenu.transform.Find("Buttons").Find("Menu").gameObject;
+            if (MenuButton)
+            {
+                EventSystem.current.SetSelectedGameObject(MenuButton);
+            }
+
+}
     }
     public void setVolume()
     {

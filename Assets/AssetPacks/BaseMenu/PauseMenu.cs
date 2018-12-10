@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour {
     private List<PlayerMovement> players;
     [SerializeField]
     private Slider volume;
+    GameState GS;
 
     private void Start()
     {
@@ -25,11 +26,12 @@ public class PauseMenu : MonoBehaviour {
         {
             players.Add(playerArray[i]);
         }
+        GS = GameObject.Find("GameState").GetComponent<GameState>();
     }
 
     void Update ()
     {
-        if (Input.GetButtonDown(MenuButton))
+        if (Input.GetButtonDown(MenuButton) && !GS.isGameOver)
         {
 
             Time.timeScale = !pauseMenu.activeInHierarchy ? 0 : trueDeltaTime;
