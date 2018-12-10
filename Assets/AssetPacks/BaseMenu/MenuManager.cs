@@ -131,7 +131,7 @@ public class MenuManager : MonoBehaviour {
             while (!asyncOperation.isDone)
             {
                 //Output the current progress
-                m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";
+                m_Text.text = "Loading...";
                 // Check if the load has finished
                 if (asyncOperation.progress >= 0.9f)
                 {
@@ -145,7 +145,7 @@ public class MenuManager : MonoBehaviour {
                         //Activate the Scene
                         holdValue += Time.deltaTime;
                         GameObject AButtonUI = loading.transform.Find("A").gameObject;
-                        AButtonUI.transform.localScale = new Vector3(1-(holdValue / holdTime), 1 - (holdValue / holdTime), 1 - (holdValue / holdTime));
+                        AButtonUI.transform.localScale = new Vector3(1-Mathf.Clamp((holdValue / holdTime),0,1), 1 - Mathf.Clamp((holdValue / holdTime),0,1), 1 - Mathf.Clamp((holdValue / holdTime),0,1));
                         if (holdValue >= holdTime)
                         {
                             asyncOperation.allowSceneActivation = true;

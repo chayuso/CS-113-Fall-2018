@@ -29,6 +29,7 @@ public class ArcSwap : MonoBehaviour {
     public string ToggleButton = "Dash1";
     public string IncreaseTrigger = "Increase_Arc_1";
     public string DecreaseTrigger = "Decrease_Arc_1";
+	public string IncreaseButton = "Increase_Arc_Button_1";
     public string DecreaseButton = "Decrease_Arc_Button_1";
     private bool Right_isAxisInUse = false;
     private bool Left_isAxisInUse = false;
@@ -75,6 +76,10 @@ public class ArcSwap : MonoBehaviour {
             if (Input.GetAxisRaw(DecreaseTrigger) == 0)
             {
                 Left_isAxisInUse = false;
+            }
+			if (Input.GetButtonDown(IncreaseButton))
+            {
+                IncreaseState();
             }
             if (Input.GetButtonDown(DecreaseButton))
             {

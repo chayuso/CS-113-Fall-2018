@@ -2574,6 +2574,7 @@ MonoBehaviour:
   ToggleButton: Dash2
   IncreaseTrigger: Increase_Arc_2
   DecreaseTrigger: Decrease_Arc_2
+  IncreaseButton: Increase_Arc_Button_2
   DecreaseButton: Decrease_Arc_Button_2
 --- !u!114 &114254484134913330
 MonoBehaviour:
@@ -2951,6 +2952,7 @@ MonoBehaviour:
   ToggleButton: Dash1
   IncreaseTrigger: Increase_Arc_1
   DecreaseTrigger: Decrease_Arc_1
+  IncreaseButton: Increase_Arc_Button_1
   DecreaseButton: Decrease_Arc_Button_1
 --- !u!114 &114961619467292316
 MonoBehaviour:
